@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+
   - UpstreamCarPath
   - DownstreamCarPath
+
+  - GG
+
   layers:
   - Default
   - TransparentFX
