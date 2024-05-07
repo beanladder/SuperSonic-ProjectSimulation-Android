@@ -4,8 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Map.unity
+    guid: c18870075817847029f3efd56e3c114a
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: da9ca55664d23b14b9aad2093a3c3806,
+      type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 02b313a49444e6041ab1f4e971021c80, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 6aaea4e55070ec14eb0812cbd91a3421,
