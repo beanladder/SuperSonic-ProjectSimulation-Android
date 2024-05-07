@@ -966,13 +966,13 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 63188cd9-1465-4321-be9b-21977ed91c7f
+  cloudProjectId: 309dd5bc-0630-48cd-9eba-c3dced0cab71
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: IT Mall Manager
-  organizationId: its_saswata
+  organizationId: angshu169
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
