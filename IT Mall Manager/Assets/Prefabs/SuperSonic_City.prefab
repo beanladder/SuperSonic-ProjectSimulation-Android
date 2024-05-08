@@ -10436,7 +10436,7 @@ MonoBehaviour:
   - {fileID: 457664463454633050}
   - {fileID: 4356456418191540095}
   - {fileID: 6262456657910400899}
-  maxCars: 20
+  maxCars: 10
 --- !u!1 &6496440839227181211
 GameObject:
   m_ObjectHideFlags: 0
@@ -11427,7 +11427,6 @@ Transform:
   - {fileID: 4302868285997592124}
   - {fileID: 260921975036607142}
   - {fileID: 3153392860853151373}
-  - {fileID: 1625190773448202743}
   m_Father: {fileID: 5607876872992434702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7054018868339247850
@@ -13867,37 +13866,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8479357384479504689}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9092443638107800347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625190773448202743}
-  m_Layer: 0
-  m_Name: Waypoint (10)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1625190773448202743
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092443638107800347}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.22, y: 0, z: 31.51}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7788116813555940015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9137073819427458756
 GameObject:

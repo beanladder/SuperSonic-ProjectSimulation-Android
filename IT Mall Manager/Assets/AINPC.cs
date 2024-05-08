@@ -1,52 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AINPC : MonoBehaviour
 {
-    public Transform[] waypoints;
-    private int currentWaypointIndex = 0;
-    private UnityEngine.AI.NavMeshAgent navMeshAgent;
-    public Animator anim;
+    public enum ProductType { Motherboard, CPU, RAM }
 
-    public float moveSpeed = 5f;
-    public float rotationSpeed = 10f;
+    public Transform cashCounter;
+    public Transform motherboardShelf;
+    public Transform cpuShelf;
+    public Transform ramShelf;
+
+    public ProductType productType; // Variable to store the product type
+
+    private NavMeshAgent navMeshAgent;
+    private bool isTakingProduct = false;
 
     void Start()
     {
-        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        SetNextWaypoint();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        // Choose a random product type
+        productType = (ProductType)Random.Range(0, System.Enum.GetValues(typeof(ProductType)).Length);
+        SetDestination();
     }
 
-    void SetNextWaypoint()
+    void SetDestination()
     {
-        if (waypoints.Length == 0) return;
-        navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
+        // Choose a shelf based on product type
+        switch (productType)
+        {
+            case ProductType.Motherboard:
+                navMeshAgent.SetDestination(motherboardShelf.position);
+                break;
+            case ProductType.CPU:
+                navMeshAgent.SetDestination(cpuShelf.position);
+                break;
+            case ProductType.RAM:
+                navMeshAgent.SetDestination(ramShelf.position);
+                break;
+        }
     }
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        // Check if the AI NPC entered the shelf trigger
+        if (other.CompareTag("Shelf"))
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
-            SetNextWaypoint();
+            // Check if the AI NPC is already taking the product
+            if (!isTakingProduct)
+            {
+                StartCoroutine(TakeProduct());
+            }
         }
+        // Check if the AI NPC entered the checkout trigger
+        else if (other.CompareTag("Checkout"))
+        {
+            StartCoroutine(Checkout());
+        }
+    }
 
-        // Steer towards the next waypoint
-        Vector3 targetDir = waypoints[currentWaypointIndex].position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    public IEnumerator TakeProduct()
+    {
+        // Set flag to indicate that the AI NPC is taking the product
+        isTakingProduct = true;
 
-        // Move towards the next waypoint
-        float distanceToWaypoint = Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position);
-        if (distanceToWaypoint > navMeshAgent.stoppingDistance)
-        {
-            anim.SetBool("IsMoving", true);
-            navMeshAgent.Move(transform.forward * moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            anim.SetBool("IsMoving", false);
-        }
+        // Stop moving
+        navMeshAgent.isStopped = true;
+
+        // Wait for 4 seconds to simulate taking the product
+        yield return new WaitForSeconds(4f);
+
+        // Log the product picked
+        Debug.Log("AI picked " + productType.ToString());
+
+        // Move towards the cash counter
+        navMeshAgent.SetDestination(cashCounter.position);
+
+        // Resume moving
+        navMeshAgent.isStopped = false;
+
+        // Reset flag
+        isTakingProduct = false;
+    }
+
+    public IEnumerator Checkout()
+    {
+        // Stop moving
+        navMeshAgent.isStopped = true;
+
+        // Wait for 4 seconds to simulate checking out
+        yield return new WaitForSeconds(4f);
+
+        // Destroy the AI NPC after checking out
+        Destroy(gameObject);
     }
 }

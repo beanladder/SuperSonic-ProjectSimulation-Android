@@ -18,7 +18,7 @@ public class AIVehicle : MonoBehaviour
 
     void SetNextWaypoint()
     {
-        Debug.Log("Moving to Next Destination");
+        
         if (waypoints.Length == 0) return;
         navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
     }
@@ -28,7 +28,7 @@ public class AIVehicle : MonoBehaviour
         // Check if reached the current waypoint
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
-            Debug.Log("Reached Destination");
+            
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             SetNextWaypoint();
         }

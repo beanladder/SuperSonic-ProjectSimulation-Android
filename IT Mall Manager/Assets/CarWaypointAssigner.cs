@@ -22,7 +22,7 @@ public class CarWaypointAssigner : MonoBehaviour
         for (int i = 0; i < max; i++)
         {
             SpawnCar();
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(6f);
         }
     }
 
