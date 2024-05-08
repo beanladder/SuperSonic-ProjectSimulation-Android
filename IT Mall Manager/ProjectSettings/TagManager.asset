@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-
   - UpstreamCarPath
   - DownstreamCarPath
-
-  - GG
-
+  - Shelf
+  - Checkout
+  - AINPC
   layers:
   - Default
   - TransparentFX
@@ -17,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - cars
+  - 
   - 
   - 
   - 
