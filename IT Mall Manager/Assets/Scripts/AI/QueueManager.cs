@@ -7,7 +7,8 @@ public class QueueManager : MonoBehaviour
     public static QueueManager instance;
     public static QueueManager Instance { get { return instance; } }
 
-    private Queue<Transform> queue = new Queue<Transform>();
+    public List<Transform> queuePositions = new List<Transform>();
+    public int nextPositionIndex = -1;
 
     void Awake()
     {
@@ -22,61 +23,38 @@ public class QueueManager : MonoBehaviour
         }
     }
 
-    public void AddToQueue(Transform npcTransform)
+    public void AddToQueue()
     {
-        queue.Enqueue(npcTransform);
-        UpdateQueuePositions();
-    }
-
-    public Transform GetNextQueuePosition()
-    {
-        if (queue.Count > 0)
+        // Ensure there are positions in the queue
+        if (nextPositionIndex < queuePositions.Count)
         {
-            return queue.Peek(); // Return the transform of the next NPC in the queue
-        }
-        return transform; // Default to queue manager transform if no NPCs in queue
-    }
-
-    public void RemoveFromQueue()
-    {
-        if (queue.Count > 0)
-        {
-            queue.Dequeue();
-            UpdateQueuePositions();
-        }
-    }
-
-    private void UpdateQueuePositions()
-    {
-        int positionIndex = 1;
-        foreach (Transform npcTransform in queue)
-        {
-            npcTransform.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(GetQueuePosition(positionIndex));
-            positionIndex++;
-        }
-    }
-
-    private Vector3 GetQueuePosition(int positionIndex)
-    {
-        // Define custom positions for the queue (adjust as needed for your scene)
-        Vector3[] customPositions = new Vector3[]
-        {
-        new Vector3(0f, 0f, 0f),   // Position for index 1
-        new Vector3(0f, 0f, 2f),   // Position for index 2
-        new Vector3(0f, 0f, 4f),   // Position for index 3
-                                   // Add more custom positions for higher indices as needed
-        };
-
-        // Check if the positionIndex is within the bounds of customPositions
-        if (positionIndex > 0 && positionIndex <= customPositions.Length)
-        {
-            return transform.position + customPositions[positionIndex - 1]; // Adjust index to match array index
+            nextPositionIndex++; // Increment the next available position index
+            
         }
         else
         {
-            Debug.LogWarning("Position index out of bounds for custom queue positions.");
-            // Default to a position based on the position index (adjust as needed)
-            return transform.position + Vector3.right * positionIndex;
+            Debug.LogWarning("No more positions available in the queue.");
         }
     }
+
+    //private void UpdateQueuePositions()
+    //{
+    //    // Iterate through the queue and update NPC positions
+    //    for (int i = 0; i < nextPositionIndex; i++)
+    //    {
+    //        // Set destination for NPCs at positions in the queue
+    //        if (i < queuePositions.Count)
+    //        {
+    //            foreach (GameObject npc in GameObject.FindGameObjectsWithTag("AINPC"))
+    //            {
+    //                npc.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(queuePositions[i]);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Debug.LogWarning("Not enough queue positions for all NPCs in the queue.");
+    //            break;
+    //        }
+    //    }
+    //}
 }
