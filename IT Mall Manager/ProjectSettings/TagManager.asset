@@ -9,6 +9,7 @@ TagManager:
   - Shelf
   - Checkout
   - AINPC
+  - Line
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - AI
+  - Player
   - 
   - 
   - 
