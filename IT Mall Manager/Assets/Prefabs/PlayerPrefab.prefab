@@ -382,8 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0.89, y: 2.5, z: 0.61}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadTime: 1
+  m_LookaheadSmoothing: 9.7
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
   m_YDamping: 1
@@ -391,13 +391,13 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 10
+  m_CameraDistance: 15.62
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.43
+  m_SoftZoneHeight: 0.49
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -630,8 +630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629752207788445039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25684467, y: -0.28720868, z: 0.08024414, w: 0.91929483}
-  m_LocalPosition: {x: 10.116447, y: 7.683255, z: 2.9578276}
+  m_LocalRotation: {x: 0.31036127, y: -0.28200343, z: 0.09696394, w: 0.90263397}
+  m_LocalPosition: {x: 12.259947, y: 12.105889, z: -0.13778687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,14 +972,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2956326026777487547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25684467, y: -0.28720868, z: 0.08024414, w: 0.91929483}
-  m_LocalPosition: {x: 10.116447, y: 7.683255, z: 2.9578276}
+  m_LocalRotation: {x: 0.31036127, y: -0.28200343, z: 0.09696394, w: 0.90263397}
+  m_LocalPosition: {x: 12.259947, y: 12.105889, z: -0.13778687}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8878681915459008979}
   m_Father: {fileID: 8271292206046614512}
-  m_LocalEulerAnglesHint: {x: 31.22, y: -34.7, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.95, y: -34.7, z: 0}
 --- !u!114 &3915230269164552942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 7235604118573304562}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 7235604118573304562}
   m_Lens:
     FieldOfView: 60.000004

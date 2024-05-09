@@ -25,7 +25,7 @@ public class CharacterMovementManager : MonoBehaviour
     {
         if(isJoystick)
         {
-            Vector3 movementDir = new Vector3(joystick.Direction.x*-1,0.0f,joystick.Direction.y*-1);
+            Vector3 movementDir = new Vector3(joystick.Direction.x,0.0f,joystick.Direction.y);
             controller.SimpleMove(movementDir * moveSpeed);
 
 
