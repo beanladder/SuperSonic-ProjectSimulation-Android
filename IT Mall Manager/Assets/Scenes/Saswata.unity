@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 1220266568}
   CashPrefab: {fileID: 2087508175477756216, guid: de3aaec5715acd54e81e1926f798ce23,
     type: 3}
-  CashDeliveryTime: 0.001
+  CashDeliveryTime: 1
   Yaxis: 0
 --- !u!65 &378750499
 BoxCollider:
@@ -212,12 +212,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.6963406, y: 4.535503, z: 5.108223}
+  m_Center: {x: -2.3482494, y: -1.7678192, z: -1.614893}
 --- !u!23 &378750500
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -294,7 +294,6 @@ GameObject:
   - component: {fileID: 968533329}
   - component: {fileID: 968533328}
   - component: {fileID: 968533327}
-  - component: {fileID: 968533326}
   - component: {fileID: 968533330}
   m_Layer: 0
   m_Name: Cube
@@ -303,27 +302,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &968533326
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968533325}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &968533327
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -410,12 +388,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3560319, y: 1, z: 1}
-  m_Center: {x: -0.17802559, y: 0, z: 0.0000000013203656}
+  m_Size: {x: 1.0036837, y: 1, z: 1}
+  m_Center: {x: -0.0018540953, y: 0, z: 2.148004e-13}
 --- !u!1 &1098184189
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,10 +631,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 500599819912686837, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3915230269164552942, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 54.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313867511555591855, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4676450533786392445, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
