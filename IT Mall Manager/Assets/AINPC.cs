@@ -1,33 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+
+
 
 public class AINPC : MonoBehaviour
 {
     public enum ProductType { Motherboard, CPU, RAM }
 
     public ProductType productType;
-    public Transform checkoutCounter;
-    public Transform[] shelfDestinations;
     private bool isTakingProduct = false;
     private bool isFinishedShopping = false;
+    private bool isCheckoutDone = false;
 
-    void Start()
+    private Transform myQueuePosition; // The assigned queue position for this NPC
+
+    private void Start()
     {
         productType = (ProductType)Random.Range(0, System.Enum.GetValues(typeof(ProductType)).Length);
         SetDestination();
     }
 
-    public void SetDestination()
+    private void Update()
     {
-        // Set initial destination to shelf
-        int randomIndex = Random.Range(0, shelfDestinations.Length);
-        Transform destination = shelfDestinations[randomIndex];
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(destination.position);
+        // Check if the checkout is done and move accordingly
+        if (isFinishedShopping && !isCheckoutDone)
+        {
+            // Move towards the checkout position
+            MoveToCheckout();
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void SetDestination()
+    {
+        // Get all objects with the "Shelf" tag
+        GameObject[] shelves = GameObject.FindGameObjectsWithTag("Shelf");
+
+        if (shelves.Length > 0)
+        {
+            // Choose a random shelf destination
+            Transform destination = shelves[Random.Range(0, shelves.Length)].transform;
+            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(destination.position);
+        }
+        else
+        {
+            Debug.LogWarning("No shelves found!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Shelf"))
         {
@@ -47,21 +71,42 @@ public class AINPC : MonoBehaviour
         isTakingProduct = true;
         yield return new WaitForSeconds(4f);
         Debug.Log(gameObject.name + " picked " + productType.ToString());
-        isFinishedShopping = true;
+
+        isTakingProduct = false; // Reset the flag
+
         // Let the QueueManager know that this NPC has finished shopping
-        QueueManager.Instance.AddToQueue();
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(QueueManager.Instance.queuePositions[QueueManager.Instance.nextPositionIndex].position);
+        isFinishedShopping = true;
+        // Claim the next available empty position in the queue for this NPC
+        myQueuePosition = QueueManager.instance.GetNextEmptyPosition(transform);
+
     }
 
     IEnumerator Checkout()
     {
         yield return new WaitForSeconds(4f);
-        MoveToStartingPosition();
+
+        Debug.Log("Checkout Function");
+
+        // Let the QueueManager know that this NPC's checkout is done
+        isCheckoutDone = true;
+
+        QueueManager.instance.RemoveFromQueue(transform);
+        Destroy(gameObject, 2f);
+        
     }
 
-    void MoveToStartingPosition()
+    // Move towards the assigned position in the queue
+    public void MoveToCheckout()
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(checkoutCounter.position);
-        Destroy(gameObject, 2f); // Destroy NPC after returning to starting position
+        
+        if (myQueuePosition != null)
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(myQueuePosition.position);
+        }
+        else
+        {
+            Debug.LogWarning("No queue position assigned for NPC.");
+        }
     }
 }
+
