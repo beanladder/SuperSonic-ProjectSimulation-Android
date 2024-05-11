@@ -1113,7 +1113,7 @@ GameObject:
   - component: {fileID: 2956158121595697873}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: AINPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1194,13 +1194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2923408b4128ae248986187f9b7fc091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cashCounter: {fileID: 0}
-  motherboardShelf: {fileID: 0}
-  cpuShelf: {fileID: 0}
-  ramShelf: {fileID: 0}
-  anim: {fileID: 8259084178878622279}
-  rotationSpeed: 10
   productType: 0
+  checkoutCounter: {fileID: 0}
+  shelfDestinations: []
 --- !u!195 &2956158121595697873
 NavMeshAgent:
   m_ObjectHideFlags: 0

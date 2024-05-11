@@ -10,9 +10,8 @@ public class AINPC : MonoBehaviour
     public ProductType productType;
     public Transform checkoutCounter;
     public Transform[] shelfDestinations;
-
     private bool isTakingProduct = false;
-    private bool isInQueue = false;
+    private bool isFinishedShopping = false;
 
     void Start()
     {
@@ -20,8 +19,9 @@ public class AINPC : MonoBehaviour
         SetDestination();
     }
 
-    void SetDestination()
+    public void SetDestination()
     {
+        // Set initial destination to shelf
         int randomIndex = Random.Range(0, shelfDestinations.Length);
         Transform destination = shelfDestinations[randomIndex];
         GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(destination.position);
@@ -36,14 +36,7 @@ public class AINPC : MonoBehaviour
                 StartCoroutine(TakeProduct());
             }
         }
-        else if (isTakingProduct && other.CompareTag("Line"))
-        {
-            if (!isInQueue)
-            {
-                JoinQueue();
-            }
-        }
-        else if (isInQueue && other.CompareTag("Checkout"))
+        else if (other.CompareTag("Checkout"))
         {
             StartCoroutine(Checkout());
         }
@@ -54,32 +47,21 @@ public class AINPC : MonoBehaviour
         isTakingProduct = true;
         yield return new WaitForSeconds(4f);
         Debug.Log(gameObject.name + " picked " + productType.ToString());
-        MoveToQueue();
-    }
-
-    void JoinQueue()
-    {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
-        isInQueue = true;
-        QueueManager.Instance.AddToQueue(transform);
-    }
-
-    void MoveToQueue()
-    {
-
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(QueueManager.Instance.GetNextQueuePosition().position);
+        isFinishedShopping = true;
+        // Let the QueueManager know that this NPC has finished shopping
+        QueueManager.Instance.AddToQueue();
+        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(QueueManager.Instance.queuePositions[QueueManager.Instance.nextPositionIndex].position);
     }
 
     IEnumerator Checkout()
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().isStopped = true;
         yield return new WaitForSeconds(4f);
         MoveToStartingPosition();
     }
 
     void MoveToStartingPosition()
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(transform.position);
-       Destroy(gameObject, 2f); // Destroy NPC after returning to starting position
+        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(checkoutCounter.position);
+        Destroy(gameObject, 2f); // Destroy NPC after returning to starting position
     }
 }
