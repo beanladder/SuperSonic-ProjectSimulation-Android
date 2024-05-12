@@ -27,14 +27,7 @@ public class CharacterMovementManager : MonoBehaviour
 
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
-
-        // Check if 5 seconds have elapsed and speed has not been increased yet
-        if (timeElapsed >= 5f && !speedIncreased)
-        {
-            moveSpeed = 5f;
-            speedIncreased = true; // to make sure we don't change speed again
-        }
+        
 
         if (isJoystick)
         {

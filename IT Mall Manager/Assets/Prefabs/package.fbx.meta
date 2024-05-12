@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a411d240dee84fe4a95647c8701e317c
+guid: 22469ecccf7116048920f116cf4765a7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Dollar
-    second: {fileID: 2100000, guid: 2527ff123483ed847b398ddebf9886cb, type: 2}
+      name: Material.003
+    second: {fileID: 2100000, guid: 6d24d8c777e3a9343ad547663d6bc7d2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Side
-    second: {fileID: 2100000, guid: 44f00bf45c59f4941b74ad42c825908e, type: 2}
+      name: Material.004
+    second: {fileID: 2100000, guid: 5cb87189d204fd64297bbc9720552f5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: baked tape
-    second: {fileID: 2100000, guid: f337ca338f3e19c488a1ec171d8969dd, type: 2}
+      name: Material.005
+    second: {fileID: 2100000, guid: 7726e99370bd9b840b8aa2ef2ca01a41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 8b681c682e5e0144d909687e89bc3a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: f5436c08a9aa09442b86b5d35fe3ee03, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

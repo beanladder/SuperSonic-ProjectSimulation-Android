@@ -12,6 +12,7 @@ TagManager:
   - Line
   - Admin
   - SpawnPoint
+  - Cash
   layers:
   - Default
   - TransparentFX

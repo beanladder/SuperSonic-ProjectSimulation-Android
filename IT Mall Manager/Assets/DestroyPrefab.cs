@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyPrefab : MonoBehaviour
 {
+    private CashMovement cashMovement;
+
+    private void Start()
+    {
+        cashMovement = FindObjectOfType<CashMovement>(); // Find the CashMovement script in the scene
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Destroy the prefab if it collides with the player
-            Destroy(gameObject);
+           
+            //Destroy(gameObject); // Destroy the cash prefab
         }
     }
 }

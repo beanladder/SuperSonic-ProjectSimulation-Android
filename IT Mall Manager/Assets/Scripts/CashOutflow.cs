@@ -9,7 +9,7 @@ public class CashOutflow : MonoBehaviour
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     [SerializeField] float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
 
-    private int cashToOutflow = 16;
+    private int cashToOutflow = 50;
 
     void Start()
     {
