@@ -10,6 +10,8 @@ TagManager:
   - Checkout
   - AINPC
   - Line
+  - Admin
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
