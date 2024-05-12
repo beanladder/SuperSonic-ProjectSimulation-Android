@@ -6,13 +6,10 @@ public class QueueManager : MonoBehaviour
 {
     public static QueueManager instance;
 
-    // List to hold the queue of AI NPCs
-    public List<Transform> queue = new List<Transform>();
-
-    private Dictionary<Transform, Transform> npcQueuePositions = new Dictionary<Transform, Transform>();
-
     // Array to hold the positions of the queue gameobjects
-    public List<Transform> queuePositions = new List<Transform>();
+    public Transform[] queuePositions;
+
+    private List<AINPC> queue = new List<AINPC>();
 
     private void Awake()
     {
@@ -23,20 +20,19 @@ public class QueueManager : MonoBehaviour
     }
 
     // Add NPC to the queue
-    public void AddToQueue(Transform npcTransform)
+    public void AddToQueue(AINPC npc)
     {
-        queue.Add(npcTransform);
+        queue.Add(npc);
         UpdateQueuePositions();
     }
 
     // Remove NPC from the queue (after checkout)
-    public void RemoveFromQueue(Transform npcTransform)
+    public void RemoveFromQueue(AINPC npc)
     {
-        if (queue.Contains(npcTransform))
+        if (queue.Contains(npc))
         {
-            queue.Remove(npcTransform);
+            queue.Remove(npc);
             UpdateQueuePositions();
-            //UpdateNavMeshDestinations(); // Update NavMeshAgent destinations after queue position changes
         }
     }
 
@@ -45,81 +41,11 @@ public class QueueManager : MonoBehaviour
     {
         for (int i = 0; i < queue.Count; i++)
         {
-            // Ensure there are enough queue positions
-            if (i < queuePositions.Count)
-            {
-                queue[i].position = queuePositions[i].position;
-            }
-            else
-            {
-                Debug.LogWarning("Not enough queue positions defined.");
-                break;
-            }
+            queue[i].linePosition = i;
+            queue[i].MoveToCheckout(queuePositions[i].position);
         }
     }
-
-    // Update the NavMeshAgent destinations for all NPCs in the queue
-    private void UpdateNavMeshDestinations()
-    {
-        foreach (Transform npcTransform in queue)
-        {
-            AINPC aiNPC = npcTransform.GetComponent<AINPC>();
-            if (aiNPC != null)
-            {
-                aiNPC.MoveToCheckout(); // Call a method in AINPC to update the NavMeshAgent destination
-            }
-        }
-    }
-
-    // Get the first empty position in the queue
-    public Transform GetFirstEmptyPosition()
-    {
-        foreach (Transform position in queuePositions)
-        {
-            bool isPositionEmpty = true;
-            foreach (Transform npcTransform in queue)
-            {
-                if (npcTransform.position == position.position)
-                {
-                    isPositionEmpty = false;
-                    break;
-                }
-            }
-            if (isPositionEmpty)
-                return position;
-        }
-        return null; // No empty position found
-    }
-
-    public Transform GetNextEmptyPosition(Transform npcTransform)
-    {
-        // Check if the NPC's transform already exists as a key in the dictionary
-        if (!npcQueuePositions.ContainsKey(npcTransform))
-        {
-            foreach (Transform position in queuePositions)
-            {
-                bool isPositionEmpty = true;
-
-                // Check if the position is already occupied by another NPC
-                foreach (Transform npc in npcQueuePositions.Values)
-                {
-                    if (npc.position == position.position)
-                    {
-                        isPositionEmpty = false;
-                        break;
-                    }
-                }
-
-                if (isPositionEmpty)
-                {
-                    // Assign the empty position to the NPC
-                    npcQueuePositions.Add(npcTransform, position); // Use the NPC's transform as the key
-                    return position;
-                }
-            }
-        }
-        return null; // No empty position found or position already assigned for NPC
-    }
+}
     //private void UpdateQueuePositions()
     //{
     //    // Iterate through the queue and update NPC positions
@@ -140,4 +66,4 @@ public class QueueManager : MonoBehaviour
     //        }
     //    }
     //}
-}
+

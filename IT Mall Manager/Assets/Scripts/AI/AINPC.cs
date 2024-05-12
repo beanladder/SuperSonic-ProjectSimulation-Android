@@ -14,7 +14,9 @@ public class AINPC : MonoBehaviour
     public ProductType productType;
     private bool isTakingProduct = false;
     private bool isFinishedShopping = false;
-    private bool isCheckoutDone = false;
+
+    public int linePosition = -1; // The assigned line position for this NPC
+    public bool isCheckoutDone = false;
 
     private Transform myQueuePosition; // The assigned queue position for this NPC
 
@@ -24,13 +26,13 @@ public class AINPC : MonoBehaviour
         SetDestination();
     }
 
-    private void Update()
+   private void Update()
     {
         // Check if the checkout is done and move accordingly
         if (isFinishedShopping && !isCheckoutDone)
         {
             // Move towards the checkout position
-            MoveToCheckout();
+            MoveToCheckout(QueueManager.instance.queuePositions[linePosition].position);
         }
     }
 
@@ -70,43 +72,42 @@ public class AINPC : MonoBehaviour
     {
         isTakingProduct = true;
         yield return new WaitForSeconds(4f);
-        Debug.Log(gameObject.name + " picked " + productType.ToString());
-
-        isTakingProduct = false; // Reset the flag
-
-        // Let the QueueManager know that this NPC has finished shopping
         isFinishedShopping = true;
-        // Claim the next available empty position in the queue for this NPC
-        myQueuePosition = QueueManager.instance.GetNextEmptyPosition(transform);
-
+        QueueManager.instance.AddToQueue(this); // Add this NPC to the queue
     }
 
-    IEnumerator Checkout()
+   IEnumerator Checkout()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
 
         Debug.Log("Checkout Function");
 
         // Let the QueueManager know that this NPC's checkout is done
         isCheckoutDone = true;
-
-        QueueManager.instance.RemoveFromQueue(transform);
-        Destroy(gameObject, 2f);
-        
+        QueueManager.instance.RemoveFromQueue(this); 
+        // Move to a random spawn point before destroying itself
+        MoveToRandomSpawnPoint();
     }
 
-    // Move towards the assigned position in the queue
-    public void MoveToCheckout()
+    private void MoveToRandomSpawnPoint()
     {
-        
-        if (myQueuePosition != null)
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        if (spawnPoints.Length > 0)
         {
-            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(myQueuePosition.position);
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
+            GetComponent<NavMeshAgent>().SetDestination(randomSpawnPoint.position);
+            Destroy(gameObject, 15f); // Destroy after 5 seconds
         }
         else
         {
-            Debug.LogWarning("No queue position assigned for NPC.");
+            Debug.LogWarning("No spawn points found!");
         }
+    }
+
+    // Move towards the assigned position in the queue
+    public void MoveToCheckout(Vector3 position)
+    {
+        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(position);
     }
 }
 
