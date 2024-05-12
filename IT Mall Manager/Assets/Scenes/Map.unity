@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 186959684}
   m_Layer: 0
   m_Name: CPUShelf
-  m_TagString: Shelf
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,8 +1408,8 @@ Transform:
   m_GameObject: {fileID: 503715640}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.226}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.336}
+  m_LocalScale: {x: 0.20478399, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1353034575}
@@ -2206,7 +2206,7 @@ GameObject:
   - component: {fileID: 774446661}
   m_Layer: 0
   m_Name: MotherboardShelf
-  m_TagString: Shelf
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3362,7 +3362,7 @@ GameObject:
   - component: {fileID: 1356859140}
   m_Layer: 0
   m_Name: RAMShelf
-  m_TagString: Shelf
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4509,141 +4509,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AINPC
       objectReference: {fileID: 0}
-    - target: {fileID: 500599819912686837, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: cpuShelf
-      value: 
-      objectReference: {fileID: 186959680}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: ramShelf
-      value: 
-      objectReference: {fileID: 1356859136}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: cashCounter
-      value: 
-      objectReference: {fileID: 503715641}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: motherboardShelf
-      value: 
-      objectReference: {fileID: 774446657}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1138982805}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 1581732228}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 230965636}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 2008424495}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 1159402580}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[5]
-      value: 
-      objectReference: {fileID: 253466986}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[6]
-      value: 
-      objectReference: {fileID: 1924208429}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[7]
-      value: 
-      objectReference: {fileID: 340056942}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[8]
-      value: 
-      objectReference: {fileID: 523939344}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[9]
-      value: 
-      objectReference: {fileID: 317581141}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: shelfDestinations.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[10]
-      value: 
-      objectReference: {fileID: 1039891733}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[11]
-      value: 
-      objectReference: {fileID: 1659708183}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[12]
-      value: 
-      objectReference: {fileID: 403876120}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[13]
-      value: 
-      objectReference: {fileID: 1960541276}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[14]
-      value: 
-      objectReference: {fileID: 1721183189}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: queuePositions.Array.data[15]
-      value: 
-      objectReference: {fileID: 1973548176}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: shelfDestinations.Array.data[0]
-      value: 
-      objectReference: {fileID: 1990651263}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: shelfDestinations.Array.data[1]
-      value: 
-      objectReference: {fileID: 2129748431}
-    - target: {fileID: 2450377820361510878, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: shelfDestinations.Array.data[2]
-      value: 
-      objectReference: {fileID: 2116954245}
-    - target: {fileID: 2956158121595697873, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 2bb5b6ea259c76640b3defb9bda27cba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4780,6 +4645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bc806af9f8c9e44a499a1908251592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queue: []
   queuePositions:
   - {fileID: 1138982805}
   - {fileID: 1581732228}
@@ -4797,7 +4663,6 @@ MonoBehaviour:
   - {fileID: 1960541276}
   - {fileID: 1721183189}
   - {fileID: 1973548176}
-  nextPositionIndex: 0
 --- !u!1 &1924208428
 GameObject:
   m_ObjectHideFlags: 0
