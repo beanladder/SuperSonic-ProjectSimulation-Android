@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoints;
     public float popInDuration = 0.5f;
     public AnimationCurve popInCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-    public float checkInterval = 1f; // Interval to check for missing children
+    public float checkInterval = 0.5f; // Interval to check for missing children
 
     void Start()
     {
@@ -30,9 +30,9 @@ public class Spawner : MonoBehaviour
         {
             // Retrieve the local scale of the prefabToSpawn
             Vector3 prefabScale = prefabToSpawn.transform.localScale;
-
+            Quaternion prefabRotation = prefabToSpawn.transform.localRotation;
             // Spawn the prefab at the position of the spawn point with a small scale
-            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, prefabRotation);
             spawnedObject.transform.localScale = Vector3.zero;
 
             // Start the pop in animation and then change parent
@@ -80,14 +80,16 @@ public class Spawner : MonoBehaviour
 
     void SpawnPrefabAtSpawnPoint(Transform spawnPoint)
     {
-        // Retrieve the local scale of the prefabToSpawn
+        // Retrieve the local scale and rotation of the prefabToSpawn
         Vector3 prefabScale = prefabToSpawn.transform.localScale;
+        Quaternion prefabRotation = prefabToSpawn.transform.localRotation;
 
-        // Spawn the prefab at the position of the spawn point with a small scale
-        GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
+        // Spawn the prefab at the position of the spawn point with a small scale and the prefab's rotation
+        GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, prefabRotation);
         spawnedObject.transform.localScale = Vector3.zero;
 
         // Start the pop in animation and then change parent
         StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale));
     }
+
 }

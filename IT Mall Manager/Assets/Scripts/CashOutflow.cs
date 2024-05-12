@@ -24,10 +24,17 @@ public class CashOutflow : MonoBehaviour
     {
         int cashIndex = 0; // Index to track the current cash holder
         int countCash = 0; // Counter to track the total number of cash spawned
+        Vector3 originalScale = CashPrefab.transform.localScale; // Store the original scale
+        Quaternion originalRotation = CashPrefab.transform.rotation; // Store the original rotation
+
         while (countCash < cashToOutflow) // You can adjust the condition as needed
         {
             GameObject newCash = Instantiate(CashPrefab, transform.position, Quaternion.identity); // Instantiate cash at the dispenser position
-            newCash.transform.localScale = CashPrefab.transform.localScale;
+
+            // Set the scale and rotation of the new cash to match the original scale and rotation
+            newCash.transform.localScale = originalScale;
+            newCash.transform.rotation = originalRotation;
+
             // Set the parent of the new cash to the respective cash holder
             newCash.transform.parent = CashHolders[cashIndex];
 
@@ -38,11 +45,13 @@ public class CashOutflow : MonoBehaviour
             cashIndex = (cashIndex + 1) % CashHolders.Length; // Wrap around to the beginning if index exceeds the array length
             if (cashIndex == 0) // Increase Y-axis offset if a full cycle of cash holders is completed
             {
-                Yaxis += 0.09f; // You can adjust this value as needed
+                Yaxis += 0.035f; // You can adjust this value as needed
             }
 
             countCash++; // Increment total cash count
             yield return new WaitForSeconds(time); // Wait for the specified time before spawning the next cash
         }
     }
+
+
 }
