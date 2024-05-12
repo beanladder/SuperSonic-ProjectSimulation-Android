@@ -630,8 +630,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629752207788445039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31036127, y: -0.28200343, z: 0.09696394, w: 0.90263397}
-  m_LocalPosition: {x: 12.259947, y: 12.105889, z: -0.13778687}
+  m_LocalRotation: {x: 0.41968682, y: -0.3038829, z: 0.15151039, w: 0.8417617}
+  m_LocalPosition: {x: 11.252707, y: 14.974689, z: 2.7560349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,14 +972,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2956326026777487547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31036127, y: -0.28200343, z: 0.09696394, w: 0.90263397}
-  m_LocalPosition: {x: 12.259947, y: 12.105889, z: -0.13778687}
+  m_LocalRotation: {x: 0.41968682, y: -0.3038829, z: 0.15151039, w: 0.8417617}
+  m_LocalPosition: {x: 11.252707, y: 14.974689, z: 2.7560349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8878681915459008979}
   m_Father: {fileID: 8271292206046614512}
-  m_LocalEulerAnglesHint: {x: 37.95, y: -34.7, z: 0}
+  m_LocalEulerAnglesHint: {x: 53, y: -39.7, z: 0}
 --- !u!114 &3915230269164552942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   controller: {fileID: 7564165833034836616}
   canvas: {fileID: 3209680902240498845}
   isJoystick: 0
-  moveSpeed: 5
+  moveSpeed: 2.5
   rotationSpeed: 10
   anim: {fileID: 8259084178878622279}
 --- !u!1 &4443304073305186519

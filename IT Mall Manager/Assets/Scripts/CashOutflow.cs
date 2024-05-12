@@ -9,21 +9,22 @@ public class CashOutflow : MonoBehaviour
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     [SerializeField] float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
 
-    //bool playerNearby = false;
-    //Vector3 playerPosition;
-   // Coroutine cashMovementCoroutine; // Coroutine reference for moving cash towards player
+    private int cashToOutflow = 100;
 
     void Start()
     {
         StartCoroutine(CashSpawn(CashDeliveryTime));
     }
 
-
+    public void SetCashToOutflow(int amount)
+    {
+        cashToOutflow = amount;
+    }
     public IEnumerator CashSpawn(float time)
     {
         int cashIndex = 0; // Index to track the current cash holder
         int countCash = 0; // Counter to track the total number of cash spawned
-        while (countCash < 100) // You can adjust the condition as needed
+        while (countCash < cashToOutflow) // You can adjust the condition as needed
         {
             GameObject newCash = Instantiate(CashPrefab, transform.position, Quaternion.identity); // Instantiate cash at the dispenser position
             newCash.transform.localScale = CashPrefab.transform.localScale;
