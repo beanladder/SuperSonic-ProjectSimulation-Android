@@ -9,7 +9,7 @@ public class CashOutflow : MonoBehaviour
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     [SerializeField] float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
 
-    private int cashToOutflow = 100;
+    private int cashToOutflow = 16;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class CashOutflow : MonoBehaviour
             newCash.transform.parent = CashHolders[cashIndex];
 
             // Move the cash to the respective cash holder with a jump animation
-            newCash.transform.DOJump(CashHolders[cashIndex].position + Vector3.up * Yaxis, 2f, 1, 0.5f).SetEase(Ease.OutQuad);
+            newCash.transform.DOJump(CashHolders[cashIndex].position + Vector3.up * Yaxis, .5f, 1, 0.5f).SetEase(Ease.OutQuad);
 
             // Increment cash index and adjust y-axis offset if needed
             cashIndex = (cashIndex + 1) % CashHolders.Length; // Wrap around to the beginning if index exceeds the array length
