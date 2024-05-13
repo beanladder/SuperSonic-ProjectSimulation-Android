@@ -9,6 +9,9 @@ public class SuperContainer : MonoBehaviour
     // Reference to the spawn points
     public Transform[] spawnPoints;
 
+    // Reference to the Animator component of the player
+    public Animator playerAnimator;
+
     void Start()
     {
         // Get all the spawn points as children of the shelf
@@ -16,6 +19,28 @@ public class SuperContainer : MonoBehaviour
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             spawnPoints[i] = transform.GetChild(i);
+        }
+
+        // Find the player object by tag and get the Animator component
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            playerAnimator = playerObject.GetComponent<Animator>();
+        }
+        else
+        {
+            Debug.LogError("Player object not found. Make sure the player has the 'Player' tag.");
+        }
+    }
+    private void Update()
+    {
+        if(playerHands.childCount > 0)
+        {
+            playerAnimator.SetLayerWeight(1,1f);
+        }
+        else if(playerHands.childCount <= 0)
+        {
+            playerAnimator.SetLayerWeight(1, 0f);
         }
     }
 
@@ -29,13 +54,17 @@ public class SuperContainer : MonoBehaviour
             {
                 // Move one box to player's hands using DOTween
                 MoveBoxToPlayer();
+                
             }
             else
             {
                 Debug.Log("Player already has a box in their hands.");
+                // Set the weight of the second animation layer to 1
+                
             }
         }
     }
+   
 
     private void MoveBoxToPlayer()
     {
