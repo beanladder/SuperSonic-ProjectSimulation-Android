@@ -11,7 +11,7 @@ public class SuperContainer : MonoBehaviour
 
     // Reference to the Animator component of the player
     public Animator playerAnimator;
-
+    public bool EmptyHand;
     void Start()
     {
         // Get all the spawn points as children of the shelf
@@ -36,10 +36,14 @@ public class SuperContainer : MonoBehaviour
     {
         if(playerHands.childCount > 0)
         {
+            EmptyHand = false;
+            PlayerInteraction.instance.SetHasChildObject(EmptyHand);
             playerAnimator.SetLayerWeight(1,1f);
         }
         else if(playerHands.childCount <= 0)
         {
+            EmptyHand = true;
+            PlayerInteraction.instance.SetHasChildObject(EmptyHand);
             playerAnimator.SetLayerWeight(1, 0f);
         }
     }

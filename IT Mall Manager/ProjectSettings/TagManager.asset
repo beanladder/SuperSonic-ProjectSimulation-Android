@@ -13,6 +13,9 @@ TagManager:
   - Admin
   - SpawnPoint
   - Cash
+  - cShelf
+  - rShelf
+  - mShelf
   layers:
   - Default
   - TransparentFX
