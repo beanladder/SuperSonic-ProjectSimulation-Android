@@ -256,8 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productType: 0
+  taskTime: 6
   linePosition: -1
   isCheckoutDone: 0
+  ShelfChecking: 1
 --- !u!195 &1354364994030238746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1283,8 +1285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   productType: 0
+  taskTime: 0
   linePosition: -1
   isCheckoutDone: 0
+  ShelfChecking: 1
 --- !u!195 &2956158121595697873
 NavMeshAgent:
   m_ObjectHideFlags: 0
