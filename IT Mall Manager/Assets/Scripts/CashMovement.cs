@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-
+using UnityEngine.UI;
 public class CashMovement : MonoBehaviour
 {
     public Transform playerTransform;
@@ -10,6 +10,7 @@ public class CashMovement : MonoBehaviour
     public float moveDuration = .4f;
     public float delayBetweenMovement = 0.0000000001f;
     public int cashReachedPlayer=0;
+    public Text moneyText;
     private bool isInRange = false;
     private bool isMovingCash = false; // Flag to track whether cash movement coroutine is running
 
@@ -84,6 +85,13 @@ public class CashMovement : MonoBehaviour
     void CashReachedPlayer()
     {
         cashReachedPlayer++;
+        UpdateMoneyUi();
         Debug.Log("Cash reached player.");
+    }
+    
+    void UpdateMoneyUi(){
+        if(moneyText!=null){
+            moneyText.text = cashReachedPlayer.ToString();
+        }
     }
 }
