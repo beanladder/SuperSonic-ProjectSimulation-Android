@@ -7,7 +7,7 @@ public class CashMovement : MonoBehaviour
 {
     public Transform playerTransform;
     public Transform tableTransform;
-    public float moveDuration = 1f;
+    public float moveDuration = .4f;
     public float delayBetweenMovement = 0.0000000001f;
     public int cashReachedPlayer=0;
     private bool isInRange = false;
@@ -67,7 +67,7 @@ public class CashMovement : MonoBehaviour
                 {
                     if (cashObject != null)
                     {
-                        cashObject.transform.DOJump(playerTransform.position, 1f, 1, moveDuration).SetEase(Ease.Linear)
+                        cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear)
                             .OnComplete(() => { CashReachedPlayer(); }); // Call CashReachedPlayer when cash object reaches the player
                         yield return new WaitForSeconds(delayBetweenMovement); // Introduce delay between moving each cash object
                         Destroy(cashObject);

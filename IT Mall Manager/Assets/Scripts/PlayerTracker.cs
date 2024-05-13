@@ -4,12 +4,12 @@ public class PlayerTracker : MonoBehaviour
 {
     public bool isPlayerInRange = false; // Boolean to check if player is in range
     private Transform playerTransform;
-
+    public Animator anim;
     void Start()
     {
         // Assuming the player object has a tag "Player"
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
+        anim = playerObject.GetComponent<Animator>();
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
@@ -45,6 +45,7 @@ public class PlayerTracker : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = true;
+            anim.SetLayerWeight(1, 1f);
         }
     }
 
@@ -54,6 +55,7 @@ public class PlayerTracker : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
+            anim.SetLayerWeight(1, 0f);
         }
     }
 }
