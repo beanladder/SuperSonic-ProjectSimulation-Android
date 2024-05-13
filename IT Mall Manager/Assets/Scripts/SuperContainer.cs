@@ -79,7 +79,9 @@ public class SuperContainer : MonoBehaviour
                 {
                     // Once tweening is complete, parent the box to the player's hands
                     box.SetParent(playerHands);
-                    box.localPosition = Vector3.zero; // Optionally, reset the local position of the box
+                    box.localPosition = Vector3.zero;
+                    box.localRotation = Quaternion.identity; // Optionally, reset the local rotation first
+                    box.rotation = playerHands.rotation;// Optionally, reset the local position of the box
                 });
                 // Break out of the loop after moving one box
                 break;
