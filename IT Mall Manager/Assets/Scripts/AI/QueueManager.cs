@@ -10,6 +10,7 @@ public class QueueManager : MonoBehaviour
     public Transform[] queuePositions;
 
     private List<AINPC> queue = new List<AINPC>();
+    private bool isQueueFull = false; // Flag to track if the queue is full
 
     private void Awake()
     {
@@ -22,8 +23,16 @@ public class QueueManager : MonoBehaviour
     // Add NPC to the queue
     public void AddToQueue(AINPC npc)
     {
-        queue.Add(npc);
-        UpdateQueuePositions();
+        if (isQueueFull)
+        {
+            // Queue is full, NPC should wait
+            StartCoroutine(WaitForQueuePosition(npc));
+        }
+        else
+        {
+            queue.Add(npc);
+            UpdateQueuePositions();
+        }
     }
 
     // Remove NPC from the queue (after checkout)
@@ -34,6 +43,9 @@ public class QueueManager : MonoBehaviour
             queue.Remove(npc);
             UpdateQueuePositions();
         }
+
+        // Check if queue is no longer full
+        isQueueFull = queue.Count == queuePositions.Length;
     }
 
     // Update the positions of NPCs in the queue
@@ -43,6 +55,25 @@ public class QueueManager : MonoBehaviour
         {
             queue[i].linePosition = i;
             queue[i].MoveToCheckout(queuePositions[i].position);
+        }
+
+        // Update queue full flag
+        isQueueFull = queue.Count == queuePositions.Length;
+    }
+
+    // Coroutine to wait for a queue position
+    private IEnumerator WaitForQueuePosition(AINPC npc)
+    {
+        yield return new WaitForSeconds(15f); // Wait for 15 seconds
+        if (!isQueueFull)
+        {
+            // Queue position available, add NPC to the queue
+            AddToQueue(npc);
+        }
+        else
+        {
+            // Queue still full after waiting, move NPC to random spawn point
+            npc.MoveToRandomSpawnPoint();
         }
     }
 }
