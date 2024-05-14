@@ -151,6 +151,7 @@ public class AINPC : MonoBehaviour
         // Let the QueueManager know that this NPC's checkout is done
         isCheckoutDone = true;
         QueueManager.instance.RemoveFromQueue(this); 
+        CashOutflow.instance.StartCoroutine(CashOutflow.instance.CashSpawn(CashOutflow.instance.CashDeliveryTime));
         // Move to a random spawn point before destroying itself
         MoveToRandomSpawnPoint();
     }
