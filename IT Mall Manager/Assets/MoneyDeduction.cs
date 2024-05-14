@@ -1,17 +1,19 @@
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
-//aniket fucked up again
+
 public class MoneyDeduction : MonoBehaviour
 {
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
-    public Transform destinationTransform; // Destination transform (collider game object)
+
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
     private int remainingDeductionAmount; // Remaining amount to deduct
+    private bool playerInRange = false; // Flag to track if player is in range
+    private Coroutine deductionCoroutine; // Coroutine reference for deduction
 
     private void Start()
     {
@@ -31,13 +33,40 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            DeductMoneyAndSpawnCash();
+            playerInRange = true;
+            StartDeductionCoroutine();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            StopDeductionCoroutine();
+        }
+    }
+
+    void StartDeductionCoroutine()
+    {
+        if (deductionCoroutine == null)
+        {
+            deductionCoroutine = StartCoroutine(DeductMoneyAndSpawnCashCoroutine());
+        }
+    }
+
+    void StopDeductionCoroutine()
+    {
+        if (deductionCoroutine != null)
+        {
+            StopCoroutine(deductionCoroutine);
+            deductionCoroutine = null;
         }
     }
 
     IEnumerator DeductMoneyAndSpawnCashCoroutine()
     {
-        if (PlayerCashCounter.instance.totalCashValue >= remainingDeductionAmount)
+        while (playerInRange && PlayerCashCounter.instance.totalCashValue >= remainingDeductionAmount)
         {
             Debug.Log("Deducted " + totalDeductionAmount + " from player's cash.");
 
@@ -56,8 +85,9 @@ public class MoneyDeduction : MonoBehaviour
                 PlayerCashCounter.instance.DeductTotalCash(500);
 
                 // Use DOTween to move the cash object towards the destination
-                cashInstance.transform.DOJump(destinationTransform.position, jumpHeight, 1, jumpDuration)
-                    .SetEase(Ease.Linear);
+                cashInstance.transform.DOJump(transform.position, jumpHeight, 1, jumpDuration)
+                .SetEase(Ease.Linear)
+                .OnComplete(() => Destroy(cashInstance));
 
                 // Calculate delay for the current cash object
                 yield return new WaitForSeconds(delayBetweenJumps);
@@ -66,15 +96,8 @@ public class MoneyDeduction : MonoBehaviour
             // Reset the remaining deduction amount
             remainingDeductionAmount = 0;
         }
-        else
-        {
-            Debug.Log("Not enough cash to deduct " + totalDeductionAmount + ".");
-        }
-    }
 
-    void DeductMoneyAndSpawnCash()
-    {
-        StartCoroutine(DeductMoneyAndSpawnCashCoroutine());
+        // Reset the coroutine reference
+        deductionCoroutine = null;
     }
-    
 }

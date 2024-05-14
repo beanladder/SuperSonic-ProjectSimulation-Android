@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalCashValue: 0
+  moneyText: {fileID: 426725570}
 --- !u!1 &1220266567
 GameObject:
   m_ObjectHideFlags: 0
