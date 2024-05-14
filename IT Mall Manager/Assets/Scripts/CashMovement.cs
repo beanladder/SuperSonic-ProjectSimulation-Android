@@ -5,15 +5,19 @@ using DG.Tweening;
 using UnityEngine.UI;
 public class CashMovement : MonoBehaviour
 {
+    public static CashMovement instance;
     public Transform playerTransform;
     public Transform tableTransform;
     public float moveDuration = .4f;
     public float delayBetweenMovement = 0.0000000001f;
-    public int cashReachedPlayer=0;
+    public float cashReachedPlayer=0;
     public Text moneyText;
     private bool isInRange = false;
     private bool isMovingCash = false; // Flag to track whether cash movement coroutine is running
 
+    void Awake(){
+        instance=this;
+    }
     void Update()
     {
         if (isInRange && !isMovingCash)
@@ -88,8 +92,7 @@ public class CashMovement : MonoBehaviour
         UpdateMoneyUi();
         Debug.Log("Cash reached player.");
     }
-    
-    void UpdateMoneyUi(){
+    public void UpdateMoneyUi(){
         if(moneyText!=null){
             moneyText.text = cashReachedPlayer.ToString();
         }
