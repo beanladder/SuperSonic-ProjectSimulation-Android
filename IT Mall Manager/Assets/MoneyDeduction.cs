@@ -36,9 +36,10 @@ public class MoneyDeduction : MonoBehaviour
 
 
     public int deductionAmount = 100; // Amount of money to deduct when player is in range
-    public float deductionInterval = 1f;
     public bool playerInRange = false; // Flag to track if player is in range
+
     private Coroutine deductionCoroutine;
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -48,7 +49,6 @@ public class MoneyDeduction : MonoBehaviour
             
 
             playerInRange = true;
-            
 
         }
     }
@@ -57,6 +57,7 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (PlayerCashCounter.instance.totalCashValue >= remainingDeductionAmount)
         {
+
 
             Debug.Log("Deducted " + totalDeductionAmount + " from player's cash.");
 
@@ -91,4 +92,10 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
+
+            playerInRange = false;
+        }
+    }
+
+ 
 }
