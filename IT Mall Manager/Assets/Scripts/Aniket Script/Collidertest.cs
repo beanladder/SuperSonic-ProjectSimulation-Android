@@ -18,7 +18,7 @@ public class Collidertest : MonoBehaviour
             CashMovement.instance.UpdateMoneyUi();
         }
         if(CashMovement.instance.cashReachedPlayer<=0){
-            Debug.Log("Player is out of cash");
+            //Debug.Log("Player is out of cash");
         }
     }
     void OnTriggerEnter(Collider other){

@@ -21,7 +21,7 @@ public class SuperContainer : MonoBehaviour
             spawnPoints[i] = transform.GetChild(i);
         }
 
-        // Find the player object by tag and get the Animator component
+        //// Find the player object by tag and get the Animator component
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -38,13 +38,13 @@ public class SuperContainer : MonoBehaviour
         {
             EmptyHand = false;
             PlayerInteraction.instance.SetHasChildObject(EmptyHand);
-            playerAnimator.SetLayerWeight(1,1f);
+            //playerAnimator.SetLayerWeight(1,1f);
         }
         else if(playerHands.childCount <= 0)
         {
             EmptyHand = true;
             PlayerInteraction.instance.SetHasChildObject(EmptyHand);
-            playerAnimator.SetLayerWeight(1, 0f);
+            //playerAnimator.SetLayerWeight(1, 0f);
         }
     }
 

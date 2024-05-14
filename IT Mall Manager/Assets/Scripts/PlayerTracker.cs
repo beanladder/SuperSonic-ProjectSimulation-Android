@@ -28,13 +28,13 @@ public class PlayerTracker : MonoBehaviour
             Vector3 playerPosition = playerTransform.position;
 
             // Do something with playerPosition, like print it
-            Debug.Log("Player Position: " + playerPosition);
+            //Debug.Log("Player Position: " + playerPosition);
 
             // Check if player is in range of the collider
             if (isPlayerInRange)
             {
                 // Do something when player is in range
-                Debug.Log("Player is in range of the table.");
+               // Debug.Log("Player is in range of the table.");
             }
         }
     }

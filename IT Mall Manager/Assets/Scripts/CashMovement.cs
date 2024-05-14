@@ -90,11 +90,12 @@ public class CashMovement : MonoBehaviour
     {
         cashReachedPlayer++;
         UpdateMoneyUi();
-        Debug.Log("Cash reached player.");
+        PlayerCashCounter.instance.IncreaseTotalCashReached(1);
+        
     }
     public void UpdateMoneyUi(){
         if(moneyText!=null){
-            moneyText.text = cashReachedPlayer.ToString();
+            moneyText.text = PlayerCashCounter.instance.totalCashValue.ToString();
         }
     }
 }
