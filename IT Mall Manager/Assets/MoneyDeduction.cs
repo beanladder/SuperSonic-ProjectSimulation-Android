@@ -77,7 +77,7 @@ public class MoneyDeduction : MonoBehaviour
             for (int i = 0; i < numberOfCash; i++)
             {
                 // Adjust spawn position based on the current player position
-                Vector3 spawnPosition = playerTransform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+                Vector3 spawnPosition = playerTransform.position;
 
                 // Spawn the cash prefab
                 GameObject cashInstance = Instantiate(cashPrefab, spawnPosition, Quaternion.identity);
