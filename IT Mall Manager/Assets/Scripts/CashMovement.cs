@@ -14,7 +14,7 @@ public class CashMovement : MonoBehaviour
     public Text moneyText;
     private bool isInRange = false;
     private bool isMovingCash = false; // Flag to track whether cash movement coroutine is running
-
+    private int cashValuePerPrefab = 500; // Value of each cash prefab
     void Awake(){
         instance=this;
     }
@@ -73,7 +73,7 @@ public class CashMovement : MonoBehaviour
                     if (cashObject != null)
                     {
                         cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear)
-                            .OnComplete(() => { CashReachedPlayer(); }); // Call CashReachedPlayer when cash object reaches the player
+                            .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); // Call CashReachedPlayer when cash object reaches the player
                         yield return new WaitForSeconds(delayBetweenMovement); // Introduce delay between moving each cash object
                         Destroy(cashObject);
                     }
@@ -86,16 +86,5 @@ public class CashMovement : MonoBehaviour
         }
     }
 
-    void CashReachedPlayer()
-    {
-        cashReachedPlayer++;
-        UpdateMoneyUi();
-        PlayerCashCounter.instance.IncreaseTotalCashReached(1);
-        
-    }
-    public void UpdateMoneyUi(){
-        if(moneyText!=null){
-            moneyText.text = PlayerCashCounter.instance.totalCashValue.ToString();
-        }
-    }
+   
 }

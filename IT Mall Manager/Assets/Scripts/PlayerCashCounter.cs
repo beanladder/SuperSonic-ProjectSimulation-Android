@@ -2,26 +2,35 @@ using UnityEngine;
 
 public class PlayerCashCounter : MonoBehaviour
 {
-    public int totalCashValue = 0; // Total cash reached by the player
-    private int cashValuePerPrefab = 500;
+    public int totalCashValue = 0; // Total cash value reached by the player
+    
     public static PlayerCashCounter instance;
 
     private void Awake()
     {
         instance = this;
     }
-    // Method to increase the total cash reached by the player
     public void IncreaseTotalCashReached(int amount)
     {
-        totalCashValue += amount * cashValuePerPrefab;
-
-        Debug.Log("Total cash reached by the player: " + totalCashValue);
-        // You can add any additional functionality here, like updating UI or triggering events.
+        totalCashValue += amount; // Increase total cash value based on the amount and value per prefab
+       
     }
 
-    // Method to get the current total cash reached by the player
-    public int GetTotalCashReached()
+    
+    public void DeductTotalCash(int amount)
     {
-        return totalCashValue;
+        // Check if there's enough cash to deduct
+        if (totalCashValue >= amount)
+        {
+            totalCashValue -= amount;
+            
+            
+        }
+        else
+        {
+            
+        }
     }
+
+    
 }
