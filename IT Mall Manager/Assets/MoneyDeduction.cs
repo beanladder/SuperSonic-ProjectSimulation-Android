@@ -1,9 +1,16 @@
+
 using DG.Tweening;
+
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+
 using UnityEngine;
 using System.Collections;
 
 public class MoneyDeduction : MonoBehaviour
 {
+
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
@@ -27,11 +34,22 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
+
+    public int deductionAmount = 100; // Amount of money to deduct when player is in range
+    public float deductionInterval = 1f;
+    public bool playerInRange = false; // Flag to track if player is in range
+    private Coroutine deductionCoroutine;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            DeductMoneyAndSpawnCash();
+
+            
+
+            playerInRange = true;
+            
+
         }
     }
 
@@ -39,6 +57,7 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (PlayerCashCounter.instance.totalCashValue >= remainingDeductionAmount)
         {
+
             Debug.Log("Deducted " + totalDeductionAmount + " from player's cash.");
 
             // Calculate the number of cash objects to spawn based on the remaining deduction amount
@@ -72,8 +91,4 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
-    void DeductMoneyAndSpawnCash()
-    {
-        StartCoroutine(DeductMoneyAndSpawnCashCoroutine());
-    }
 }
