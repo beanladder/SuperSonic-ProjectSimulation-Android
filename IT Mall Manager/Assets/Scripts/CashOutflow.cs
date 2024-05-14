@@ -5,11 +5,16 @@ using DG.Tweening;
 
 public class CashOutflow : MonoBehaviour
 {
+    public static CashOutflow instance;
     [SerializeField] Transform[] CashHolders = new Transform[6]; // Array to hold the 6 empty GameObject transforms
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
-    [SerializeField] float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
+    public float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
     
-    public int cashToOutflow = 200;
+    public int cashToOutflow;
+
+    private void Awake() {
+        instance = this;
+    }
 
     void Start()
     {
