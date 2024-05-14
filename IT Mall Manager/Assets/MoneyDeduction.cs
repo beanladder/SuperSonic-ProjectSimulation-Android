@@ -7,7 +7,7 @@ public class MoneyDeduction : MonoBehaviour
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
-
+    
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
@@ -37,7 +37,7 @@ public class MoneyDeduction : MonoBehaviour
             StartDeductionCoroutine();
         }
     }
-
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -66,12 +66,13 @@ public class MoneyDeduction : MonoBehaviour
 
     IEnumerator DeductMoneyAndSpawnCashCoroutine()
     {
-        while (playerInRange && PlayerCashCounter.instance.totalCashValue >= remainingDeductionAmount)
+        while (playerInRange && remainingDeductionAmount > 0)
         {
-            Debug.Log("Deducted " + totalDeductionAmount + " from player's cash.");
+            Debug.Log("Deducting " + totalDeductionAmount + " from player's cash.");
 
             // Calculate the number of cash objects to spawn based on the remaining deduction amount
-            int numberOfCash = remainingDeductionAmount / 500; // Each cash prefab is valued at 500
+            int cashValue = Mathf.Min(remainingDeductionAmount, 500); // Calculate the cash value to deduct
+            int numberOfCash = cashValue / 500; // Each cash prefab is valued at 500
 
             for (int i = 0; i < numberOfCash; i++)
             {
@@ -81,9 +82,9 @@ public class MoneyDeduction : MonoBehaviour
                 // Spawn the cash prefab
                 GameObject cashInstance = Instantiate(cashPrefab, spawnPosition, Quaternion.identity);
 
-                // Deduct a fraction of the total amount for each cash object
+                // Deduct the cash value from the remaining deduction amount
+                remainingDeductionAmount -= cashValue;
                 PlayerCashCounter.instance.DeductTotalCash(500);
-
                 // Use DOTween to move the cash object towards the destination
                 cashInstance.transform.DOJump(transform.position, jumpHeight, 1, jumpDuration)
                 .SetEase(Ease.Linear)
@@ -92,9 +93,6 @@ public class MoneyDeduction : MonoBehaviour
                 // Calculate delay for the current cash object
                 yield return new WaitForSeconds(delayBetweenJumps);
             }
-
-            // Reset the remaining deduction amount
-            remainingDeductionAmount = 0;
         }
 
         // Reset the coroutine reference
