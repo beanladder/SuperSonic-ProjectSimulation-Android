@@ -141,6 +141,16 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 426725570}
+    - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.851761
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.851761
+      objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -954,8 +964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0597afa8a778e4887baefb48b88313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayerInRange: 0
-  anim: {fileID: 0}
 --- !u!114 &968533334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1330,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!4 &1447977350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1845272402555515893, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1951528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1529681099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
@@ -1528,7 +1542,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1447977350}
     - target: {fileID: 6539622951128694179, guid: 12adc8e32eb70ea4e9033d4aa530567b,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -5865,7 +5879,7 @@ PrefabInstance:
     - target: {fileID: 1909312069957579664, guid: 0edbeee8522765f4d832f03c697235e0,
         type: 3}
       propertyPath: cashToOutflow
-      value: 80
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1909312069957579664, guid: 0edbeee8522765f4d832f03c697235e0,
         type: 3}
