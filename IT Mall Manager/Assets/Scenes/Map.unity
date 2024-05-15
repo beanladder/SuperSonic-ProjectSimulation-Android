@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 11
+  productCount: 13
   shelfType: 0
 --- !u!1 &230965635
 GameObject:
@@ -2650,7 +2650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 10
+  productCount: 13
   shelfType: 2
 --- !u!1 &823721375
 GameObject:
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 0
+  productCount: 13
   shelfType: 0
 --- !u!65 &899212033
 BoxCollider:
@@ -4023,7 +4023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 6
+  productCount: 13
   shelfType: 1
 --- !u!1 &1474315988
 GameObject:
