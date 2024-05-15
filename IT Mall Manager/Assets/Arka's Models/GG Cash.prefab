@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7798020497214951583}
   - component: {fileID: 4823630871290094050}
   - component: {fileID: 3412920720270474892}
-  - component: {fileID: -616038544873864244}
   m_Layer: 0
   m_Name: GG Cash
   m_TagString: Cash
@@ -108,15 +107,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02394318, y: 0.0102091795, z: 0.0031195998}
   m_Center: {x: -0.00017238874, y: -0.000007704128, z: 0.0014662129}
---- !u!114 &-616038544873864244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882958775886217793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfc7f4c211699e40934b8c7731bbac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

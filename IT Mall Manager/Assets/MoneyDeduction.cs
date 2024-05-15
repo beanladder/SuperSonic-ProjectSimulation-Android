@@ -11,7 +11,7 @@ public class MoneyDeduction : MonoBehaviour
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
-    private int remainingDeductionAmount; // Remaining amount to deduct
+    public int remainingDeductionAmount; // Remaining amount to deduct
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
 
@@ -66,7 +66,7 @@ public class MoneyDeduction : MonoBehaviour
 
     IEnumerator DeductMoneyAndSpawnCashCoroutine()
     {
-        while (playerInRange && remainingDeductionAmount > 0)
+        while (playerInRange && remainingDeductionAmount > 0 && PlayerCashCounter.instance.totalCashValue>0)
         {
             Debug.Log("Deducting " + totalDeductionAmount + " from player's cash.");
 
@@ -85,14 +85,24 @@ public class MoneyDeduction : MonoBehaviour
                 // Deduct the cash value from the remaining deduction amount
                 remainingDeductionAmount -= cashValue;
                 PlayerCashCounter.instance.DeductTotalCash(500);
-                // Use DOTween to move the cash object towards the destination
-                cashInstance.transform.DOJump(transform.position, jumpHeight, 1, jumpDuration)
-                .SetEase(Ease.Linear)
-                .OnComplete(() => Destroy(cashInstance));
+
+                float randomJumpHeight = Random.Range(1f, 2f);
+                float randomJumpDuration = Random.Range(.1f, .6f);
+
+                // Use DOTween to move the cash object towards the destination with random jump parameters
+                cashInstance.transform.DOJump(transform.position, randomJumpHeight, 1, randomJumpDuration)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => Destroy(cashInstance));
+                
 
                 // Calculate delay for the current cash object
                 yield return new WaitForSeconds(delayBetweenJumps);
             }
+        }
+        if (remainingDeductionAmount <= 0)
+        {
+            // Destroy the GameObject to which this script is attached
+            Destroy(gameObject);
         }
 
         // Reset the coroutine reference
