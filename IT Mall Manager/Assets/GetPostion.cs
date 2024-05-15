@@ -7,13 +7,14 @@ public class GetPostion : MonoBehaviour
     public static GetPostion instance;
 
     public Transform playerTransform;
+    public float yValue;
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        GameObject playerObject = GameObject.FindGameObjectWithTag("cShelf");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
             playerTransform = playerObject.transform;
@@ -26,11 +27,6 @@ public class GetPostion : MonoBehaviour
 
     void Update()
     {
-        // Update player's transform every frame
-        if (playerTransform != null)
-        {
-            // If playerTransform is not null, update the player's transform
-            playerTransform = playerTransform.root;
-        }
+        transform.position = new Vector3(playerTransform.position.x ,yValue,playerTransform.position.z);
     }
 }
