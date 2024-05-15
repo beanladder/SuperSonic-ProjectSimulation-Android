@@ -1,13 +1,16 @@
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
-
+using TMPro;
+using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
+    public static MoneyDeduction instance;
+    public Image fillImage;
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
-    
+    public TextMeshProUGUI floorText;
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
@@ -97,6 +100,7 @@ public class MoneyDeduction : MonoBehaviour
 
                 // Calculate delay for the current cash object
                 yield return new WaitForSeconds(delayBetweenJumps);
+                UpdateFloorUI();
             }
         }
         if (remainingDeductionAmount <= 0)
@@ -107,5 +111,10 @@ public class MoneyDeduction : MonoBehaviour
 
         // Reset the coroutine reference
         deductionCoroutine = null;
+    }
+    public void UpdateFloorUI(){
+        if(floorText!=null){
+            floorText.text = remainingDeductionAmount.ToString();
+        }
     }
 }
