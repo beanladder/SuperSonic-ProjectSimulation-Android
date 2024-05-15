@@ -255,6 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2923408b4128ae248986187f9b7fc091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowedShelfTypes:
+  - Motherboard
+  - RAM
+  - CPU
   productType: 0
   taskTime: 6
   linePosition: -1
@@ -1284,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2923408b4128ae248986187f9b7fc091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowedShelfTypes: []
   productType: 0
   taskTime: 0
   linePosition: -1

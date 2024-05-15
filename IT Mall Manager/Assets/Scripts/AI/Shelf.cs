@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    // Add any additional functionality for the shelf here if needed
+
+    
+    // Enum to represent the different types of shelves
+    public enum ShelfType { CPU, RAM, Motherboard }
+
+    // Variable to hold the type of this shelf
+    public ShelfType shelfType;
 }

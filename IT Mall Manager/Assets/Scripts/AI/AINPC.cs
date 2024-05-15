@@ -10,6 +10,7 @@ using UnityEngine.AI;
 public class AINPC : MonoBehaviour
 {
     public enum ProductType { Motherboard, CPU, RAM }
+    public List<string> allowedShelfTypes;
 
     public ProductType productType;
     private bool isTakingProduct = false;
@@ -50,15 +51,16 @@ public class AINPC : MonoBehaviour
 
     public void SetDestination()
     {
-        // Find all colliders with the "Shelf" tag except the last visited shelf
+        // Find all colliders with the "Shelf" tag and filter them based on allowed shelf types
         Collider[] shelfColliders = GameObject.FindGameObjectsWithTag("Shelf")
-                                            .Select(obj => obj.GetComponent<Collider>())
-                                            .Where(col => col != lastVisitedShelf) // Exclude the last visited shelf
-                                            .ToArray();
+            .Select(obj => obj.GetComponent<Collider>())
+            .Where(col => col != lastVisitedShelf) // Exclude the last visited shelf
+            .Where(col => allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString())) // Filter by allowed shelf types
+            .ToArray();
 
         if (shelfColliders.Length > 0)
         {
-            // Choose a random collider from the list
+            // Choose a random collider from the filtered list
             Collider randomCollider = shelfColliders[Random.Range(0, shelfColliders.Length)];
 
             // Update the last visited shelf
@@ -72,10 +74,9 @@ public class AINPC : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No shelves found!");
+            Debug.LogWarning("No shelves found with allowed shelf types!");
         }
     }
-
     private Vector3 GetRandomPointInCollider(Collider collider)
 {
     // Get the bounds of the collider
@@ -93,7 +94,7 @@ public class AINPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shelf") && ShelfChecking)
+        if (other.CompareTag("Shelf"))
         {
             if (!isTakingProduct)
             {
@@ -111,7 +112,7 @@ public class AINPC : MonoBehaviour
         ShelfChecking = false;
         int randomTime = Random.Range(5, 10);
         yield return new WaitForSeconds(randomTime);
-        int chance = Random.Range(1,15);
+        int chance = Random.Range(1, 15);
         if(chance>0 && chance<=7)
         {
             Debug.Log("Got my product");

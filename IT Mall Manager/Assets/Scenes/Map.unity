@@ -552,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shelfType: 0
 --- !u!1 &230965635
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +567,7 @@ GameObject:
   - component: {fileID: 230965637}
   m_Layer: 0
   m_Name: Point (2)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,7 +794,7 @@ GameObject:
   - component: {fileID: 253466987}
   m_Layer: 0
   m_Name: Point (5)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1020,7 +1021,7 @@ GameObject:
   - component: {fileID: 317581142}
   m_Layer: 0
   m_Name: Point (9)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1247,7 +1248,7 @@ GameObject:
   - component: {fileID: 340056943}
   m_Layer: 0
   m_Name: Point (7)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1352,7 +1353,7 @@ GameObject:
   - component: {fileID: 403876121}
   m_Layer: 0
   m_Name: Point (12)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1656,7 +1657,7 @@ GameObject:
   - component: {fileID: 523939345}
   m_Layer: 0
   m_Name: Point (8)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2595,6 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shelfType: 2
 --- !u!1 &823721375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,7 +2764,7 @@ GameObject:
   - component: {fileID: 1039891734}
   m_Layer: 0
   m_Name: Point (10)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3097,7 +3099,7 @@ GameObject:
   - component: {fileID: 1138982806}
   m_Layer: 0
   m_Name: Point
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3202,7 +3204,7 @@ GameObject:
   - component: {fileID: 1159402581}
   m_Layer: 0
   m_Name: Point (4)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3845,6 +3847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shelfType: 1
 --- !u!1 &1474315988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,7 +3984,7 @@ GameObject:
   - component: {fileID: 1581732229}
   m_Layer: 0
   m_Name: Point (1)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4605,7 +4608,7 @@ GameObject:
   - component: {fileID: 1659708184}
   m_Layer: 0
   m_Name: Point (11)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4736,7 +4739,7 @@ GameObject:
   - component: {fileID: 1721183190}
   m_Layer: 0
   m_Name: Point (14)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5044,7 +5047,7 @@ GameObject:
   - component: {fileID: 1924208430}
   m_Layer: 0
   m_Name: Point (6)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5149,7 +5152,7 @@ GameObject:
   - component: {fileID: 1960541277}
   m_Layer: 0
   m_Name: Point (13)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5254,7 +5257,7 @@ GameObject:
   - component: {fileID: 1973548177}
   m_Layer: 0
   m_Name: Point (15)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5412,7 +5415,7 @@ GameObject:
   - component: {fileID: 2008424496}
   m_Layer: 0
   m_Name: Point (3)
-  m_TagString: Line
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
