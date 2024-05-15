@@ -256,9 +256,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedShelfTypes:
+  - CPU
   - Motherboard
   - RAM
-  - CPU
   productType: 0
   taskTime: 6
   linePosition: -1

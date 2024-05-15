@@ -18,7 +18,7 @@ public class AINPC : MonoBehaviour
 
     bool isIrritated = false;
 
-    public int taskTime=6;
+    public int taskTime = 6;
     public int linePosition = -1; // The assigned line position for this NPC
     public bool isCheckoutDone = false;
     public bool ShelfChecking = true;
@@ -33,19 +33,27 @@ public class AINPC : MonoBehaviour
         SetDestination();
     }
 
-   private void Update()
+    private void Update()
     {
         // Check if the checkout is done and move accordingly
         if (isFinishedShopping && !isCheckoutDone)
         {
-            if(linePosition <=15)
-            // Move towards the checkout position
-            MoveToCheckout(QueueManager.instance.queuePositions[linePosition].position);
-            else if(!isIrritated)
+            if (linePosition <= 15)
+                // Move towards the checkout position
+                MoveToCheckout(QueueManager.instance.queuePositions[linePosition].position);
+            else if (!isIrritated)
             {
                 StartCoroutine(WaitforLine());
             }
         }
+
+        // Check if all shelves are empty
+        if (AllShelvesEmpty() && !isFinishedShopping)
+        {
+            // Start coroutine to move to a random spawn point after 10 seconds
+            StartCoroutine(CheckEmptyStore());
+        }
+
         
     }
 
@@ -77,28 +85,42 @@ public class AINPC : MonoBehaviour
             Debug.LogWarning("No shelves found with allowed shelf types!");
         }
     }
+
     private Vector3 GetRandomPointInCollider(Collider collider)
-{
-    // Get the bounds of the collider
-    Bounds bounds = collider.bounds;
+    {
+        // Get the bounds of the collider
+        Bounds bounds = collider.bounds;
 
-    // Generate a random point within the bounds
-    Vector3 randomPoint = new Vector3(
-        Random.Range(bounds.min.x, bounds.max.x),
-        Random.Range(bounds.min.y, bounds.max.y),
-        Random.Range(bounds.min.z, bounds.max.z)
-    );
+        // Generate a random point within the bounds
+        Vector3 randomPoint = new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
 
-    return randomPoint;
-}
+        return randomPoint;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Shelf"))
         {
-            if (!isTakingProduct)
+            // Get the shelf type of the encountered shelf
+            Shelf shelf = other.GetComponentInParent<Shelf>();
+            string encounteredShelfType = shelf.shelfType.ToString();
+
+            // Check if the encountered shelf has the desired product and is not empty
+            if (allowedShelfTypes.Contains(encounteredShelfType) && shelf.productCount > 0)
             {
-                StartCoroutine(Decision());
+                if (!isTakingProduct)
+                {
+                    StartCoroutine(Decision());
+                }
+            }
+            else
+            {
+                // If the shelf is empty or doesn't contain the desired product, move to another shelf
+                SetDestination();
             }
         }
         else if (other.CompareTag("Checkout"))
@@ -109,41 +131,55 @@ public class AINPC : MonoBehaviour
 
     public IEnumerator Decision()
     {
-        ShelfChecking = false;
         int randomTime = Random.Range(5, 10);
         yield return new WaitForSeconds(randomTime);
         int chance = Random.Range(1, 15);
-        if(chance>0 && chance<=7)
+        if (chance > 0 && chance <= 7)
         {
             Debug.Log("Got my product");
             StartCoroutine(TakeProduct());
         }
-        else if(chance>7 && chance<=10)
+        else if (chance > 7 && chance <= 10)
         {
             Debug.Log("No Product to Buy");
             MoveToRandomSpawnPoint();
         }
-        else if(chance>10 && chance<=15)
+        else if (chance > 10 && chance <= 15)
         {
-            ShelfChecking= true;
+            ShelfChecking = true;
             Debug.Log("Need to search more");
             SetDestination();
         }
-
     }
 
     IEnumerator TakeProduct()
+{
+    isTakingProduct = true;
+    yield return new WaitForSeconds(4f);
+    isFinishedShopping = true;
+    
+    // Get the Shelf component of the current shelf
+    Shelf currentShelf = lastVisitedShelf.GetComponentInParent<Shelf>();
+    
+    // Decrement the productCount of the current shelf
+    if (currentShelf != null && currentShelf.productCount>0)
     {
-        isTakingProduct = true;
-        yield return new WaitForSeconds(4f);
-        isFinishedShopping = true;
-        if(linePosition <= 15)
-        {
-        QueueManager.instance.AddToQueue(this);
-        } // Add this NPC to the queue
+        currentShelf.productCount--;
+        Debug.Log("Took product from shelf. Remaining products: " + currentShelf.productCount);
     }
+    else
+    {
+        Debug.LogWarning("Failed to decrement product count. Shelf component not found.");
+        SetDestination();
+    }
+    
+    if (linePosition <= 15)
+    {
+        QueueManager.instance.AddToQueue(this);
+    } // Add this NPC to the queue
+}
 
-   IEnumerator Checkout()
+    IEnumerator Checkout()
     {
         yield return new WaitForSeconds(taskTime);
 
@@ -151,7 +187,7 @@ public class AINPC : MonoBehaviour
 
         // Let the QueueManager know that this NPC's checkout is done
         isCheckoutDone = true;
-        QueueManager.instance.RemoveFromQueue(this); 
+        QueueManager.instance.RemoveFromQueue(this);
         CashOutflow.instance.StartCoroutine(CashOutflow.instance.CashSpawn(CashOutflow.instance.CashDeliveryTime));
         // Move to a random spawn point before destroying itself
         MoveToRandomSpawnPoint();
@@ -163,7 +199,7 @@ public class AINPC : MonoBehaviour
         if (spawnPoints.Length > 0)
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
-            GetComponent<NavMeshAgent>().SetDestination(randomSpawnPoint.position);
+            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(randomSpawnPoint.position);
             Destroy(gameObject, 15f); // Destroy after 5 seconds
             NPCSpawner.instance.NPCDestroyed();
         }
@@ -182,10 +218,30 @@ public class AINPC : MonoBehaviour
     public IEnumerator WaitforLine()
     {
         isIrritated = true;
-        Debug.Log(gameObject.name + "is Waiting for the line");
+        Debug.Log(gameObject.name + " is Waiting for the line");
         yield return new WaitForSeconds(1f);
-        
+
         MoveToRandomSpawnPoint();
+    }
+
+    private bool AllShelvesEmpty()
+    {
+        // Find all shelves in the scene
+        Shelf[] shelves = FindObjectsOfType<Shelf>();
+
+        // Check if all shelves have zero product count
+        return shelves.All(shelf => shelf.productCount == 0);
+    }
+
+    IEnumerator CheckEmptyStore()
+    {
+        yield return new WaitForSeconds(10f); // Wait for 10 seconds
+
+        if (AllShelvesEmpty())
+        {
+            Debug.Log("Store empty");
+            MoveToRandomSpawnPoint();
+        }
     }
 }
 
