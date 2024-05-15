@@ -37,13 +37,13 @@ public class SuperContainer : MonoBehaviour
         if(playerHands.childCount > 0)
         {
             EmptyHand = false;
-            PlayerInteraction.instance.SetHasChildObject(EmptyHand);
+            //PlayerInteraction.instance.SetHasChildObject(EmptyHand);
             //playerAnimator.SetLayerWeight(1,1f);
         }
         else if(playerHands.childCount <= 0)
         {
             EmptyHand = true;
-            PlayerInteraction.instance.SetHasChildObject(EmptyHand);
+            //PlayerInteraction.instance.SetHasChildObject(EmptyHand);
             //playerAnimator.SetLayerWeight(1, 0f);
         }
     }

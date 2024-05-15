@@ -44,11 +44,11 @@ public class CashMovement : MonoBehaviour
 
     IEnumerator MoveCashTowardsPlayer()
     {
-        isMovingCash = true; // Set the flag to true to indicate coroutine is running
+        isMovingCash = true; 
 
         try
         {
-            // Get all the spawn points of the table
+            
             Transform[] spawnPoints = tableTransform.GetComponentsInChildren<Transform>();
 
             foreach (Transform spawnPoint in spawnPoints)
@@ -57,24 +57,24 @@ public class CashMovement : MonoBehaviour
                 if (spawnPoint == tableTransform)
                     continue;
 
-                // Get all the cash objects in this spawn point
+                
                 List<GameObject> cashObjects = new List<GameObject>();
                 foreach (Transform child in spawnPoint)
                 {
                     cashObjects.Add(child.gameObject);
                 }
 
-                // Reverse the list of cash objects to move them from last to first
+                
                 cashObjects.Reverse();
 
-                // Move each cash object towards the player one by one
+                
                 foreach (GameObject cashObject in cashObjects)
                 {
                     if (cashObject != null)
                     {
                         cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear)
-                            .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); // Call CashReachedPlayer when cash object reaches the player
-                        yield return new WaitForSeconds(delayBetweenMovement); // Introduce delay between moving each cash object
+                            .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); 
+                        yield return new WaitForSeconds(delayBetweenMovement); 
                         Destroy(cashObject);
                     }
                 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading;
 
 public class CashOutflow : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class CashOutflow : MonoBehaviour
     [SerializeField] Transform[] CashHolders = new Transform[6]; // Array to hold the 6 empty GameObject transforms
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     public float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
-    
+
     public int cashToOutflow;
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
 
@@ -35,7 +37,7 @@ public class CashOutflow : MonoBehaviour
         while (countCash < cashToOutflow) // You can adjust the condition as needed
         {
             GameObject newCash = Instantiate(CashPrefab, transform.position, Quaternion.identity); // Instantiate cash at the dispenser position
-
+            Yaxis = CashHolders[cashIndex].childCount * 0.035f;
             // Set the scale and rotation of the new cash to match the original scale and rotation
             newCash.transform.localScale = originalScale;
             newCash.transform.rotation = originalRotation;
@@ -45,18 +47,13 @@ public class CashOutflow : MonoBehaviour
 
             // Move the cash to the respective cash holder with a jump animation
             newCash.transform.DOJump(CashHolders[cashIndex].position + Vector3.up * Yaxis, .5f, 1, 0.5f).SetEase(Ease.OutQuad);
-
             // Increment cash index and adjust y-axis offset if needed
             cashIndex = (cashIndex + 1) % CashHolders.Length; // Wrap around to the beginning if index exceeds the array length
-            if (cashIndex == 0) // Increase Y-axis offset if a full cycle of cash holders is completed
-            {
-                Yaxis += 0.035f; // You can adjust this value as needed
-            }
+            
 
-            countCash++; // Increment total cash count
-            yield return new WaitForSeconds(time); // Wait for the specified time before spawning the next cash
+
+            countCash++;
+            yield return new WaitForSeconds(time);
         }
     }
-
-
 }
