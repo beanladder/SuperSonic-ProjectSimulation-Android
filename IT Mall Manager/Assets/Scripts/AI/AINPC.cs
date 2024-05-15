@@ -9,14 +9,11 @@ using UnityEngine.AI;
 
 public class AINPC : MonoBehaviour
 {
-    public enum ProductType { Motherboard, CPU, RAM }
-    public List<string> allowedShelfTypes;
+    public List<string> allowedShelfTypes; // Shelf types that the NPC is allowed to visit
 
-    public ProductType productType;
     private bool isTakingProduct = false;
     private bool isFinishedShopping = false;
-
-    bool isIrritated = false;
+    private bool isIrritated = false;
 
     public int taskTime = 6;
     public int linePosition = -1; // The assigned line position for this NPC
@@ -25,11 +22,8 @@ public class AINPC : MonoBehaviour
 
     private Collider lastVisitedShelf; // Track the last visited shelf collider
 
-    private Transform myQueuePosition; // The assigned queue position for this NPC
-
     private void Start()
     {
-        productType = (ProductType)Random.Range(0, System.Enum.GetValues(typeof(ProductType)).Length);
         SetDestination();
     }
 
@@ -39,22 +33,15 @@ public class AINPC : MonoBehaviour
         if (isFinishedShopping && !isCheckoutDone)
         {
             if (linePosition <= 15)
+            {
                 // Move towards the checkout position
                 MoveToCheckout(QueueManager.instance.queuePositions[linePosition].position);
+            }
             else if (!isIrritated)
             {
                 StartCoroutine(WaitforLine());
             }
         }
-
-        // Check if all shelves are empty
-        if (AllShelvesEmpty() && !isFinishedShopping)
-        {
-            // Start coroutine to move to a random spawn point after 10 seconds
-            StartCoroutine(CheckEmptyStore());
-        }
-
-        
     }
 
     public void SetDestination()
@@ -103,24 +90,11 @@ public class AINPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shelf"))
+        if (other.CompareTag("Shelf") && ShelfChecking)
         {
-            // Get the shelf type of the encountered shelf
-            Shelf shelf = other.GetComponentInParent<Shelf>();
-            string encounteredShelfType = shelf.shelfType.ToString();
-
-            // Check if the encountered shelf has the desired product and is not empty
-            if (allowedShelfTypes.Contains(encounteredShelfType) && shelf.productCount > 0)
+            if (!isTakingProduct)
             {
-                if (!isTakingProduct)
-                {
-                    StartCoroutine(Decision());
-                }
-            }
-            else
-            {
-                // If the shelf is empty or doesn't contain the desired product, move to another shelf
-                SetDestination();
+                StartCoroutine(Decision());
             }
         }
         else if (other.CompareTag("Checkout"))
@@ -131,6 +105,7 @@ public class AINPC : MonoBehaviour
 
     public IEnumerator Decision()
     {
+        ShelfChecking = false;
         int randomTime = Random.Range(5, 10);
         yield return new WaitForSeconds(randomTime);
         int chance = Random.Range(1, 15);
@@ -153,31 +128,15 @@ public class AINPC : MonoBehaviour
     }
 
     IEnumerator TakeProduct()
-{
-    isTakingProduct = true;
-    yield return new WaitForSeconds(4f);
-    isFinishedShopping = true;
-    
-    // Get the Shelf component of the current shelf
-    Shelf currentShelf = lastVisitedShelf.GetComponentInParent<Shelf>();
-    
-    // Decrement the productCount of the current shelf
-    if (currentShelf != null && currentShelf.productCount>0)
     {
-        currentShelf.productCount--;
-        Debug.Log("Took product from shelf. Remaining products: " + currentShelf.productCount);
+        isTakingProduct = true;
+        yield return new WaitForSeconds(4f);
+        isFinishedShopping = true;
+        if (linePosition <= 15)
+        {
+            QueueManager.instance.AddToQueue(this);
+        } // Add this NPC to the queue
     }
-    else
-    {
-        Debug.LogWarning("Failed to decrement product count. Shelf component not found.");
-        SetDestination();
-    }
-    
-    if (linePosition <= 15)
-    {
-        QueueManager.instance.AddToQueue(this);
-    } // Add this NPC to the queue
-}
 
     IEnumerator Checkout()
     {
@@ -199,7 +158,7 @@ public class AINPC : MonoBehaviour
         if (spawnPoints.Length > 0)
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
-            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(randomSpawnPoint.position);
+            GetComponent<NavMeshAgent>().SetDestination(randomSpawnPoint.position);
             Destroy(gameObject, 15f); // Destroy after 5 seconds
             NPCSpawner.instance.NPCDestroyed();
         }
@@ -218,30 +177,10 @@ public class AINPC : MonoBehaviour
     public IEnumerator WaitforLine()
     {
         isIrritated = true;
-        Debug.Log(gameObject.name + " is Waiting for the line");
+        Debug.Log(gameObject.name + "is Waiting for the line");
         yield return new WaitForSeconds(1f);
 
         MoveToRandomSpawnPoint();
-    }
-
-    private bool AllShelvesEmpty()
-    {
-        // Find all shelves in the scene
-        Shelf[] shelves = FindObjectsOfType<Shelf>();
-
-        // Check if all shelves have zero product count
-        return shelves.All(shelf => shelf.productCount == 0);
-    }
-
-    IEnumerator CheckEmptyStore()
-    {
-        yield return new WaitForSeconds(10f); // Wait for 10 seconds
-
-        if (AllShelvesEmpty())
-        {
-            Debug.Log("Store empty");
-            MoveToRandomSpawnPoint();
-        }
     }
 }
 
