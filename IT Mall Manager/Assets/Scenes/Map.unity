@@ -552,7 +552,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
   productCount: 0
+
+  productCount: 13
+
   shelfType: 0
   spawnPoints: []
   ramPrefab: {fileID: 0}
@@ -2733,7 +2737,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
   productCount: 0
+
+  productCount: 13
+
   shelfType: 2
   spawnPoints: []
   ramPrefab: {fileID: 0}
@@ -2818,7 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 0
+  productCount: 13
   shelfType: 0
   spawnPoints: []
   ramPrefab: {fileID: 0}
@@ -4255,7 +4263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
   productCount: 0
+
+  productCount: 13
+
   shelfType: 1
   spawnPoints: []
   ramPrefab: {fileID: 0}
