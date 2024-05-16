@@ -38,36 +38,51 @@ public class Shelf : MonoBehaviour
         {
             GameObject player = other.gameObject;
             ProductInfo productInfo = player.GetComponentInChildren<ProductInfo>();
-            
+
             if (productInfo != null)
             {
                 Debug.Log("ProductInfo found on player.");
+                bool spawnSuccessful = false;
                 switch (shelfType)
                 {
                     case ShelfType.CPU:
                         if (productInfo.CpuNum > 0)
                         {
-                            productInfo.CpuNum--;
-                            SpawnProduct(productInfo.cpuPrefab);
+                            spawnSuccessful = SpawnProduct(productInfo.cpuPrefab);
                         }
                         break;
                     case ShelfType.RAM:
                         if (productInfo.RamNum > 0)
                         {
-                            productInfo.RamNum--;
-                            SpawnProduct(productInfo.ramPrefab);
+                            spawnSuccessful = SpawnProduct(productInfo.ramPrefab);
                         }
                         break;
                     case ShelfType.Motherboard:
                         if (productInfo.MBNum > 0)
                         {
-                            productInfo.MBNum--;
-                            SpawnProduct(productInfo.motherboardPrefab);
+                            spawnSuccessful = SpawnProduct(productInfo.motherboardPrefab);
                         }
                         break;
                     default:
                         Debug.LogWarning("Unknown shelf type.");
                         break;
+                }
+
+                if (spawnSuccessful)
+                {
+                    // Decrease the product count only if spawn was successful
+                    switch (shelfType)
+                    {
+                        case ShelfType.CPU:
+                            productInfo.CpuNum--;
+                            break;
+                        case ShelfType.RAM:
+                            productInfo.RamNum--;
+                            break;
+                        case ShelfType.Motherboard:
+                            productInfo.MBNum--;
+                            break;
+                    }
                 }
             }
             else
@@ -77,21 +92,44 @@ public class Shelf : MonoBehaviour
         }
     }
 
-    private void SpawnProduct(GameObject prefab)
+    private bool SpawnProduct(GameObject prefab)
     {
-        Transform[] spawnPoints = GetComponentsInChildren<Transform>();
+        // Find all children named "SpawnPoint" of this shelf
+        Transform[] spawnPoints = GetSpawnPoints();
         foreach (Transform spawnPoint in spawnPoints)
         {
-            if (spawnPoint != transform && spawnPoint.childCount == 0)
+            if (spawnPoint.childCount == 0) // Check if spawn point has no child
             {
                 GameObject product = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
                 product.transform.localScale = prefabScales[(int)shelfType];
                 product.transform.localRotation = prefabRotations[(int)shelfType];
                 product.transform.parent = spawnPoint;
                 Debug.Log("Product spawned on shelf.");
-                break;
+                return true; // Exit the method after spawning a product
             }
         }
+        Debug.Log("No available spawn point for product.");
+        return false; // Return false if no spawn occurred
     }
 
+
+
+
+
+    private Transform[] GetSpawnPoints()
+    {
+        // Find all children named "SpawnPoint" of this shelf
+        Transform[] spawnPoints = new Transform[transform.childCount];
+        int index = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.name == "SpawnPoint")
+            {
+                spawnPoints[index] = child;
+                index++;
+            }
+        }
+        System.Array.Resize(ref spawnPoints, index); // Resize the array to remove null entries
+        return spawnPoints;
+    }
 }
