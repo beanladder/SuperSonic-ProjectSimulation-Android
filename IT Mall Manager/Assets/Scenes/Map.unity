@@ -552,16 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
-  productCount: 0
-
-  productCount: 13
-
   shelfType: 0
-  spawnPoints: []
-  ramPrefab: {fileID: 0}
-  cpuPrefab: {fileID: 0}
-  motherboardPrefab: {fileID: 0}
 --- !u!1 &230965635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,10 +2448,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598274506959086125, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00333
+      objectReference: {fileID: 0}
     - target: {fileID: 6774085465023929215, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: shelfType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236951249155426555, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00333
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461010002351237314, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00333
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2737,16 +2743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
-  productCount: 0
-
-  productCount: 13
-
-  shelfType: 2
-  spawnPoints: []
-  ramPrefab: {fileID: 0}
-  cpuPrefab: {fileID: 0}
-  motherboardPrefab: {fileID: 0}
+  shelfType: 0
 --- !u!1 &823721375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,12 +2823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productCount: 13
   shelfType: 0
-  spawnPoints: []
-  ramPrefab: {fileID: 0}
-  cpuPrefab: {fileID: 0}
-  motherboardPrefab: {fileID: 0}
 --- !u!65 &899212033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4263,16 +4255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
-  productCount: 0
-
-  productCount: 13
-
-  shelfType: 1
-  spawnPoints: []
-  ramPrefab: {fileID: 0}
-  cpuPrefab: {fileID: 0}
-  motherboardPrefab: {fileID: 0}
+  shelfType: 0
 --- !u!1 &1474315988
 GameObject:
   m_ObjectHideFlags: 0

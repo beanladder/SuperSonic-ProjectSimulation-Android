@@ -1,48 +1,97 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    public static Shelf instance;
-
-    // Enum to represent the different types of shelves
     public enum ShelfType { CPU, RAM, Motherboard }
-    public int productCount;
 
-    // Variable to hold the type of this shelf
     public ShelfType shelfType;
 
-    // Array to hold references to the spawn points
-    public Transform[] spawnPoints;
-
-    // Prefabs for RAM, CPU, and Motherboard
-    public GameObject ramPrefab;
-    public GameObject cpuPrefab;
-    public GameObject motherboardPrefab;
+    private Quaternion[] prefabRotations;
+    private Vector3[] prefabScales;
 
     private void Awake()
     {
-        instance = this;
+        // Store the local scale and rotation of each prefab
+        prefabRotations = new Quaternion[3];
+        prefabScales = new Vector3[3];
 
-        // Find all spawn points that are children of this shelf (excluding the shelf itself)
-        List<Transform> childTransforms = new List<Transform>();
-        foreach (Transform child in transform)
+        if (shelfType == ShelfType.CPU)
         {
-            if (child != transform) // Exclude the parent shelf object
-            {
-                childTransforms.Add(child);
-            }
+            prefabRotations[0] = ProductInfo.instance.cpuPrefab.transform.localRotation;
+            prefabScales[0] = ProductInfo.instance.cpuPrefab.transform.localScale;
         }
-        spawnPoints = childTransforms.ToArray();
+        else if (shelfType == ShelfType.RAM)
+        {
+            prefabRotations[1] = ProductInfo.instance.ramPrefab.transform.localRotation;
+            prefabScales[1] = ProductInfo.instance.ramPrefab.transform.localScale;
+        }
+        else if (shelfType == ShelfType.Motherboard)
+        {
+            prefabRotations[2] = ProductInfo.instance.motherboardPrefab.transform.localRotation;
+            prefabScales[2] = ProductInfo.instance.motherboardPrefab.transform.localScale;
+        }
     }
 
-    // Detect collision with the player
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player collided with shelf of type: " + shelfType);
+            GameObject player = other.gameObject;
+            ProductInfo productInfo = player.GetComponentInChildren<ProductInfo>();
+            
+            if (productInfo != null)
+            {
+                Debug.Log("ProductInfo found on player.");
+                switch (shelfType)
+                {
+                    case ShelfType.CPU:
+                        if (productInfo.CpuNum > 0)
+                        {
+                            productInfo.CpuNum--;
+                            SpawnProduct(productInfo.cpuPrefab);
+                        }
+                        break;
+                    case ShelfType.RAM:
+                        if (productInfo.RamNum > 0)
+                        {
+                            productInfo.RamNum--;
+                            SpawnProduct(productInfo.ramPrefab);
+                        }
+                        break;
+                    case ShelfType.Motherboard:
+                        if (productInfo.MBNum > 0)
+                        {
+                            productInfo.MBNum--;
+                            SpawnProduct(productInfo.motherboardPrefab);
+                        }
+                        break;
+                    default:
+                        Debug.LogWarning("Unknown shelf type.");
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("ProductInfo not found on player.");
+            }
         }
     }
+
+    private void SpawnProduct(GameObject prefab)
+    {
+        Transform[] spawnPoints = GetComponentsInChildren<Transform>();
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            if (spawnPoint != transform && spawnPoint.childCount == 0)
+            {
+                GameObject product = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+                product.transform.localScale = prefabScales[(int)shelfType];
+                product.transform.localRotation = prefabRotations[(int)shelfType];
+                product.transform.parent = spawnPoint;
+                Debug.Log("Product spawned on shelf.");
+                break;
+            }
+        }
+    }
+
 }
