@@ -1,12 +1,14 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
+    public GameObject yourPoppingPrefab;
     public static MoneyDeduction instance;
-    public Image fillImage;
+    public UnityEngine.UI.Image fillImage;
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
@@ -14,7 +16,7 @@ public class MoneyDeduction : MonoBehaviour
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
-    public int remainingDeductionAmount; // Remaining amount to deduct
+    public int remainingDeductionAmount; // Remaining amount to deductc
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
 
@@ -99,14 +101,23 @@ public class MoneyDeduction : MonoBehaviour
                 
 
                 // Calculate delay for the current cash object
-                yield return new WaitForSeconds(delayBetweenJumps);
                 UpdateFloorUI();
+                UpdateFillAmount();
+                yield return new WaitForSeconds(delayBetweenJumps);
+                
             }
+            
         }
         if (remainingDeductionAmount <= 0)
         {
-            // Destroy the GameObject to which this script is attached
-            Destroy(gameObject);
+            // Disable canvas
+            gameObject.SetActive(false);
+
+            // Spawn prefab with popping animation
+            GameObject poppingPrefab = Instantiate(yourPoppingPrefab, transform.position, Quaternion.identity);
+            // Apply popping animation using AnimationCurve or other tweening method
+            // For example, you can use DOTween to scale the prefab up and down
+            poppingPrefab.transform.DOScale(Vector3.one * 1.5f, 0.5f).SetEase(Ease.OutElastic);
         }
 
         // Reset the coroutine reference
@@ -115,6 +126,34 @@ public class MoneyDeduction : MonoBehaviour
     public void UpdateFloorUI(){
         if(floorText!=null){
             floorText.text = remainingDeductionAmount.ToString();
+        }
+    }
+
+    IEnumerator SmoothFillAnimation(float targetFillAmount, float duration)
+    {
+        float currentFillAmount = fillImage.fillAmount;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float fillProgress = Mathf.Lerp(currentFillAmount, targetFillAmount, timer / duration);
+            fillImage.fillAmount = fillProgress;
+            yield return null;
+        }
+
+        // Ensure that the fill amount is exactly the target amount at the end of the animation
+        fillImage.fillAmount = targetFillAmount;
+    }
+   void UpdateFillAmount()
+    {
+        if (fillImage != null)
+        {
+            // Calculate the fill amount based on the deduction progress
+            float fillAmount = Mathf.Clamp01((float)(totalDeductionAmount - remainingDeductionAmount) / totalDeductionAmount);
+
+            // Start the smooth fill animation coroutine
+            StartCoroutine(SmoothFillAnimation(fillAmount, 0.5f)); // Adjust duration as needed for smoother animation
         }
     }
 }
