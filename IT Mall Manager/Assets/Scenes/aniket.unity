@@ -5451,6 +5451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc37542d0411e6e4b891e8e1ec5a1c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yourPoppingPrefab: {fileID: 8214807777189784865, guid: 94cbec9566f22e44caa38061da1bea52,
+    type: 3}
+  fillImage: {fileID: 1554121395}
   totalDeductionAmount: 40000
   cashPrefab: {fileID: 1882958775886217793, guid: 6e3f7064fc4eda54fb05edab3a154685,
     type: 3}
