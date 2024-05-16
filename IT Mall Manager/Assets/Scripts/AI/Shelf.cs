@@ -100,9 +100,9 @@ public class Shelf : MonoBehaviour
         {
             if (spawnPoint.childCount == 0) // Check if spawn point has no child
             {
-                GameObject product = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-                product.transform.localScale = prefabScales[(int)shelfType];
-                product.transform.localRotation = prefabRotations[(int)shelfType];
+                GameObject product = Instantiate(prefab, spawnPoint.position, prefab.transform.localRotation);
+                product.transform.localScale = prefab.transform.localScale;
+                product.transform.localRotation = prefab.transform.localRotation;
                 product.transform.parent = spawnPoint;
                 Debug.Log("Product spawned on shelf.");
                 return true; // Exit the method after spawning a product
