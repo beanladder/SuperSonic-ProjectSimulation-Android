@@ -127,7 +127,7 @@ MonoBehaviour:
   RamNum: 0
   ramPrefab: {fileID: 710551687106017289, guid: 07ddca96618dd594cbf319bc0d89d394,
     type: 3}
-  cpuPrefab: {fileID: 2481597216433554188, guid: 21f73f2af0ff11644bea53f5950a2688,
+  cpuPrefab: {fileID: 6302392168841864231, guid: ed4d081743ae19b47b9667c9e516d426,
     type: 3}
   motherboardPrefab: {fileID: 963753221624850733, guid: 2eb1355b468d9d24a996e3db8341b082,
     type: 3}
