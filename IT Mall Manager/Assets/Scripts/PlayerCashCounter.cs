@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 public class PlayerCashCounter : MonoBehaviour
 {
     public int totalCashValue = 0; // Total cash value reached by the player

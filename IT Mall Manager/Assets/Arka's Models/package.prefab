@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1206253019652467197}
   - component: {fileID: 5160910155198724687}
   - component: {fileID: 8876864432552417395}
-  - component: {fileID: 6326547914987977990}
+  - component: {fileID: 5669979420502596390}
   m_Layer: 0
   m_Name: package
   m_TagString: Untagged
@@ -107,9 +107,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.16879176, y: 0.05153692, z: 0.06367724}
-  m_Center: {x: 0.004958096, y: -0.014487763, z: -0.008712966}
---- !u!114 &6326547914987977990
+  m_Size: {x: 0.22538252, y: 0.0865283, z: 0.02477005}
+  m_Center: {x: -0.0038336471, y: 0.003007984, z: 0.010740724}
+--- !u!114 &5669979420502596390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,6 +118,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4082170936207318903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c26dcd86b550e5443bbff5cff191699b, type: 3}
+  m_Script: {fileID: 11500000, guid: 802c0a94840d783478b2e779ede9e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxProductsOfEachType: 1
+  CpuNum: 0
+  MBNum: 0
+  RamNum: 0
+  ramPrefab: {fileID: 710551687106017289, guid: 07ddca96618dd594cbf319bc0d89d394,
+    type: 3}
+  cpuPrefab: {fileID: 6302392168841864231, guid: ed4d081743ae19b47b9667c9e516d426,
+    type: 3}
+  motherboardPrefab: {fileID: 963753221624850733, guid: 2eb1355b468d9d24a996e3db8341b082,
+    type: 3}
