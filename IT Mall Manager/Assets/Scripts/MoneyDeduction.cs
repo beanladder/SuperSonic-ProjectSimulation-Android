@@ -7,6 +7,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
     public GameObject yourPoppingPrefab;
+    public GameObject UpgradeScreen;
     public static MoneyDeduction instance;
     public UnityEngine.UI.Image fillImage;
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
@@ -16,7 +17,7 @@ public class MoneyDeduction : MonoBehaviour
     public float jumpHeight = 2f; // Height of the jump
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
-    public int remainingDeductionAmount; // Remaining amount to deductc
+    public int remainingDeductionAmount; // Remaining amount to deduct
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
 
@@ -38,8 +39,13 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
-            StartDeductionCoroutine();
+            if(gameObject.CompareTag("PurchaseUI")){
+                playerInRange = true;
+                StartDeductionCoroutine();
+            }
+            else if(gameObject.CompareTag("UpgradeUI")){
+                UpgradeScreen.SetActive(true);
+            }
         }
     }
     
@@ -47,8 +53,13 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
-            StopDeductionCoroutine();
+            if(gameObject.CompareTag("PurchaseUI")){
+                playerInRange = false;
+                StopDeductionCoroutine();
+            }
+            else if(gameObject.CompareTag("UpgradeUI")){
+                UpgradeScreen.SetActive(false);
+            }
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEditor.ShaderKeywordFilter;
 public class PlayerCashCounter : MonoBehaviour
 {
     public int totalCashValue = 0; // Total cash value reached by the player
-    public Text moneyText;
+    public TextMeshProUGUI moneyText;
     public static PlayerCashCounter instance;
 
     private void Awake()

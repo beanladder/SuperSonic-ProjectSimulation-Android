@@ -12,6 +12,9 @@ TagManager:
   - Admin
   - SpawnPoint
   - Cash
+  - cShelf
+  - PurchaseUI
+  - UpgradeUI
   layers:
   - Default
   - TransparentFX
