@@ -259,8 +259,9 @@ MonoBehaviour:
   - CPU
   - Motherboard
   - RAM
-  productType: 0
-  taskTime: 6
+  taskTime: 2
+  numOfProductsCarrying: 0
+  productnames: []
   linePosition: -1
   isCheckoutDone: 0
   ShelfChecking: 1
@@ -1289,8 +1290,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowedShelfTypes: []
-  productType: 0
   taskTime: 0
+  numOfProductsCarrying: 0
+  productnames: []
   linePosition: -1
   isCheckoutDone: 0
   ShelfChecking: 1

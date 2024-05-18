@@ -141,4 +141,19 @@ public class Shelf : MonoBehaviour
         System.Array.Resize(ref spawnPoints, index); // Resize the array to remove null entries
         return spawnPoints;
     }
+
+    public GameObject GetProductPrefab()
+    {
+        switch (shelfType)
+        {
+            case ShelfType.CPU:
+                return ProductInfo.instance.cpuPrefab;
+            case ShelfType.RAM:
+                return ProductInfo.instance.ramPrefab;
+            case ShelfType.Motherboard:
+                return ProductInfo.instance.motherboardPrefab;
+            default:
+                return null;
+        }
+    }
 }

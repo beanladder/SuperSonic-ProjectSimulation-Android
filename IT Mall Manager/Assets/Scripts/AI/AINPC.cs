@@ -15,7 +15,9 @@ public class AINPC : MonoBehaviour
     private bool isFinishedShopping = false;
     private bool isIrritated = false;
 
-    public int taskTime = 6;
+    public int taskTime;
+    public int numOfProductsCarrying;
+    public List<string> productnames;
     public int linePosition = -1; // The assigned line position for this NPC
     public bool isCheckoutDone = false;
     public bool ShelfChecking = true;
@@ -65,7 +67,7 @@ public class AINPC : MonoBehaviour
             Vector3 randomPoint = GetRandomPointInCollider(randomCollider);
 
             // Set the destination to the random point
-            GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(randomPoint);
+            GetComponent<NavMeshAgent>().SetDestination(randomPoint);
         }
         else
         {
@@ -90,16 +92,16 @@ public class AINPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Shelf") && ShelfChecking)
+        if (other.CompareTag("Shelf"))
         {
-            if (!isTakingProduct)
+            if (!isTakingProduct && ShelfChecking)
             {
                 StartCoroutine(Decision());
             }
         }
         else if (other.CompareTag("Checkout"))
         {
-            StartCoroutine(Checkout());
+            StartCoroutine(Checkout(numOfProductsCarrying));
         }
     }
 
@@ -111,18 +113,18 @@ public class AINPC : MonoBehaviour
         int chance = Random.Range(1, 15);
         if (chance > 0 && chance <= 7)
         {
-            Debug.Log("Got my product");
+            //Debug.Log("Got my product");
             StartCoroutine(TakeProduct());
         }
-        else if (chance > 7 && chance <= 10)
+        else if (chance > 7 && chance <= 10 && numOfProductsCarrying == 0)
         {
-            Debug.Log("No Product to Buy");
+            //Debug.Log("I Changed my mind");
             MoveToRandomSpawnPoint();
         }
         else if (chance > 10 && chance <= 15)
         {
             ShelfChecking = true;
-            Debug.Log("Need to search more");
+            //Debug.Log("Need to search more");
             SetDestination();
         }
     }
@@ -130,7 +132,8 @@ public class AINPC : MonoBehaviour
     IEnumerator TakeProduct()
     {
         isTakingProduct = true;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
+        int chance = Random.Range(1,10);
 
         // Ensure lastVisitedShelf is not null
         if (lastVisitedShelf != null)
@@ -139,8 +142,19 @@ public class AINPC : MonoBehaviour
             if (shelf != null && shelf.RemoveProduct())
             {
                 Debug.Log("Product taken from shelf.");
+                numOfProductsCarrying++;
+                productnames.Add(shelf.shelfType.ToString());
+                SpawnProductAtPoint(shelf.GetProductPrefab(), transform.position); // Spawn product at NPC's position
+
                 isFinishedShopping = true;
-                if (linePosition <= 15)
+                if(chance > 6 && numOfProductsCarrying <= 2)
+                {
+                    Debug.Log("I wanna buy more");
+                    isFinishedShopping = false;
+                    ShelfChecking = true;
+                    SetDestination();
+                }
+                if (linePosition <= 15 && isFinishedShopping)
                 {
                     QueueManager.instance.AddToQueue(this);
                 } // Add this NPC to the queue
@@ -160,14 +174,13 @@ public class AINPC : MonoBehaviour
         isTakingProduct = false;
     }
 
-    IEnumerator Checkout()
+    IEnumerator Checkout(int productCount)
     {
-        yield return new WaitForSeconds(taskTime);
-
-        Debug.Log("Checkout Function");
+        yield return new WaitForSeconds(taskTime * productCount);
 
         // Let the QueueManager know that this NPC's checkout is done
         isCheckoutDone = true;
+        Debug.Log("I bought " + numOfProductsCarrying + " Products ");
         QueueManager.instance.RemoveFromQueue(this);
         CashOutflow.instance.StartCoroutine(CashOutflow.instance.CashSpawn(CashOutflow.instance.CashDeliveryTime));
         // Move to a random spawn point before destroying itself
@@ -181,7 +194,7 @@ public class AINPC : MonoBehaviour
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
             GetComponent<NavMeshAgent>().SetDestination(randomSpawnPoint.position);
-            Destroy(gameObject, 15f); // Destroy after 5 seconds
+            Destroy(gameObject, 15f); // Destroy after 15 seconds
             NPCSpawner.instance.NPCDestroyed();
         }
         else
@@ -193,7 +206,7 @@ public class AINPC : MonoBehaviour
     // Move towards the assigned position in the queue
     public void MoveToCheckout(Vector3 position)
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(position);
+        GetComponent<NavMeshAgent>().SetDestination(position);
     }
 
     public IEnumerator WaitforLine()
@@ -203,6 +216,15 @@ public class AINPC : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         MoveToRandomSpawnPoint();
+    }
+
+    private void SpawnProductAtPoint(GameObject prefab, Vector3 position)
+    {
+        if (prefab != null)
+        {
+            GameObject product = Instantiate(prefab, position, prefab.transform.rotation);
+            product.transform.SetParent(transform); // Set the parent to the AINPC's transform
+        }
     }
 }
 
