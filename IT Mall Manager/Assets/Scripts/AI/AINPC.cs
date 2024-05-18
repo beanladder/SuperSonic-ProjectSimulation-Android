@@ -131,11 +131,33 @@ public class AINPC : MonoBehaviour
     {
         isTakingProduct = true;
         yield return new WaitForSeconds(4f);
-        isFinishedShopping = true;
-        if (linePosition <= 15)
+
+        // Ensure lastVisitedShelf is not null
+        if (lastVisitedShelf != null)
         {
-            QueueManager.instance.AddToQueue(this);
-        } // Add this NPC to the queue
+            Shelf shelf = lastVisitedShelf.GetComponentInParent<Shelf>();
+            if (shelf != null && shelf.RemoveProduct())
+            {
+                Debug.Log("Product taken from shelf.");
+                isFinishedShopping = true;
+                if (linePosition <= 15)
+                {
+                    QueueManager.instance.AddToQueue(this);
+                } // Add this NPC to the queue
+            }
+            else
+            {
+                Debug.Log("Restock " + shelf.shelfType + " shelf else I will go");
+                yield return new WaitForSeconds(10f);
+                MoveToRandomSpawnPoint();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No last visited shelf found.");
+        }
+
+        isTakingProduct = false;
     }
 
     IEnumerator Checkout()
@@ -177,7 +199,7 @@ public class AINPC : MonoBehaviour
     public IEnumerator WaitforLine()
     {
         isIrritated = true;
-        Debug.Log(gameObject.name + "is Waiting for the line");
+        Debug.Log(gameObject.name + " is Waiting for the line");
         yield return new WaitForSeconds(1f);
 
         MoveToRandomSpawnPoint();

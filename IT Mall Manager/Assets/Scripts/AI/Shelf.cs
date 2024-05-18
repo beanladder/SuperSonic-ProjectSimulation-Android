@@ -1,17 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    public enum ShelfType { CPU, RAM, Motherboard }
-
+   public enum ShelfType { CPU, RAM, Motherboard }
     public ShelfType shelfType;
 
     private Quaternion[] prefabRotations;
     private Vector3[] prefabScales;
+    public int productCount; // Keeps track of the number of products on the shelf
 
     private void Awake()
     {
-        // Store the local scale and rotation of each prefab
+        // Initialize the rotations and scales for different products
         prefabRotations = new Quaternion[3];
         prefabScales = new Vector3[3];
 
@@ -32,7 +33,7 @@ public class Shelf : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -41,7 +42,6 @@ public class Shelf : MonoBehaviour
 
             if (productInfo != null)
             {
-                Debug.Log("ProductInfo found on player.");
                 bool spawnSuccessful = false;
                 switch (shelfType)
                 {
@@ -92,9 +92,23 @@ public class Shelf : MonoBehaviour
         }
     }
 
+    public bool RemoveProduct()
+    {
+        Transform[] spawnPoints = GetSpawnPoints();
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            if (spawnPoint.childCount > 0) // Check if spawn point has a child
+            {
+                Destroy(spawnPoint.GetChild(0).gameObject); // Remove the product from the shelf
+                productCount--;
+                return true;
+            }
+        }
+        return false;
+    }
+
     private bool SpawnProduct(GameObject prefab)
     {
-        // Find all children named "SpawnPoint" of this shelf
         Transform[] spawnPoints = GetSpawnPoints();
         foreach (Transform spawnPoint in spawnPoints)
         {
@@ -104,17 +118,12 @@ public class Shelf : MonoBehaviour
                 product.transform.localScale = prefab.transform.localScale;
                 product.transform.localRotation = prefab.transform.localRotation;
                 product.transform.parent = spawnPoint;
-                Debug.Log("Product spawned on shelf.");
+                productCount++;
                 return true; // Exit the method after spawning a product
             }
         }
-        Debug.Log("No available spawn point for product.");
         return false; // Return false if no spawn occurred
     }
-
-
-
-
 
     private Transform[] GetSpawnPoints()
     {
