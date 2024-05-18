@@ -1538,6 +1538,7 @@ MonoBehaviour:
   isJoystick: 0
   moveSpeed: 7
   rotationSpeed: 10
+  decelerationRate: 20
   anim: {fileID: 8259084178878622279}
 --- !u!114 &6095005129506185059
 MonoBehaviour:
