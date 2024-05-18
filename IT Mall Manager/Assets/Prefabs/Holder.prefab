@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8024478883004842192}
   - component: {fileID: 6039430657887372363}
   - component: {fileID: 4822614618083196777}
-  - component: {fileID: 8373268390155025526}
   - component: {fileID: 6294043908232129150}
   m_Layer: 0
   m_Name: Holder
@@ -177,20 +176,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   checkInterval: 0.5
---- !u!114 &8373268390155025526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934961403887301783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0597afa8a778e4887baefb48b88313, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayerInRange: 0
-  anim: {fileID: 0}
 --- !u!114 &6294043908232129150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHands: {fileID: 0}
   spawnPoints: []
-  playerAnimator: {fileID: 0}
+  EmptyHand: 0
+  heldPackage: {fileID: 0}
 --- !u!1 &4138422542928443269
 GameObject:
   m_ObjectHideFlags: 0

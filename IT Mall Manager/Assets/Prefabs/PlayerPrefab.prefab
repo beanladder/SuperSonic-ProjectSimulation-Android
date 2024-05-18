@@ -693,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 2629752207788445039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32067832, y: -0.37196854, z: 0.13870347, w: 0.85998034}
-  m_LocalPosition: {x: 13.851759, y: 12.727052, z: 1.9036026}
+  m_LocalPosition: {x: 13.851765, y: 12.727052, z: 1.9036074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1035,7 +1035,7 @@ Transform:
   m_GameObject: {fileID: 2956326026777487547}
   serializedVersion: 2
   m_LocalRotation: {x: 0.32067832, y: -0.37196854, z: 0.13870347, w: 0.85998034}
-  m_LocalPosition: {x: 13.851759, y: 12.727052, z: 1.9036026}
+  m_LocalPosition: {x: 13.851765, y: 12.727052, z: 1.9036074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 7564165833034836616}
   - component: {fileID: 2298995259858560107}
   - component: {fileID: 6095005129506185059}
-  - component: {fileID: 2318776973512762845}
+  - component: {fileID: 2352709594317407913}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalCashValue: 0
   moneyText: {fileID: 0}
---- !u!114 &2318776973512762845
+--- !u!114 &2352709594317407913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1562,9 +1562,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4313867511555591855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4a03505c8a13d4c84cb0832e438f47, type: 3}
+  m_Script: {fileID: 11500000, guid: 233364cdd1ccf2646965da4180746864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalCashValue: 0
+  moneyText: {fileID: 0}
 --- !u!1 &4443304073305186519
 GameObject:
   m_ObjectHideFlags: 0
