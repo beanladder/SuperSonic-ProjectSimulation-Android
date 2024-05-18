@@ -1,9 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using System.Collections;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
     public GameObject yourPoppingPrefab;
