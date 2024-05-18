@@ -34,6 +34,11 @@ public class SuperContainer : MonoBehaviour
         if (playerHands.childCount < 1)
         {
             EmptyHand = true;
+            CharacterMovementManager.instance.anim.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            CharacterMovementManager.instance.anim.SetLayerWeight(1, 1);
         }
     }
 
