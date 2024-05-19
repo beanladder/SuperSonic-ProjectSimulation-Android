@@ -46,7 +46,7 @@ public class MoneyDeduction : MonoBehaviour
                 StartDeductionCoroutine();
             }
             else if(gameObject.CompareTag("UpgradeUI")){
-                UpgradeScreen.SetActive(true);
+                StartCoroutine(DelayedActivision());
             }
         }
     }
@@ -141,6 +141,17 @@ public class MoneyDeduction : MonoBehaviour
             floorText.text = remainingDeductionAmount.ToString();
         }
     }
+   void UpdateFillAmount()
+    {
+        if (fillImage != null)
+        {
+            // Calculate the fill amount based on the deduction progress
+            float fillAmount = Mathf.Clamp01((float)(totalDeductionAmount - remainingDeductionAmount) / totalDeductionAmount);
+
+            // Start the smooth fill animation coroutine
+            StartCoroutine(SmoothFillAnimation(fillAmount, 0.5f)); // Adjust duration as needed for smoother animation
+        }
+    }
 
     IEnumerator SmoothFillAnimation(float targetFillAmount, float duration)
     {
@@ -158,15 +169,9 @@ public class MoneyDeduction : MonoBehaviour
         // Ensure that the fill amount is exactly the target amount at the end of the animation
         fillImage.fillAmount = targetFillAmount;
     }
-   void UpdateFillAmount()
-    {
-        if (fillImage != null)
-        {
-            // Calculate the fill amount based on the deduction progress
-            float fillAmount = Mathf.Clamp01((float)(totalDeductionAmount - remainingDeductionAmount) / totalDeductionAmount);
 
-            // Start the smooth fill animation coroutine
-            StartCoroutine(SmoothFillAnimation(fillAmount, 0.5f)); // Adjust duration as needed for smoother animation
-        }
+    IEnumerator DelayedActivision(){
+        yield return new WaitForSeconds(1.0f);
+        UpgradeScreen.SetActive(true);
     }
 }
