@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMaxProducts: 2
-  aiMaxProducts: 2
+  aiMaxProducts: 1
   CpuNum: 0
   MBNum: 0
   RamNum: 0

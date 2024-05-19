@@ -2,35 +2,31 @@ using UnityEngine;
 
 public class ProductInfo : MonoBehaviour
 {
-    public int playerMaxProducts=2; // Max products for player
-    public int aiMaxProducts=1; // Max products for AI
+    public int playerMaxProducts = 2; // Default max products for player
+    public int aiMaxProducts = 1; // Default max products for AI
     public int CpuNum, MBNum, RamNum;
     public GameObject ramPrefab;
     public GameObject cpuPrefab;
     public GameObject motherboardPrefab;
     public static ProductInfo instance;
-    public bool isAI = false;
+    public bool isAI=false;
 
     private void Awake()
     {
         instance = this;
+        UpdateProductCounts();
     }
 
-    private void Start()
-    {
-        int maxProducts = isAI ? aiMaxProducts : playerMaxProducts;
-        CpuNum = RamNum = MBNum = maxProducts;
-    }
     // Upgrade methods for player and AI
     public void UpgradePlayerProductLimit(int increaseAmount)
     {
-        playerMaxProducts = increaseAmount;
+        playerMaxProducts += increaseAmount;
         UpdateProductCounts();
     }
 
     public void UpgradeWorkerProductLimit(int increaseAmount)
     {
-        aiMaxProducts = increaseAmount;
+        aiMaxProducts += increaseAmount;
         UpdateProductCounts();
     }
 
@@ -38,14 +34,14 @@ public class ProductInfo : MonoBehaviour
     private void UpdateProductCounts()
     {
         int maxProducts = isAI ? aiMaxProducts : playerMaxProducts; // Use ternary operator for conditional assignment
-        CpuNum = MBNum = RamNum = maxProducts; // Ensure limit doesn't exceed MaxProductsPerType()
+        CpuNum = MBNum = RamNum = Mathf.Min(maxProducts, MaxProductsPerType()); // Ensure limit doesn't exceed MaxProductsPerType()
     }
 
-    private void Update()
+    // Function to define the maximum products per type (replace with your logic)
+    private int MaxProductsPerType()
     {
-        if(CpuNum<1 && RamNum<1 && MBNum < 1)
-        {
-            Destroy(gameObject);
-        }
+        // Replace this with your logic to determine the maximum products per type
+        // This example returns a fixed value of 10
+        return 10;
     }
 }

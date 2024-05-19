@@ -15,6 +15,7 @@ TagManager:
   - cShelf
   - PurchaseUI
   - UpgradeUI
+  - WorkerAI
   layers:
   - Default
   - TransparentFX
