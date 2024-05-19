@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802c0a94840d783478b2e779ede9e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxProductsOfEachType: 3
+  MaxProductsOfEachType: 2
   CpuNum: 0
   MBNum: 0
   RamNum: 0
