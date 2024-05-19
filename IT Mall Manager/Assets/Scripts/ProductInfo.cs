@@ -21,6 +21,13 @@ public class ProductInfo : MonoBehaviour
         CpuNum = MBNum = RamNum = MaxProductsOfEachType;
     }
 
+    private void Update()
+    {
+        if(CpuNum <1 && RamNum <1 && MBNum <1)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void IncreaseMaxCapacity()
     {
         MaxProductsOfEachType++;

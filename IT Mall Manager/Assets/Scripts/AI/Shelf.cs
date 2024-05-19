@@ -54,19 +54,31 @@ public class Shelf : MonoBehaviour
                     case ShelfType.CPU:
                         if (productInfo.CpuNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo, () =>
+                            {
+                                // Delay the destruction of the package to ensure all prefabs have spawned
+                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                            }));
                         }
                         break;
                     case ShelfType.RAM:
                         if (productInfo.RamNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo, () =>
+                            {
+                                // Delay the destruction of the package to ensure all prefabs have spawned
+                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                            }));
                         }
                         break;
                     case ShelfType.Motherboard:
                         if (productInfo.MBNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo, () =>
+                            {
+                                // Delay the destruction of the package to ensure all prefabs have spawned
+                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                            }));
                         }
                         break;
                     default:
@@ -81,72 +93,46 @@ public class Shelf : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnProductWithDelay(GameObject prefab, ProductInfo productInfo)
+    private IEnumerator SpawnProductWithDelay(GameObject prefab, ProductInfo productInfo, System.Action onAllProductsSpawned)
     {
-        // Decrement product count immediately
-        switch (shelfType)
-        {
-            case ShelfType.CPU:
-                productInfo.CpuNum--;
-                break;
-            case ShelfType.RAM:
-                productInfo.RamNum--;
-                break;
-            case ShelfType.Motherboard:
-                productInfo.MBNum--;
-                break;
-        }
-
         // Wait for the specified delay
         yield return new WaitForSeconds(spawnDelay);
 
-        // Check product count again to prevent spawning if count is below zero
         bool spawnSuccessful = false;
+
         switch (shelfType)
         {
             case ShelfType.CPU:
-                if (productInfo.CpuNum >= 0)
+                if (productInfo.CpuNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
+                    if (spawnSuccessful)
+                        productInfo.CpuNum--;
                 }
                 break;
             case ShelfType.RAM:
-                if (productInfo.RamNum >= 0)
+                if (productInfo.RamNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
+                    if (spawnSuccessful)
+                        productInfo.RamNum--;
                 }
                 break;
             case ShelfType.Motherboard:
-                if (productInfo.MBNum >= 0)
+                if (productInfo.MBNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
+                    if (spawnSuccessful)
+                        productInfo.MBNum--;
                 }
                 break;
         }
 
-        // If spawning was not successful, revert the decrement
-        if (!spawnSuccessful)
-        {
-            switch (shelfType)
-            {
-                case ShelfType.CPU:
-                    productInfo.CpuNum++;
-                    break;
-                case ShelfType.RAM:
-                    productInfo.RamNum++;
-                    break;
-                case ShelfType.Motherboard:
-                    productInfo.MBNum++;
-                    break;
-            }
-        }
-
-        // Check if all product counts are zero and destroy the object if true
-        if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
-        {
-            // Delay the destruction of the package to ensure all prefabs have spawned
-            Destroy(productInfo.gameObject, 1f); // Destroy after pop-in animation duration
-        }
+        //// Check if all product counts are zero and call the callback if true
+        //if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
+        //{
+        //    onAllProductsSpawned?.Invoke();
+        //}
     }
 
     private IEnumerator PopInAnimation(Transform product)
@@ -167,21 +153,6 @@ public class Shelf : MonoBehaviour
 
         product.localScale = targetScale;
         isAnimating = false;
-    }
-
-    public bool RemoveProduct()
-    {
-        Transform[] spawnPoints = GetSpawnPoints();
-        foreach (Transform spawnPoint in spawnPoints)
-        {
-            if (spawnPoint.childCount > 0) // Check if spawn point has a child
-            {
-                Destroy(spawnPoint.GetChild(0).gameObject); // Remove the product from the shelf
-                productCount--;
-                return true;
-            }
-        }
-        return false;
     }
 
     private bool SpawnProduct(GameObject prefab)
@@ -239,4 +210,19 @@ public class Shelf : MonoBehaviour
                 return null;
         }
     }
+    public bool RemoveProduct()
+    {
+        Transform[] spawnPoints = GetSpawnPoints();
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            if (spawnPoint.childCount > 0) // Check if spawn point has a child
+            {
+                Destroy(spawnPoint.GetChild(0).gameObject); // Remove the product from the shelf
+                productCount--;
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
