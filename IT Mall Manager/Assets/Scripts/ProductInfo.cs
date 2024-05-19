@@ -20,13 +20,13 @@ public class ProductInfo : MonoBehaviour
     // Upgrade methods for player and AI
     public void UpgradePlayerProductLimit(int increaseAmount)
     {
-        playerMaxProducts += increaseAmount;
+        playerMaxProducts = increaseAmount;
         UpdateProductCounts();
     }
 
     public void UpgradeWorkerProductLimit(int increaseAmount)
     {
-        aiMaxProducts += increaseAmount;
+        aiMaxProducts =increaseAmount;
         UpdateProductCounts();
     }
 
