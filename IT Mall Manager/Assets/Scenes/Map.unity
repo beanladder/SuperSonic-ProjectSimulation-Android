@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2421,6 +2421,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rack (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4099144085873784288, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4147161415431460650, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2474,7 +2479,7 @@ PrefabInstance:
     - target: {fileID: 6774085465023929215, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: shelfType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6774085465023929215, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
@@ -3537,6 +3542,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rack (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4099144085873784288, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4147161415431460650, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3590,7 +3600,7 @@ PrefabInstance:
     - target: {fileID: 6774085465023929215, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: shelfType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3768,6 +3778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rack
       objectReference: {fileID: 0}
+    - target: {fileID: 4099144085873784288, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4147161415431460650, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3821,7 +3836,7 @@ PrefabInstance:
     - target: {fileID: 6774085465023929215, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: shelfType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

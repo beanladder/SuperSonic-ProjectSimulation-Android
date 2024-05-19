@@ -9,11 +9,11 @@ using UnityEngine.AI;
 
 public class AINPC : MonoBehaviour
 {
-    public List<string> allowedShelfTypes; // Shelf types that the NPC is allowed to visit
+    public List<string> allowedShelfTypes;
     public int taskTime;
     public int numOfProductsCarrying;
     public List<string> productNames;
-    public int linePosition = -1; // The assigned line position for this NPC
+    public int linePosition = -1;
     public bool isCheckoutDone = false;
 
     private bool isTakingProduct = false;
@@ -23,7 +23,7 @@ public class AINPC : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private Collider lastVisitedShelf; // Track the last visited shelf collider
+    private Collider lastVisitedShelf;
 
     private void Awake()
     {
@@ -98,7 +98,7 @@ public class AINPC : MonoBehaviour
     {
         if (other.CompareTag("Shelf") && !isTakingProduct && shelfChecking)
         {
-            StartCoroutine(Decision());
+            StartCoroutine(WaitForShelfStock(other.GetComponentInParent<Shelf>()));
         }
         else if (other.CompareTag("Checkout"))
         {
@@ -106,33 +106,50 @@ public class AINPC : MonoBehaviour
         }
     }
 
-    private IEnumerator Decision()
+    private IEnumerator WaitForShelfStock(Shelf shelf)
     {
         shelfChecking = false;
-        yield return new WaitForSeconds(Random.Range(5, 10));
+        float waitTime = 0f;
 
-        if (numOfProductsCarrying == 1)
+        while (waitTime < 15f)
         {
-            if (Random.Range(1, 15) <= 7)
+            if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
             {
-                StartCoroutine(TakeProduct());
+                StartCoroutine(TakeProduct(shelf));
+                yield break;
             }
-            else if (linePosition <= 15)
-            {
-                isFinishedShopping = true;
-                QueueManager.instance.AddToQueue(this);
-            }
+
+            yield return new WaitForSeconds(1f);
+            waitTime += 1f;
+        }
+
+        if (numOfProductsCarrying == 0)
+        {
+            MoveToRandomSpawnPoint();
         }
         else
         {
-            int chance = Random.Range(1, 15);
-            if (chance <= 7)
+            SetDestination();
+        }
+
+        shelfChecking = true;
+    }
+
+    private IEnumerator TakeProduct(Shelf shelf)
+    {
+        yield return new WaitForSeconds(3f);
+        isTakingProduct = true;
+        //float waitTime = 0f;
+
+        if (numOfProductsCarrying < 2 )
+        {
+            numOfProductsCarrying++;
+            productNames.Add(shelf.shelfType.ToString());
+
+            if (numOfProductsCarrying == 2)
             {
-                StartCoroutine(TakeProduct());
-            }
-            else if (chance > 9 && numOfProductsCarrying == 0)
-            {
-                MoveToRandomSpawnPoint();
+                isFinishedShopping = true;
+                QueueManager.instance.AddToQueue(this);
             }
             else
             {
@@ -140,71 +157,9 @@ public class AINPC : MonoBehaviour
                 SetDestination();
             }
         }
-    }
-
-    private IEnumerator TakeProduct()
-    {
-        isTakingProduct = true;
-        float waitTime = 0f;
-        bool shelfRestocked = false;
-
-        if (numOfProductsCarrying == 0)
-        {
-            while (waitTime < 15f)
-            {
-                yield return new WaitForSeconds(1f);
-                waitTime += 1f;
-
-                if (lastVisitedShelf != null)
-                {
-                    Shelf shelf = lastVisitedShelf.GetComponentInParent<Shelf>();
-                    if (shelf != null && shelf.productCount > 0)
-                    {
-                        shelfRestocked = true;
-                        break;
-                    }
-                }
-            }
-
-            if (shelfRestocked)
-            {
-                Shelf shelf = lastVisitedShelf.GetComponentInParent<Shelf>();
-                if (shelf != null && shelf.RemoveProduct())
-                {
-                    numOfProductsCarrying++;
-                    productNames.Add(shelf.shelfType.ToString());
-                    shelfChecking = true;
-                    SetDestination();
-                }
-            }
-            else
-            {
-                MoveToRandomSpawnPoint();
-            }
-        }
         else
         {
-            Shelf shelf = lastVisitedShelf.GetComponentInParent<Shelf>();
-            if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
-            {
-                numOfProductsCarrying++;
-                productNames.Add(shelf.shelfType.ToString());
-
-                if (Random.Range(1, 10) > 7 && numOfProductsCarrying < 2)
-                {
-                    shelfChecking = true;
-                    SetDestination();
-                }
-                else if (linePosition <= 15)
-                {
-                    isFinishedShopping = true;
-                    QueueManager.instance.AddToQueue(this);
-                }
-            }
-            else if (numOfProductsCarrying == 0)
-            {
-                MoveToRandomSpawnPoint();
-            }
+            MoveToRandomSpawnPoint();
         }
 
         isTakingProduct = false;
