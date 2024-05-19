@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48e7c3aa08059248b47d726716fe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shelfType: 1
+  shelfType: 0
   productCount: 0
   spawnDelay: 0.2
   popInCurve:

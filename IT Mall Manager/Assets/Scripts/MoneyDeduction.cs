@@ -8,6 +8,7 @@ using TMPro;
 //using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
+    public Shelf.ShelfType shelfTypeToSet= Shelf.ShelfType.CPU;
     public GameObject yourPoppingPrefab;
     public GameObject UpgradeScreen;
     public static MoneyDeduction instance;
@@ -134,6 +135,8 @@ public class MoneyDeduction : MonoBehaviour
             
             poppingPrefab.transform.localScale = targetScale;
             poppingPrefab.transform.localRotation = targetRotation;
+            Shelf shelfScript = poppingPrefab.GetComponent<Shelf>();
+            shelfScript.shelfType = shelfTypeToSet;
 
         }
 
