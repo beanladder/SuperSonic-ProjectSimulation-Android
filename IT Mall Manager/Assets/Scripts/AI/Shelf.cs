@@ -12,7 +12,7 @@ public class Shelf : MonoBehaviour
 
     public float spawnDelay = 1f; // Delay between spawning prefabs
 
-    public AnimationCurve popInCurve=AnimationCurve.EaseInOut(0f, 0f, 1f, 1f); // Animation curve for pop-in animation
+    public AnimationCurve popInCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f); // Animation curve for pop-in animation
     public float popInDuration = 0.5f; // Duration of the pop-in animation
 
     private bool isAnimating = false; // Flag to track if pop-in animation is ongoing
@@ -144,7 +144,8 @@ public class Shelf : MonoBehaviour
         // Check if all product counts are zero and destroy the object if true
         if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
         {
-            Destroy(productInfo.gameObject);
+            // Delay the destruction of the package to ensure all prefabs have spawned
+            Destroy(productInfo.gameObject, 1f); // Destroy after pop-in animation duration
         }
     }
 
@@ -167,6 +168,7 @@ public class Shelf : MonoBehaviour
         product.localScale = targetScale;
         isAnimating = false;
     }
+
     public bool RemoveProduct()
     {
         Transform[] spawnPoints = GetSpawnPoints();
