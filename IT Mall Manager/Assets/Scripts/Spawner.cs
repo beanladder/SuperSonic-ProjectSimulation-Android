@@ -33,14 +33,14 @@ public class Spawner : MonoBehaviour
             Quaternion prefabRotation = prefabToSpawn.transform.localRotation;
             // Spawn the prefab at the position of the spawn point with a small scale
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, prefabRotation);
-            spawnedObject.transform.localScale = Vector3.zero;
+            spawnedObject.transform.localScale = prefabScale;
 
             // Start the pop in animation and then change parent
-            StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale));
+            StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale,prefabRotation));
         }
     }
 
-    IEnumerator PopInAndChangeParent(Transform targetTransform, Transform newParent, Vector3 targetScale)
+    IEnumerator PopInAndChangeParent(Transform targetTransform, Transform newParent, Vector3 targetScale,Quaternion targetRotation)
     {
         float timer = 0f;
 
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
 
         // Ensure the scale is exactly 1 at the end of animation
         targetTransform.localScale = targetScale;
-
+        targetTransform.localRotation = targetRotation;
         // Change the parent after pop in animation
         targetTransform.SetParent(newParent);
     }
@@ -86,10 +86,10 @@ public class Spawner : MonoBehaviour
 
         // Spawn the prefab at the position of the spawn point with a small scale and the prefab's rotation
         GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, prefabRotation);
-        spawnedObject.transform.localScale = Vector3.zero;
+        spawnedObject.transform.localScale = prefabScale;
 
         // Start the pop in animation and then change parent
-        StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale));
+        StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale,prefabRotation));
     }
 
 }
