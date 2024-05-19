@@ -42,10 +42,10 @@ public class Shelf : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")|| other.CompareTag("WorkerAI"))
         {
-            GameObject player = other.gameObject;
-            ProductInfo productInfo = player.GetComponentInChildren<ProductInfo>();
+            GameObject Entity = other.gameObject;
+            ProductInfo productInfo = Entity.GetComponentInChildren<ProductInfo>();
 
             if (productInfo != null)
             {

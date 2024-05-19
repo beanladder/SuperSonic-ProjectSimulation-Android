@@ -87,7 +87,9 @@ public class SuperContainer : MonoBehaviour
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject; // Set the currently held package
+                    heldPackage = box.gameObject;
+                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                    product.isAI = false;
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -107,7 +109,9 @@ public class SuperContainer : MonoBehaviour
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject; // Set the currently held package
+                    heldPackage = box.gameObject;
+                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                    product.isAI = true;
                     WorkerEmptyHand = false;
                 });
                 break;
