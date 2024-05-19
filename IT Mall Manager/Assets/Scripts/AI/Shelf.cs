@@ -128,11 +128,7 @@ public class Shelf : MonoBehaviour
                 break;
         }
 
-        //// Check if all product counts are zero and call the callback if true
-        //if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
-        //{
-        //    onAllProductsSpawned?.Invoke();
-        //}
+        
     }
 
     private IEnumerator PopInAnimation(Transform product)
