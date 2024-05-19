@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-   public enum ShelfType { CPU, RAM, Motherboard }
+    public enum ShelfType { CPU, RAM, Motherboard }
     public ShelfType shelfType;
 
     private Quaternion[] prefabRotations;
     private Vector3[] prefabScales;
     public int productCount; // Keeps track of the number of products on the shelf
+
+    public float spawnDelay = 1f; // Delay between spawning prefabs
+
+    public AnimationCurve popInCurve=AnimationCurve.EaseInOut(0f, 0f, 1f, 1f); // Animation curve for pop-in animation
+    public float popInDuration = 0.5f; // Duration of the pop-in animation
+
+    private bool isAnimating = false; // Flag to track if pop-in animation is ongoing
 
     private void Awake()
     {
@@ -42,47 +49,29 @@ public class Shelf : MonoBehaviour
 
             if (productInfo != null)
             {
-                bool spawnSuccessful = false;
                 switch (shelfType)
                 {
                     case ShelfType.CPU:
                         if (productInfo.CpuNum > 0)
                         {
-                            spawnSuccessful = SpawnProduct(productInfo.cpuPrefab);
+                            StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo));
                         }
                         break;
                     case ShelfType.RAM:
                         if (productInfo.RamNum > 0)
                         {
-                            spawnSuccessful = SpawnProduct(productInfo.ramPrefab);
+                            StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo));
                         }
                         break;
                     case ShelfType.Motherboard:
                         if (productInfo.MBNum > 0)
                         {
-                            spawnSuccessful = SpawnProduct(productInfo.motherboardPrefab);
+                            StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo));
                         }
                         break;
                     default:
                         Debug.LogWarning("Unknown shelf type.");
                         break;
-                }
-
-                if (spawnSuccessful)
-                {
-                    // Decrease the product count only if spawn was successful
-                    switch (shelfType)
-                    {
-                        case ShelfType.CPU:
-                            productInfo.CpuNum--;
-                            break;
-                        case ShelfType.RAM:
-                            productInfo.RamNum--;
-                            break;
-                        case ShelfType.Motherboard:
-                            productInfo.MBNum--;
-                            break;
-                    }
                 }
             }
             else
@@ -92,6 +81,92 @@ public class Shelf : MonoBehaviour
         }
     }
 
+    private IEnumerator SpawnProductWithDelay(GameObject prefab, ProductInfo productInfo)
+    {
+        // Decrement product count immediately
+        switch (shelfType)
+        {
+            case ShelfType.CPU:
+                productInfo.CpuNum--;
+                break;
+            case ShelfType.RAM:
+                productInfo.RamNum--;
+                break;
+            case ShelfType.Motherboard:
+                productInfo.MBNum--;
+                break;
+        }
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(spawnDelay);
+
+        // Check product count again to prevent spawning if count is below zero
+        bool spawnSuccessful = false;
+        switch (shelfType)
+        {
+            case ShelfType.CPU:
+                if (productInfo.CpuNum >= 0)
+                {
+                    spawnSuccessful = SpawnProduct(prefab);
+                }
+                break;
+            case ShelfType.RAM:
+                if (productInfo.RamNum >= 0)
+                {
+                    spawnSuccessful = SpawnProduct(prefab);
+                }
+                break;
+            case ShelfType.Motherboard:
+                if (productInfo.MBNum >= 0)
+                {
+                    spawnSuccessful = SpawnProduct(prefab);
+                }
+                break;
+        }
+
+        // If spawning was not successful, revert the decrement
+        if (!spawnSuccessful)
+        {
+            switch (shelfType)
+            {
+                case ShelfType.CPU:
+                    productInfo.CpuNum++;
+                    break;
+                case ShelfType.RAM:
+                    productInfo.RamNum++;
+                    break;
+                case ShelfType.Motherboard:
+                    productInfo.MBNum++;
+                    break;
+            }
+        }
+
+        // Check if all product counts are zero and destroy the object if true
+        if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
+        {
+            Destroy(productInfo.gameObject);
+        }
+    }
+
+    private IEnumerator PopInAnimation(Transform product)
+    {
+        isAnimating = true;
+        float elapsedTime = 0f;
+
+        Vector3 initialScale = new Vector3(0f, 0f, 0f);
+        Vector3 targetScale = product.localScale;
+
+        while (elapsedTime < popInDuration)
+        {
+            float scale = popInCurve.Evaluate(elapsedTime / popInDuration);
+            product.localScale = targetScale * scale;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        product.localScale = targetScale;
+        isAnimating = false;
+    }
     public bool RemoveProduct()
     {
         Transform[] spawnPoints = GetSpawnPoints();
@@ -109,6 +184,9 @@ public class Shelf : MonoBehaviour
 
     private bool SpawnProduct(GameObject prefab)
     {
+        if (isAnimating)
+            return false; // Return false if already animating
+
         Transform[] spawnPoints = GetSpawnPoints();
         foreach (Transform spawnPoint in spawnPoints)
         {
@@ -119,7 +197,10 @@ public class Shelf : MonoBehaviour
                 product.transform.localRotation = prefab.transform.localRotation;
                 product.transform.parent = spawnPoint;
                 productCount++;
-                return true; // Exit the method after spawning a product
+
+                StartCoroutine(PopInAnimation(product.transform)); // Start pop-in animation
+
+                return true; // Exit the method after starting pop-in animation
             }
         }
         return false; // Return false if no spawn occurred
