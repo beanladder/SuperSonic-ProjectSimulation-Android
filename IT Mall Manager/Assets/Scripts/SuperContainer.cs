@@ -90,6 +90,7 @@ public class SuperContainer : MonoBehaviour
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = false;
+                    product.UpgradePlayerProductLimit(2);
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -112,6 +113,7 @@ public class SuperContainer : MonoBehaviour
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = true;
+                    product.UpgradeWorkerProductLimit(1);
                     WorkerEmptyHand = false;
                 });
                 break;

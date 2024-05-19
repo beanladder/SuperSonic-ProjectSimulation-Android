@@ -2335,6 +2335,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4313867511555591855, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_TagString
+      value: WorkerAI
+      objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3010,7 +3015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: wokerAIHands
       value: 
+
       objectReference: {fileID: 957479304}
+
+      objectReference: {fileID: 782269097}
+
     - target: {fileID: 4099144085873784288, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: m_Name
