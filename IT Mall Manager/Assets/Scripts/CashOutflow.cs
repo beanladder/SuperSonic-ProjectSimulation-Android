@@ -7,7 +7,7 @@ using System.Threading;
 public class CashOutflow : MonoBehaviour
 {
     public static CashOutflow instance;
-    [SerializeField] Transform[] CashHolders = new Transform[6]; // Array to hold the 6 empty GameObject transforms
+    [SerializeField] Transform[] CashHolders; // Array to hold the 6 empty GameObject transforms
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     public float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
 
