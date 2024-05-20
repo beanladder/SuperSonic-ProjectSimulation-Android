@@ -52,7 +52,7 @@ public class Shelf : MonoBehaviour
                 switch (shelfType)
                 {
                     case ShelfType.CPU:
-                        if (productInfo.isAI && productInfo.CpuNum > 0)
+                        if (productInfo.CpuNum > 0)
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo, () =>
                             {
@@ -61,7 +61,7 @@ public class Shelf : MonoBehaviour
                         }
                         break;
                     case ShelfType.RAM:
-                        if (productInfo.isAI && productInfo.RamNum > 0)
+                        if (productInfo.RamNum > 0)
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo, () =>
                             {
@@ -70,7 +70,7 @@ public class Shelf : MonoBehaviour
                         }
                         break;
                     case ShelfType.Motherboard:
-                        if (productInfo.isAI && productInfo.MBNum > 0)
+                        if (productInfo.MBNum > 0)
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo, () =>
                             {
@@ -126,6 +126,12 @@ public class Shelf : MonoBehaviour
         }
 
         
+    }
+
+    public void Restock(ProductInfo productInfo)
+    {
+        // Assuming each restock adds one of each product type to the shelf.
+        productCount += Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
     }
 
     private IEnumerator PopInAnimation(Transform product)

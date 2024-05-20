@@ -9,13 +9,12 @@ TagManager:
   - Shelf
   - Checkout
   - AINPC
-  - Admin
   - SpawnPoint
   - Cash
-  - cShelf
   - PurchaseUI
   - UpgradeUI
   - WorkerAI
+  - SuperContainer
   layers:
   - Default
   - TransparentFX
