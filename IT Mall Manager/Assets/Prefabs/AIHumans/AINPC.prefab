@@ -261,10 +261,9 @@ MonoBehaviour:
   - RAM
   taskTime: 2
   numOfProductsCarrying: 0
-  productnames: []
+  productNames: []
   linePosition: -1
   isCheckoutDone: 0
-  ShelfChecking: 1
 --- !u!195 &1354364994030238746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -279,7 +278,7 @@ NavMeshAgent:
   m_Acceleration: 2
   avoidancePriority: 99
   m_AngularSpeed: 400
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1462,10 +1461,9 @@ MonoBehaviour:
   allowedShelfTypes: []
   taskTime: 0
   numOfProductsCarrying: 0
-  productnames: []
+  productNames: []
   linePosition: -1
   isCheckoutDone: 0
-  ShelfChecking: 1
 --- !u!195 &2956158121595697873
 NavMeshAgent:
   m_ObjectHideFlags: 0

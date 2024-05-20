@@ -8,6 +8,7 @@ using TMPro;
 //using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
+    public Shelf.ShelfType shelfTypeToSet= Shelf.ShelfType.CPU;
     public GameObject yourPoppingPrefab;
     public GameObject UpgradeScreen;
     public static MoneyDeduction instance;
@@ -125,12 +126,18 @@ public class MoneyDeduction : MonoBehaviour
         {
             // Disable canvas
             gameObject.SetActive(false);
-
+            Vector3 targetScale = yourPoppingPrefab.transform.localScale;
+            Quaternion targetRotation = yourPoppingPrefab.transform.localRotation;
             // Spawn prefab with popping animation
             GameObject poppingPrefab = Instantiate(yourPoppingPrefab, transform.position, Quaternion.identity);
             // Apply popping animation using AnimationCurve or other tweening method
             // For example, you can use DOTween to scale the prefab up and down
-            poppingPrefab.transform.DOScale(Vector3.one * 1.5f, 0.5f).SetEase(Ease.OutElastic);
+            
+            poppingPrefab.transform.localScale = targetScale;
+            poppingPrefab.transform.localRotation = targetRotation;
+            Shelf shelfScript = poppingPrefab.GetComponent<Shelf>();
+            shelfScript.shelfType = shelfTypeToSet;
+
         }
 
         // Reset the coroutine reference

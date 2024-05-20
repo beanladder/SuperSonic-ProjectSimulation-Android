@@ -16,7 +16,7 @@ public class Shelf : MonoBehaviour
     public float popInDuration = 0.5f; // Duration of the pop-in animation
 
     private bool isAnimating = false; // Flag to track if pop-in animation is ongoing
-
+    public bool isworker = false;
     private void Awake()
     {
         // Initialize the rotations and scales for different products
@@ -42,11 +42,11 @@ public class Shelf : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")|| other.CompareTag("WorkerAI"))
         {
-            GameObject player = other.gameObject;
-            ProductInfo productInfo = player.GetComponentInChildren<ProductInfo>();
-
+           
+            ProductInfo productInfo = other.GetComponentInChildren<ProductInfo>();
+            isworker = true;
             if (productInfo != null)
             {
                 switch (shelfType)
@@ -56,8 +56,7 @@ public class Shelf : MonoBehaviour
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo, () =>
                             {
-                                // Delay the destruction of the package to ensure all prefabs have spawned
-                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                               
                             }));
                         }
                         break;
@@ -66,8 +65,7 @@ public class Shelf : MonoBehaviour
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo, () =>
                             {
-                                // Delay the destruction of the package to ensure all prefabs have spawned
-                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                                
                             }));
                         }
                         break;
@@ -76,8 +74,7 @@ public class Shelf : MonoBehaviour
                         {
                             StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo, () =>
                             {
-                                // Delay the destruction of the package to ensure all prefabs have spawned
-                                Destroy(productInfo.gameObject); // Destroy after all products have spawned
+                                
                             }));
                         }
                         break;
@@ -103,7 +100,7 @@ public class Shelf : MonoBehaviour
         switch (shelfType)
         {
             case ShelfType.CPU:
-                if (productInfo.CpuNum > 0)
+                if (productInfo.isAI && productInfo.CpuNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -111,7 +108,7 @@ public class Shelf : MonoBehaviour
                 }
                 break;
             case ShelfType.RAM:
-                if (productInfo.RamNum > 0)
+                if (productInfo.isAI && productInfo.RamNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -119,7 +116,7 @@ public class Shelf : MonoBehaviour
                 }
                 break;
             case ShelfType.Motherboard:
-                if (productInfo.MBNum > 0)
+                if (productInfo.isAI && productInfo.MBNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -128,11 +125,13 @@ public class Shelf : MonoBehaviour
                 break;
         }
 
-        //// Check if all product counts are zero and call the callback if true
-        //if (productInfo.CpuNum == 0 && productInfo.RamNum == 0 && productInfo.MBNum == 0)
-        //{
-        //    onAllProductsSpawned?.Invoke();
-        //}
+        
+    }
+
+    public void Restock(ProductInfo productInfo)
+    {
+        // Assuming each restock adds one of each product type to the shelf.
+        productCount += Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
     }
 
     private IEnumerator PopInAnimation(Transform product)

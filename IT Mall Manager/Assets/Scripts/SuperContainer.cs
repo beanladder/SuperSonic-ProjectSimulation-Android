@@ -7,7 +7,7 @@ public class SuperContainer : MonoBehaviour
     public static SuperContainer Instance { get; private set; }
 
     public Transform playerHands;
-    public Transform wokerAIHands;
+    public Transform workerAIHands;
     public Transform[] spawnPoints;
     public bool PlayerEmptyHand = false;
     public bool WorkerEmptyHand = false;
@@ -43,7 +43,8 @@ public class SuperContainer : MonoBehaviour
         {
             CharacterMovementManager.instance.anim.SetLayerWeight(1, 1);
         }
-        if (wokerAIHands.childCount < 1)
+
+        if (workerAIHands.childCount < 1)
         {
             WorkerEmptyHand = true;
         }
@@ -64,13 +65,13 @@ public class SuperContainer : MonoBehaviour
         }
         else if (other.CompareTag("WorkerAI"))
         {
-            if(WorkerEmptyHand)
+            if (WorkerEmptyHand)
             {
                 MoveBoxToWorkerAi();
             }
             else
             {
-                Debug.Log("Worker already has a box in their hands");
+                Debug.Log("Worker already has a box in their hands.");
             }
         }
     }
@@ -87,7 +88,9 @@ public class SuperContainer : MonoBehaviour
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject; // Set the currently held package
+                    heldPackage = box.gameObject;
+                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                    product.isAI = false;
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -95,20 +98,29 @@ public class SuperContainer : MonoBehaviour
         }
     }
 
-    private void MoveBoxToWorkerAi()
+    public void MoveBoxToWorkerAi()
     {
+        Debug.Log("Attempting to move box to WorkerAI.");
         foreach (Transform spawnPoint in spawnPoints)
         {
             if (spawnPoint.childCount > 0)
             {
                 Transform box = spawnPoint.GetChild(0);
-                box.DOMove(wokerAIHands.position, .1f).SetEase(Ease.OutQuad).OnComplete(() =>
+                Debug.Log("Found a box at spawn point: " + spawnPoint.name);
+                box.DOMove(workerAIHands.position, .1f).SetEase(Ease.OutQuad).OnComplete(() =>
                 {
-                    box.SetParent(playerHands);
+                    box.SetParent(workerAIHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject; // Set the currently held package
+                    heldPackage = box.gameObject;
+                    if(heldPackage == null)
+                    {
+                        Debug.Log("problem in SuperContainer.MoveBoxToWorkerAi");
+                    }
+                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                    product.isAI = true;
                     WorkerEmptyHand = false;
+                    Debug.Log("Box moved to WorkerAI hands: " + heldPackage.name);
                 });
                 break;
             }
