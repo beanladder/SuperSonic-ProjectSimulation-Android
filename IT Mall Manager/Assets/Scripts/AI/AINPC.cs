@@ -24,9 +24,11 @@ public class AINPC : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     private Collider lastVisitedShelf;
+    PoppingAnimation pop;
 
     private void Awake()
     {
+        pop = GetComponentInChildren<PoppingAnimation>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -36,8 +38,9 @@ public class AINPC : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Start()    
     {
+        
         SetDestination();
     }
 
@@ -115,9 +118,11 @@ public class AINPC : MonoBehaviour
         {
             if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
             {
+                pop.PopOut();
                 StartCoroutine(TakeProduct(shelf));
                 yield break;
             }
+            pop.PopIn();
 
             yield return new WaitForSeconds(1f);
             waitTime += 1f;

@@ -118,7 +118,7 @@ public class SuperContainer : MonoBehaviour
                         Debug.Log("problem in SuperContainer.MoveBoxToWorkerAi");
                     }
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
-                    product.isAI = true;
+                    //product.isAI = true;
                     WorkerEmptyHand = false;
                     Debug.Log("Box moved to WorkerAI hands: " + heldPackage.name);
                 });
