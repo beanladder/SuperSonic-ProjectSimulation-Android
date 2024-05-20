@@ -7,15 +7,12 @@ using UnityEngine.AI;
 public class WorkerAI : MonoBehaviour
 {
     public Transform workerAIHands;
-    public int maxProducts;
     public List<string> allowedShelfTypes;
-    private List<Collider> emptyShelves = new List<Collider>();
     public Collider superContainerCollider;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private bool isCarryingBox = false;
-    private GameObject heldPackage;
+    private bool waitingForShelf;
 
     private void Awake()
     {
@@ -43,15 +40,10 @@ public class WorkerAI : MonoBehaviour
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             animator.SetBool("isMoving", false);
-
-            if (isCarryingBox)
-            {
-                Collider shelfToRestock = FindShelfToRestock();
-                if (shelfToRestock != null)
-                {
-                    StartCoroutine(MoveToShelf(shelfToRestock.transform.position));
-                }
-            }
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
         }
     }
 
@@ -59,46 +51,32 @@ public class WorkerAI : MonoBehaviour
     {
         while (true)
         {
-            if (!isCarryingBox)
-            {
-                MoveToSuperContainer();
-                yield return new WaitUntil(() => isCarryingBox);
-            }
+            yield return MoveToSuperContainer();
+            yield return new WaitForSeconds(1f);
 
-            if (isCarryingBox)
+            yield return VisitAllowedShelves();
+
+            if (workerAIHands.childCount == 0)
             {
-                Collider shelfToRestock = FindShelfToRestock();
-                if (shelfToRestock != null)
-                {
-                    MoveToShelf(shelfToRestock.transform.position);
-                }
-                yield return new WaitUntil(() => !isCarryingBox);
+                yield return MoveToSuperContainer();
+            }
+            else
+            {
+                yield return CheckShelfAvailability();
             }
 
             yield return new WaitForSeconds(1f);
         }
     }
 
-    private void MoveToSuperContainer()
+    private IEnumerator MoveToSuperContainer()
     {
-        if (superContainerCollider == null)
-        {
-            Debug.LogError("SuperContainer collider reference is missing on " + gameObject.name);
-            return;
-        }
-
         navMeshAgent.SetDestination(superContainerCollider.transform.position);
         animator.SetBool("isMoving", true);
+        yield return new WaitUntil(() => navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
     }
 
-    private IEnumerator MoveToShelf(Vector3 position)
-    {
-        navMeshAgent.SetDestination(position);
-        animator.SetBool("isMoving", true);
-        yield return new WaitForSeconds(2f);
-    }
-
-    private Collider FindShelfToRestock()
+    private IEnumerator VisitAllowedShelves()
     {
         GameObject[] shelfObjects = GameObject.FindGameObjectsWithTag("Shelf");
         Collider[] shelves = shelfObjects
@@ -108,92 +86,53 @@ public class WorkerAI : MonoBehaviour
 
         foreach (Collider shelfCollider in shelves)
         {
-            Shelf shelf = shelfCollider.GetComponentInParent<Shelf>();
-            if (shelf != null && shelf.productCount < maxProducts)
+            navMeshAgent.SetDestination(shelfCollider.transform.position);
+            animator.SetBool("isMoving", true);
+            yield return new WaitUntil(() => navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
+
+            if (workerAIHands.childCount == 0)
             {
-                return shelfCollider;
+                yield break; // Exit the loop if no box is in the worker's hands
             }
         }
+    }
 
-        return null;
+    private IEnumerator CheckShelfAvailability()
+    {
+        while (true)
+        {
+            if (workerAIHands.childCount == 0)
+            {
+                yield break;
+            }
+
+            GameObject[] shelfObjects = GameObject.FindGameObjectsWithTag("Shelf");
+            Shelf[] shelves = shelfObjects
+                .Select(obj => obj.GetComponentInParent<Shelf>())
+                .Where(shelf => allowedShelfTypes.Contains(shelf.shelfType.ToString()))
+                .ToArray();
+
+            bool anyShelfAvailable = shelves.Any(shelf => shelf.productCount <= 1);
+
+            if (anyShelfAvailable)
+            {
+                yield return VisitAllowedShelves();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("SuperContainer") && !isCarryingBox)
+        if (other.CompareTag("SuperContainer") && workerAIHands.childCount == 0)
         {
             SuperContainer superContainer = superContainerCollider.GetComponentInParent<SuperContainer>();
             if (superContainer != null)
             {
                 superContainer.MoveBoxToWorkerAi();
-
-                if (superContainer.heldPackage != null)
-                {
-                    heldPackage = superContainer.heldPackage;
-                    isCarryingBox = true;
-
-                    FindEmptyShelves();
-                }
             }
-        }
-        else if (other.CompareTag("Shelf") && isCarryingBox && allowedShelfTypes.Contains(other.GetComponentInParent<Shelf>().shelfType.ToString()))
-        {
-            Shelf shelf = other.GetComponentInParent<Shelf>();
-            if (shelf != null)
-            {
-                RestockShelf(shelf);
-                emptyShelves.Remove(other);
-                if (emptyShelves.Count > 0)
-                {
-                    MoveToShelf(emptyShelves[0].transform.position);
-                }
-                else
-                {
-                    MoveToSuperContainer();
-                }
-            }
-        }
-    }
-
-    private void RestockShelf(Shelf shelf)
-    {
-        ProductInfo productInfo = heldPackage.GetComponent<ProductInfo>();
-        if (productInfo != null)
-        {
-            shelf.Restock(productInfo);
-        }
-
-        Destroy(heldPackage);
-        heldPackage = null;
-        isCarryingBox = false;
-    }
-
-    private void FindEmptyShelves()
-    {
-        emptyShelves.Clear();
-
-        GameObject[] shelfObjects = GameObject.FindGameObjectsWithTag("Shelf");
-        Collider[] shelves = shelfObjects
-            .Select(obj => obj.GetComponent<Collider>())
-            .Where(col => col != null && allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString()))
-            .ToArray();
-
-        foreach (Collider shelfCollider in shelves)
-        {
-            Shelf shelf = shelfCollider.GetComponentInParent<Shelf>();
-            if (shelf != null && shelf.productCount < maxProducts)
-            {
-                emptyShelves.Add(shelfCollider);
-            }
-        }
-
-        if (emptyShelves.Count > 0)
-        {
-            MoveToShelf(emptyShelves[0].transform.position);
-        }
-        else
-        {
-            MoveToSuperContainer();
         }
     }
 }

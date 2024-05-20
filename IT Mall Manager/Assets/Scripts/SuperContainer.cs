@@ -11,7 +11,7 @@ public class SuperContainer : MonoBehaviour
     public Transform[] spawnPoints;
     public bool PlayerEmptyHand = false;
     public bool WorkerEmptyHand = false;
-    public GameObject heldPackage; // Stores the currently held package
+    //public GameObject heldPackage; // Stores the currently held package
 
     private void Awake()
     {
@@ -88,9 +88,9 @@ public class SuperContainer : MonoBehaviour
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject;
-                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
-                    product.isAI = false;
+                    //heldPackage = box.gameObject;
+                    //ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                    //product.isAI = false;
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -112,15 +112,15 @@ public class SuperContainer : MonoBehaviour
                     box.SetParent(workerAIHands);
                     box.localPosition = Vector3.zero;
                     box.localRotation = Quaternion.identity;
-                    heldPackage = box.gameObject;
-                    if(heldPackage == null)
-                    {
+                    //heldPackage = box.gameObject;
+                    //if(heldPackage == null)
+                   // {
                         Debug.Log("problem in SuperContainer.MoveBoxToWorkerAi");
-                    }
-                    ProductInfo product = heldPackage.GetComponent<ProductInfo>();
+                   // }
+                    //ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     //product.isAI = true;
                     WorkerEmptyHand = false;
-                    Debug.Log("Box moved to WorkerAI hands: " + heldPackage.name);
+                   // Debug.Log("Box moved to WorkerAI hands: " + heldPackage.name);
                 });
                 break;
             }

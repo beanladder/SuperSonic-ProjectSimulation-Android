@@ -121,13 +121,13 @@ public class Shelf : MonoBehaviour
         }
     }
 
-    public void Restock(ProductInfo productInfo)
-    {
-        // Assuming each restock adds one of each product type to the shelf.
-        int restockedProducts = Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
-        productCount += restockedProducts;
-        productCount = Mathf.Min(productCount, maxProducts); // Ensure productCount doesn't exceed maxProducts
-    }
+    // public void Restock(ProductInfo productInfo)
+    // {
+    //     // Assuming each restock adds one of each product type to the shelf.
+    //     int restockedProducts = Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
+    //     productCount += restockedProducts;
+    //     productCount = Mathf.Min(productCount, maxProducts); // Ensure productCount doesn't exceed maxProducts
+    // }
 
     private IEnumerator PopInAnimation(Transform product)
     {
