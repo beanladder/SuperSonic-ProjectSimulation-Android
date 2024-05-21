@@ -212,7 +212,7 @@ public class Shelf : MonoBehaviour
         {
             if (spawnPoint.childCount > 0) // Check if spawn point has a child
             {
-                Destroy(spawnPoint.GetChild(0).gameObject); // Remove the product from the shelf
+                Destroy(spawnPoint.GetChild(0).gameObject, 2f); // Remove the product from the shelf
                 productCount--;
                 return true;
             }
