@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProductInfo : MonoBehaviour
 {
     public int playerMaxProducts = 2; // Max products for player
-    public int aiMaxProducts = 1; // Max products for AI
+    public int aiMaxProducts; // Max products for AI
     public int CpuNum, MBNum, RamNum;
     public GameObject ramPrefab;
     public GameObject cpuPrefab;

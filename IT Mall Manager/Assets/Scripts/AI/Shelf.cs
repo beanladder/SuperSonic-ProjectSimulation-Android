@@ -10,6 +10,8 @@ public class Shelf : MonoBehaviour
     private Vector3[] prefabScales;
     public int productCount; // Keeps track of the number of products on the shelf
 
+    public int maxProducts; // Maximum number of products that can be on the shelf
+
     public float spawnDelay = 1f; // Delay between spawning prefabs
 
     public AnimationCurve popInCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f); // Animation curve for pop-in animation
@@ -17,6 +19,7 @@ public class Shelf : MonoBehaviour
 
     private bool isAnimating = false; // Flag to track if pop-in animation is ongoing
     public bool isworker = false;
+
     private void Awake()
     {
         // Initialize the rotations and scales for different products
@@ -42,9 +45,10 @@ public class Shelf : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")|| other.CompareTag("WorkerAI"))
+        Debug.LogWarning(other.gameObject.name);
+        
+        if (other.CompareTag("Player") || other.CompareTag("WorkerAI"))
         {
-           
             ProductInfo productInfo = other.GetComponentInChildren<ProductInfo>();
             isworker = true;
             if (productInfo != null)
@@ -54,28 +58,19 @@ public class Shelf : MonoBehaviour
                     case ShelfType.CPU:
                         if (productInfo.CpuNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo, () =>
-                            {
-                               
-                            }));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.cpuPrefab, productInfo, () => { }));
                         }
                         break;
                     case ShelfType.RAM:
                         if (productInfo.RamNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo, () =>
-                            {
-                                
-                            }));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.ramPrefab, productInfo, () => { }));
                         }
                         break;
                     case ShelfType.Motherboard:
                         if (productInfo.MBNum > 0)
                         {
-                            StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo, () =>
-                            {
-                                
-                            }));
+                            StartCoroutine(SpawnProductWithDelay(productInfo.motherboardPrefab, productInfo, () => { }));
                         }
                         break;
                     default:
@@ -100,7 +95,7 @@ public class Shelf : MonoBehaviour
         switch (shelfType)
         {
             case ShelfType.CPU:
-                if (productInfo.isAI && productInfo.CpuNum > 0)
+                if (productInfo.CpuNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -108,7 +103,7 @@ public class Shelf : MonoBehaviour
                 }
                 break;
             case ShelfType.RAM:
-                if (productInfo.isAI && productInfo.RamNum > 0)
+                if (productInfo.RamNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -116,7 +111,7 @@ public class Shelf : MonoBehaviour
                 }
                 break;
             case ShelfType.Motherboard:
-                if (productInfo.isAI && productInfo.MBNum > 0)
+                if (productInfo.MBNum > 0)
                 {
                     spawnSuccessful = SpawnProduct(prefab);
                     if (spawnSuccessful)
@@ -124,15 +119,15 @@ public class Shelf : MonoBehaviour
                 }
                 break;
         }
-
-        
     }
 
-    public void Restock(ProductInfo productInfo)
-    {
-        // Assuming each restock adds one of each product type to the shelf.
-        productCount += Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
-    }
+    // public void Restock(ProductInfo productInfo)
+    // {
+    //     // Assuming each restock adds one of each product type to the shelf.
+    //     int restockedProducts = Mathf.Min(productInfo.CpuNum, productInfo.RamNum, productInfo.MBNum);
+    //     productCount += restockedProducts;
+    //     productCount = Mathf.Min(productCount, maxProducts); // Ensure productCount doesn't exceed maxProducts
+    // }
 
     private IEnumerator PopInAnimation(Transform product)
     {
@@ -156,8 +151,8 @@ public class Shelf : MonoBehaviour
 
     private bool SpawnProduct(GameObject prefab)
     {
-        if (isAnimating)
-            return false; // Return false if already animating
+        if (isAnimating || productCount >= maxProducts)
+            return false; // Return false if already animating or shelf is full
 
         Transform[] spawnPoints = GetSpawnPoints();
         foreach (Transform spawnPoint in spawnPoints)
@@ -209,6 +204,7 @@ public class Shelf : MonoBehaviour
                 return null;
         }
     }
+
     public bool RemoveProduct()
     {
         Transform[] spawnPoints = GetSpawnPoints();

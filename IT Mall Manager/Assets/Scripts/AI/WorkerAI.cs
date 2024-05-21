@@ -7,14 +7,12 @@ using UnityEngine.AI;
 public class WorkerAI : MonoBehaviour
 {
     public Transform workerAIHands;
-    public int maxProducts;
     public List<string> allowedShelfTypes;
-    public Collider superContainerCollider; // Collider for the SuperContainer
+    public Collider superContainerCollider;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private bool isCarryingBox = false;
-    private GameObject heldPackage;
+    private bool waitingForShelf;
 
     private void Awake()
     {
@@ -42,15 +40,10 @@ public class WorkerAI : MonoBehaviour
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             animator.SetBool("isMoving", false);
-
-            if (isCarryingBox)
-            {
-                Collider shelfToRestock = FindShelfToRestock();
-                if (shelfToRestock != null)
-                {
-                    MoveToShelf(shelfToRestock.transform.position);
-                }
-            }
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
         }
     }
 
@@ -58,48 +51,32 @@ public class WorkerAI : MonoBehaviour
     {
         while (true)
         {
-            if (!isCarryingBox)
-            {
-                Debug.Log("Worker is moving to SuperContainer.");
-                MoveToSuperContainer();
-                yield return new WaitUntil(() => isCarryingBox);
-            }
+            yield return MoveToSuperContainer();
+            yield return new WaitForSeconds(1f);
 
-            if (isCarryingBox)
+            yield return VisitAllowedShelves();
+
+            if (workerAIHands.childCount == 0)
             {
-                Debug.Log("Worker is carrying a box, looking for a shelf to restock.");
-                Collider shelfToRestock = FindShelfToRestock();
-                if (shelfToRestock != null)
-                {
-                    Debug.Log("Found a shelf to restock.");
-                    MoveToShelf(shelfToRestock.transform.position);
-                }
-                yield return new WaitUntil(() => !isCarryingBox);
+                yield return MoveToSuperContainer();
+            }
+            else
+            {
+                yield return CheckShelfAvailability();
             }
 
             yield return new WaitForSeconds(1f);
         }
     }
 
-    private void MoveToSuperContainer()
+    private IEnumerator MoveToSuperContainer()
     {
-        if (superContainerCollider == null)
-        {
-            Debug.LogError("SuperContainer collider reference is missing on " + gameObject.name);
-            return;
-        }
-
         navMeshAgent.SetDestination(superContainerCollider.transform.position);
         animator.SetBool("isMoving", true);
+        yield return new WaitUntil(() => navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
     }
 
-    private void MoveToShelf(Vector3 position)
-    {
-        navMeshAgent.SetDestination(position);
-        animator.SetBool("isMoving", true);
-    }
-
-    private Collider FindShelfToRestock()
+    private IEnumerator VisitAllowedShelves()
     {
         GameObject[] shelfObjects = GameObject.FindGameObjectsWithTag("Shelf");
         Collider[] shelves = shelfObjects
@@ -109,76 +86,53 @@ public class WorkerAI : MonoBehaviour
 
         foreach (Collider shelfCollider in shelves)
         {
-            Shelf shelf = shelfCollider.GetComponentInParent<Shelf>();
-            if (shelf != null && shelf.productCount < maxProducts)
+            navMeshAgent.SetDestination(shelfCollider.transform.position);
+            animator.SetBool("isMoving", true);
+            yield return new WaitUntil(() => navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
+
+            if (workerAIHands.childCount == 0)
             {
-                Debug.Log("Found empty Shelf : " + shelfCollider.name);
-                return shelfCollider;
+                yield break; // Exit the loop if no box is in the worker's hands
             }
         }
+    }
 
-        Debug.Log("No suitable shelves found.");
-        return null;
+    private IEnumerator CheckShelfAvailability()
+    {
+        while (true)
+        {
+            if (workerAIHands.childCount == 0)
+            {
+                yield break;
+            }
+
+            GameObject[] shelfObjects = GameObject.FindGameObjectsWithTag("Shelf");
+            Shelf[] shelves = shelfObjects
+                .Select(obj => obj.GetComponentInParent<Shelf>())
+                .Where(shelf => allowedShelfTypes.Contains(shelf.shelfType.ToString()))
+                .ToArray();
+
+            bool anyShelfAvailable = shelves.Any(shelf => shelf.productCount <= 1);
+
+            if (anyShelfAvailable)
+            {
+                yield return VisitAllowedShelves();
+                yield break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Worker triggered with: " + other.gameObject.name);
-        
-        if (other.CompareTag("SuperContainer") && !isCarryingBox)
+        if (other.CompareTag("SuperContainer") && workerAIHands.childCount == 0)
         {
-            Debug.Log("Worker reached SuperContainer.");
             SuperContainer superContainer = superContainerCollider.GetComponentInParent<SuperContainer>();
             if (superContainer != null)
             {
-                Debug.Log("Calling MoveBoxToWorkerAi from SuperContainer.");
                 superContainer.MoveBoxToWorkerAi();
-                
-                if (superContainer.heldPackage != null)
-                {
-                    Debug.Log("Worker picked up a box: " + superContainer.heldPackage.name);
-                    heldPackage = superContainer.heldPackage;
-                    isCarryingBox = true;
-
-                    // Immediately find a shelf to restock
-                    Collider shelfToRestock = FindShelfToRestock();
-                    if (shelfToRestock != null)
-                    {
-                        MoveToShelf(shelfToRestock.transform.position);
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("No package found in SuperContainer.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("SuperContainer component not found on SuperContainer collider's parent.");
             }
         }
-        else if (other.CompareTag("Shelf") && isCarryingBox && allowedShelfTypes.Contains(other.GetComponentInParent<Shelf>().shelfType.ToString()))
-        {
-            Shelf shelf = other.GetComponentInParent<Shelf>();
-            if (shelf != null)
-            {
-                Debug.Log("Worker reached a shelf to restock.");
-                RestockShelf(shelf);
-            }
-        }
-    }
-
-    private void RestockShelf(Shelf shelf)
-    {
-        Debug.Log("Restocking shelf: " + shelf.name);
-        ProductInfo productInfo = heldPackage.GetComponent<ProductInfo>();
-        if (productInfo != null)
-        {
-            shelf.Restock(productInfo);
-        }
-
-        Destroy(heldPackage);
-        heldPackage = null;
-        isCarryingBox = false;
     }
 }
