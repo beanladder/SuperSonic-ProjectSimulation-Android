@@ -15,6 +15,7 @@ TagManager:
   - UpgradeUI
   - WorkerAI
   - SuperContainer
+  - targetTag
   layers:
   - Default
   - TransparentFX

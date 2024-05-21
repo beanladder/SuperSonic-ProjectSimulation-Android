@@ -23,7 +23,7 @@ public class AINPC : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private Collider lastVisitedShelf;
+    private Collider lastVisitedShelf; 
     PoppingAnimation pop;
 
     private void Awake()
@@ -118,11 +118,11 @@ public class AINPC : MonoBehaviour
         {
             if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
             {
-                pop.PopOut();
+                pop.HideEmote(pop.emoteGameObjects[0]);
                 StartCoroutine(TakeProduct(shelf));
                 yield break;
             }
-            pop.PopIn();
+            pop.ShowEmote(pop.emoteGameObjects[0]);
 
             yield return new WaitForSeconds(1f);
             waitTime += 1f;
