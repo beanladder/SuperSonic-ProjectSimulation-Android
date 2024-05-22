@@ -311,12 +311,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &181191363 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7235604118573304562, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
-    type: 3}
-  m_PrefabInstance: {fileID: 574021664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &182969153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,6 +1935,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -278.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4313867511555591855, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_TagString
@@ -1949,7 +1948,7 @@ PrefabInstance:
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.851761
+      value: 31.9837
       objectReference: {fileID: 0}
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -1959,12 +1958,12 @@ PrefabInstance:
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9036064
+      value: -77.495056
       objectReference: {fileID: 0}
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.851761
+      value: 31.9837
       objectReference: {fileID: 0}
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -1974,12 +1973,12 @@ PrefabInstance:
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9036064
+      value: -77.495056
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.758186
+      value: 19.3
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -1989,7 +1988,7 @@ PrefabInstance:
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.449856
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -4086,6 +4085,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: WorkerAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436824841856966610, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: de74837ce03d1554da69b6e9e615b7dd, type: 2}
+    - target: {fileID: 6534589684456678756, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534589684456678756, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.1
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 5606de7c6d2fc490eb73639407e7abda,
         type: 3}
@@ -6272,6 +6286,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960541275}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1968655586 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 574021664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1973548175
 GameObject:
   m_ObjectHideFlags: 0
@@ -7311,7 +7331,7 @@ MonoBehaviour:
     type: 3}
   CashDeliveryTime: 0.09
   Yaxis: 0
-  cashToOutflow: 3
+  cashToOutflow: 10
 --- !u!114 &7502537616185577483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7324,7 +7344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bddb551d45a934cb48d942721564e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 181191363}
+  playerTransform: {fileID: 1968655586}
   tableTransform: {fileID: 5385487561242322050}
   moveDuration: 0.4
   delayBetweenMovement: 0.09

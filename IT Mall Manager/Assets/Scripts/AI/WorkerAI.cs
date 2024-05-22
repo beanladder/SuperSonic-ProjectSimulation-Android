@@ -9,13 +9,14 @@ public class WorkerAI : MonoBehaviour
     public Transform workerAIHands;
     public List<string> allowedShelfTypes;
     public Collider superContainerCollider;
-
+    public static WorkerAI instance;
     private NavMeshAgent navMeshAgent;
-    private Animator animator;
+    public Animator animator;
     private bool waitingForShelf;
 
     private void Awake()
     {
+        instance = this;
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 

@@ -219,5 +219,18 @@ public class AINPC : MonoBehaviour
         yield return new WaitForSeconds(1f);
         MoveToRandomSpawnPoint();
     }
+
+    private void OnEnable()
+    {
+    StartCoroutine(DelayedDestination());
+    }
+
+    private IEnumerator DelayedDestination()
+    {
+        yield return new WaitForSeconds(0.1f); // Adjust delay as needed
+        SetDestination();
+    }   
 }
+
+
 

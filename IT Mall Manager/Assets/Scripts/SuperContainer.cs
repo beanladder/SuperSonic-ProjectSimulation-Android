@@ -47,6 +47,11 @@ public class SuperContainer : MonoBehaviour
         if (workerAIHands.childCount < 1)
         {
             WorkerEmptyHand = true;
+            WorkerAI.instance.animator.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            WorkerAI.instance.animator.SetLayerWeight(1, 1);
         }
     }
 
@@ -111,7 +116,7 @@ public class SuperContainer : MonoBehaviour
                 {
                     box.SetParent(workerAIHands);
                     box.localPosition = Vector3.zero;
-                    box.localRotation = Quaternion.identity;
+                    box.localRotation = Spawner.instance.prefabRotation;
                     //heldPackage = box.gameObject;
                     //if(heldPackage == null)
                    // {

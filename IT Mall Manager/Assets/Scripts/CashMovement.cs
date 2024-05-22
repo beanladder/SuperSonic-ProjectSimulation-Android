@@ -8,7 +8,7 @@ public class CashMovement : MonoBehaviour
     public static CashMovement instance;
     public Transform playerTransform;
     public Transform tableTransform;
-    public float moveDuration = .4f;
+    public float moveDuration = 12f;
     public float delayBetweenMovement = 0.0000000001f;
     public float cashReachedPlayer=0;
     public Text moneyText;
@@ -72,10 +72,10 @@ public class CashMovement : MonoBehaviour
                 {
                     if (cashObject != null)
                     {
-                        cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear)
+                        cashObject.transform.DOJump(playerTransform.position, 3.5f, 1, moveDuration).SetEase(Ease.Linear).SetEase(Ease.OutQuad)
                             .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); 
                         yield return new WaitForSeconds(delayBetweenMovement); 
-                        Destroy(cashObject);
+                        Destroy(cashObject,0.2f);
                     }
                 }
             }
