@@ -7,7 +7,12 @@ public class Spawner : MonoBehaviour
     public float popInDuration = 0.5f;
     public AnimationCurve popInCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     public float checkInterval = 0.5f; // Interval to check for missing children
-
+    public Quaternion prefabRotation;
+    public static Spawner instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         SpawnAllPrefabs();
@@ -30,7 +35,7 @@ public class Spawner : MonoBehaviour
         {
             // Retrieve the local scale of the prefabToSpawn
             Vector3 prefabScale = prefabToSpawn.transform.localScale;
-            Quaternion prefabRotation = prefabToSpawn.transform.localRotation;
+            prefabRotation = prefabToSpawn.transform.localRotation;
             // Spawn the prefab at the position of the spawn point with a small scale
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, prefabRotation);
             spawnedObject.transform.localScale = prefabScale;

@@ -4086,6 +4086,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WorkerAI
       objectReference: {fileID: 0}
+    - target: {fileID: 4436824841856966610, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: de74837ce03d1554da69b6e9e615b7dd, type: 2}
+    - target: {fileID: 6534589684456678756, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534589684456678756, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 5606de7c6d2fc490eb73639407e7abda,
         type: 3}
       propertyPath: m_LocalPosition.x
