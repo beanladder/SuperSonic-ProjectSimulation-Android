@@ -23,7 +23,7 @@ public class BounceAndPopAnimation : MonoBehaviour
         StartBouncing();
 
         // Start the pop in and pop out animations
-        InvokeRepeating("StartPopping", popInterval, popInterval);
+        //InvokeRepeating("StartPopping", popInterval, popInterval);
     }
 
     void StartBouncing()
@@ -40,17 +40,17 @@ public class BounceAndPopAnimation : MonoBehaviour
             .setLoopPingPong();
     }
 
-    void StartPopping()
-    {
-        // Pop in (scale up)
-        LeanTween.scale(gameObject, Vector3.one * popScale, popDuration)
-            .setEase(LeanTweenType.easeInOutSine)
-            .setOnComplete(() =>
-            {
-                // Pop out (scale down) after a short delay
-                LeanTween.scale(gameObject, Vector3.one, popDuration)
-                    .setEase(LeanTweenType.easeInOutSine)
-                    .setDelay(popInterval - popDuration);
-            });
-    }
+    // void StartPopping()
+    // {
+    //     // Pop in (scale up)
+    //     LeanTween.scale(gameObject, Vector3.one * popScale, popDuration)
+    //         .setEase(LeanTweenType.easeInOutSine)
+    //         .setOnComplete(() =>
+    //         {
+    //             // Pop out (scale down) after a short delay
+    //             LeanTween.scale(gameObject, Vector3.one, popDuration)
+    //                 .setEase(LeanTweenType.easeInOutSine)
+    //                 .setDelay(popInterval - popDuration);
+    //         });
+    // }
 }
