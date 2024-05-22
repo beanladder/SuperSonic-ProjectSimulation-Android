@@ -38,9 +38,8 @@ public class AINPC : MonoBehaviour
         }
     }
 
-    private void Start()    
+    private void Start()
     {
-        
         SetDestination();
     }
 
@@ -118,7 +117,12 @@ public class AINPC : MonoBehaviour
         {
             if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
             {
+
                 pop.HideEmote(pop.emoteGameObjects[0]);
+
+                yield return new WaitForSeconds(1f);
+                pop.PopOut();
+
                 StartCoroutine(TakeProduct(shelf));
                 yield break;
             }
@@ -144,7 +148,6 @@ public class AINPC : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         isTakingProduct = true;
-        //float waitTime = 0f;
 
         if (numOfProductsCarrying < 2 )
         {
@@ -188,13 +191,20 @@ public class AINPC : MonoBehaviour
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
             navMeshAgent.SetDestination(randomSpawnPoint.position);
-            Destroy(gameObject, 15f); // Destroy after 15 seconds
-            NPCSpawner.instance.NPCDestroyed();
+
+            // Return the NPC to the pool after 15 seconds
+            Invoke("ReturnToPool", 15f);
         }
         else
         {
             Debug.LogWarning("No spawn points found!");
         }
+    }
+
+    private void ReturnToPool()
+    {
+        NPCSpawner.instance.NPCDestroyed();
+        ObjectPool.instance.ReturnNPC(gameObject);
     }
 
     public void MoveToCheckout(Vector3 position)
