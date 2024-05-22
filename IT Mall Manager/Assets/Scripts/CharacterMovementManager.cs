@@ -9,7 +9,7 @@ public class CharacterMovementManager : MonoBehaviour
     public CharacterController controller;
     public Canvas canvas;
     public bool isJoystick;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
     public float rotationSpeed = 10f;
     public float decelerationRate = 100f; // New deceleration rate
     public Animator anim;
@@ -61,9 +61,17 @@ public class CharacterMovementManager : MonoBehaviour
                 controller.transform.rotation = Quaternion.LookRotation(targetDir);
             }
 
-            // Set animation parameter based on current speed
-            float mappedMove = currentSpeed / moveSpeed; // Map current speed to range [0, 1]
+            float mappedMove;
+            if (moveSpeed <= 3.5f)
+            {
+                mappedMove = Mathf.Clamp(currentSpeed / moveSpeed, 0f, 0.5f); // Map current speed to range [0, 0.5]
+            }
+            else
+            {
+                mappedMove = Mathf.Clamp(currentSpeed / moveSpeed, 0f, 1f); // Map current speed to range [0, 1]
+            }
             anim.SetFloat("move", mappedMove);
+            
         }
     }
 }
