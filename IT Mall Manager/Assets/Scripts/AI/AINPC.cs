@@ -121,7 +121,7 @@ public class AINPC : MonoBehaviour
                 pop.HideEmote(pop.emoteGameObjects[0]);
 
                 yield return new WaitForSeconds(1f);
-                pop.PopOut();
+               // pop.PopOut();
 
                 StartCoroutine(TakeProduct(shelf));
                 yield break;
