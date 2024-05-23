@@ -1479,7 +1479,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6544854520529793405, guid: 1bbf27095e58442208c3e3d76c8c5512, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bbf27095e58442208c3e3d76c8c5512, type: 3}
@@ -4445,11 +4446,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Racks
-      objectReference: {fileID: 0}
-    - target: {fileID: 8610231986216613309, guid: 5e82c56daafe6944380059b58b3664bd,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3299999
       objectReference: {fileID: 0}
     - target: {fileID: 8610231986216613309, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
