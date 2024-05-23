@@ -1938,7 +1938,12 @@ PrefabInstance:
     - target: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 4313867511555591855, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -7331,7 +7336,7 @@ MonoBehaviour:
     type: 3}
   CashDeliveryTime: 0.09
   Yaxis: 0
-  cashToOutflow: 5
+  cashToOutflow: 20
 --- !u!114 &7502537616185577483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,7 +7351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1968655586}
   moveDuration: 0.4
-  delayBetweenMovement: 0.075
+  delayBetweenMovement: 0.001
   cashValuePerPrefab: 500
 --- !u!65 &7502537616185577484
 BoxCollider:
