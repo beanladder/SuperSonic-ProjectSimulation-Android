@@ -44,8 +44,8 @@ public class CashMovement : MonoBehaviour
 
     IEnumerator MoveCashTowardsPlayer()
     {
-        isMovingCash = true; 
-
+        isMovingCash = true;
+        
         try
         {
             
