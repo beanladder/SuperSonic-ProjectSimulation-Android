@@ -27,11 +27,13 @@ public class MoneyDeduction : MonoBehaviour
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
     private const string FillAmountKey = "FillAmount";
     private const string DeductionAmountKey = "DeductAmount";
+    private const string FloorUiActiveKey = "FloorUIActive";
+    private const string PoppingPrefabActiveKey = "PoppingPrefabActive";
 
     private void Start()
     {
-        //LoadState();
-        remainingDeductionAmount = totalDeductionAmount;
+        LoadState();
+        //remainingDeductionAmount = totalDeductionAmount;
         playerTransform = GetPostion.instance.playerTransform;
     }
 
@@ -122,7 +124,7 @@ public class MoneyDeduction : MonoBehaviour
                 // Calculate delay for the current cash object
                 UpdateFloorUI();
                 UpdateFillAmount();
-                //SaveState();
+                SaveState();
                 yield return new WaitForSeconds(delayBetweenJumps);
                 
             }
@@ -132,6 +134,8 @@ public class MoneyDeduction : MonoBehaviour
         {
             // Disable canvas
             gameObject.SetActive(false);
+            PlayerPrefs.SetInt(FloorUiActiveKey,0);
+            PlayerPrefs.SetInt(PoppingPrefabActiveKey,1);
             Vector3 targetScale = yourPoppingPrefab.transform.localScale;
             Quaternion targetRotation = yourPoppingPrefab.transform.localRotation;
             // Spawn prefab with popping animation
@@ -143,7 +147,6 @@ public class MoneyDeduction : MonoBehaviour
             poppingPrefab.transform.localRotation = targetRotation;
             Shelf shelfScript = poppingPrefab.GetComponent<Shelf>();
             shelfScript.shelfType = shelfTypeToSet;
-
         }
 
         // Reset the coroutine reference
@@ -188,13 +191,20 @@ public class MoneyDeduction : MonoBehaviour
         UpgradeScreen.SetActive(true);
     }
     private void SaveState(){
+        PlayerPrefs.SetFloat(FillAmountKey,fillImage.fillAmount);
         PlayerPrefs.SetInt(DeductionAmountKey,remainingDeductionAmount);
         PlayerPrefs.Save();
         Debug.Log("State Saved : Remaining deduction amount = "+ remainingDeductionAmount);
     }
     private void LoadState(){
+        float savedfillamount = PlayerPrefs.GetFloat(FillAmountKey,0f);
+        fillImage.fillAmount = savedfillamount;
         remainingDeductionAmount = PlayerPrefs.GetInt(DeductionAmountKey,totalDeductionAmount);
         UpdateFloorUI();
         Debug.Log("State loaded : Remaining Deduction amount : "+remainingDeductionAmount);
+    }
+    public void ResetPref(){
+        PlayerPrefs.DeleteKey(DeductionAmountKey);
+        PlayerPrefs.DeleteKey(FillAmountKey);
     }
 }
