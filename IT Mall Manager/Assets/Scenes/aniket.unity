@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &22177878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71b036c8191e984eaca0fdf0a80cd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTab: {fileID: 0}
+  playerTab: {fileID: 1673989869}
   statBarImages: []
   upgradedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &113217586
@@ -286,6 +286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6095005129506185059, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 578489372}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1322,6 +1327,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583601232}
   m_CullTransparentMesh: 1
+--- !u!1 &772708247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 772708249}
+  - component: {fileID: 772708248}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &772708248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772708247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b2a427e6627d74295d460eb345dd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorUIs:
+  - {fileID: 1529130346}
+  spawnedObjects:
+  - {fileID: 4082170936207318903, guid: 99e2f74719a128047a8934a843d9a1b8, type: 3}
+--- !u!4 &772708249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772708247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.358704, y: 1.2330097, z: -68.6819}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &806522438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +2047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bddb551d45a934cb48d942721564e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1585766734}
   tableTransform: {fileID: 968533329}
   moveDuration: 1
   delayBetweenMovement: 0.09
@@ -2160,6 +2213,7 @@ GameObject:
   - component: {fileID: 1110072118}
   - component: {fileID: 1110072120}
   - component: {fileID: 1110072119}
+  - component: {fileID: 1110072121}
   m_Layer: 5
   m_Name: PlayerCapacity
   m_TagString: Untagged
@@ -2227,6 +2281,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110072117}
   m_CullTransparentMesh: 1
+--- !u!114 &1110072121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110072117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71b036c8191e984eaca0fdf0a80cd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTab: {fileID: 0}
+  statBarImages:
+  - {fileID: 987649982}
+  - {fileID: 1911742155}
+  - {fileID: 844998956}
+  - {fileID: 845407516}
+  upgradedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1161433750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2579,7 @@ GameObject:
   - component: {fileID: 1215549949}
   - component: {fileID: 1215549951}
   - component: {fileID: 1215549950}
+  - component: {fileID: 1215549952}
   m_Layer: 5
   m_Name: PlayerSpeed
   m_TagString: Untagged
@@ -2573,6 +2647,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215549948}
   m_CullTransparentMesh: 1
+--- !u!114 &1215549952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215549948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71b036c8191e984eaca0fdf0a80cd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTab: {fileID: 0}
+  statBarImages:
+  - {fileID: 418654497}
+  - {fileID: 1936139629}
+  - {fileID: 1699886764}
+  - {fileID: 1905775104}
+  upgradedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1220266567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,6 +3055,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1470301150}
   m_CullTransparentMesh: 1
+--- !u!1 &1529130346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7694868748934855114, guid: 92643a19f2360234c9d11da22a461d4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2235728779502613045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1585766734 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1117343403693986355, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 113217586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1635632686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7202,9 +7307,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1215549952}
         m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnUpgradeButtonClick
+        m_MethodName: OnUpgradeSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7409,9 +7514,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1110072121}
         m_TargetAssemblyTypeName: UpgradeButtonHandler, Assembly-CSharp
-        m_MethodName: OnUpgradeButtonClick
+        m_MethodName: OnUpgradeCapacity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8128,10 +8233,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 097782735540f2d4db5606eae04ae6a7,
         type: 3}
+    - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 819870203177000137, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 977605714487649258, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8257,7 +8387,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1585766734}
     - target: {fileID: 4820561374252753378, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -8295,6 +8425,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorPurchaseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7902393562109644926, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902393562109644926, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902393562109644926, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9174929279701997855, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -8327,7 +8472,7 @@ PrefabInstance:
     - target: {fileID: 1909312069957579664, guid: 0edbeee8522765f4d832f03c697235e0,
         type: 3}
       propertyPath: cashToOutflow
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1909312069957579664, guid: 0edbeee8522765f4d832f03c697235e0,
         type: 3}
@@ -8436,3 +8581,4 @@ SceneRoots:
   - {fileID: 2033863829}
   - {fileID: 2074254703}
   - {fileID: 113217586}
+  - {fileID: 772708249}

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using System.Collections;
 using TMPro;
+using UnityEngine.Animations;
 //using Microsoft.Unity.VisualStudio.Editor;
 public class MoneyDeduction : MonoBehaviour
 {
@@ -24,10 +25,13 @@ public class MoneyDeduction : MonoBehaviour
     public UpgradeCanvasController upgradeCanvasController;
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
+    private const string FillAmountKey = "FillAmount";
+    private const string DeductionAmountKey = "DeductAmount";
 
     private void Start()
     {
-        remainingDeductionAmount = totalDeductionAmount;
+        LoadState();
+       // remainingDeductionAmount = totalDeductionAmount;
         playerTransform = GetPostion.instance.playerTransform;
     }
 
@@ -118,6 +122,7 @@ public class MoneyDeduction : MonoBehaviour
                 // Calculate delay for the current cash object
                 UpdateFloorUI();
                 UpdateFillAmount();
+                SaveState();
                 yield return new WaitForSeconds(delayBetweenJumps);
                 
             }
@@ -181,5 +186,16 @@ public class MoneyDeduction : MonoBehaviour
     IEnumerator DelayedActivision(){
         yield return new WaitForSeconds(1.8f);
         UpgradeScreen.SetActive(true);
+    }
+    private void SaveState(){
+        PlayerPrefs.SetFloat(FillAmountKey,fillImage.fillAmount);
+        PlayerPrefs.SetInt(DeductionAmountKey,remainingDeductionAmount);
+        PlayerPrefs.Save();
+    }
+    private void LoadState(){
+        float saveFillAmount = PlayerPrefs.GetFloat(FillAmountKey,0f);
+        remainingDeductionAmount = PlayerPrefs.GetInt(DeductionAmountKey,0);
+        fillImage.fillAmount = saveFillAmount;
+        UpdateFloorUI();
     }
 }
