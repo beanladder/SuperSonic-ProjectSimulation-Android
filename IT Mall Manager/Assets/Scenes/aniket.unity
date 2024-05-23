@@ -8388,6 +8388,11 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1585766734}
+    - target: {fileID: 4515269695448631893, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: remainingDeductionAmount
+      value: 40000
+      objectReference: {fileID: 0}
     - target: {fileID: 4820561374252753378, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_SizeDelta.x

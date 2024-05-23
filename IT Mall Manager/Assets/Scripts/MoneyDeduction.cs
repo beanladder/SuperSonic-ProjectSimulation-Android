@@ -30,8 +30,8 @@ public class MoneyDeduction : MonoBehaviour
 
     private void Start()
     {
-        LoadState();
-       // remainingDeductionAmount = totalDeductionAmount;
+        //LoadState();
+        remainingDeductionAmount = totalDeductionAmount;
         playerTransform = GetPostion.instance.playerTransform;
     }
 
@@ -122,7 +122,7 @@ public class MoneyDeduction : MonoBehaviour
                 // Calculate delay for the current cash object
                 UpdateFloorUI();
                 UpdateFillAmount();
-                SaveState();
+                //SaveState();
                 yield return new WaitForSeconds(delayBetweenJumps);
                 
             }
@@ -188,14 +188,13 @@ public class MoneyDeduction : MonoBehaviour
         UpgradeScreen.SetActive(true);
     }
     private void SaveState(){
-        PlayerPrefs.SetFloat(FillAmountKey,fillImage.fillAmount);
         PlayerPrefs.SetInt(DeductionAmountKey,remainingDeductionAmount);
         PlayerPrefs.Save();
+        Debug.Log("State Saved : Remaining deduction amount = "+ remainingDeductionAmount);
     }
     private void LoadState(){
-        float saveFillAmount = PlayerPrefs.GetFloat(FillAmountKey,0f);
-        remainingDeductionAmount = PlayerPrefs.GetInt(DeductionAmountKey,0);
-        fillImage.fillAmount = saveFillAmount;
+        remainingDeductionAmount = PlayerPrefs.GetInt(DeductionAmountKey,totalDeductionAmount);
         UpdateFloorUI();
+        Debug.Log("State loaded : Remaining Deduction amount : "+remainingDeductionAmount);
     }
 }
