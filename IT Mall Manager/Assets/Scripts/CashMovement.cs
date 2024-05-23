@@ -72,7 +72,7 @@ public class CashMovement : MonoBehaviour
                 {
                     if (cashObject != null)
                     {
-                        cashObject.transform.DOJump(playerTransform.position, 3.5f, 1, moveDuration).SetEase(Ease.Linear).SetEase(Ease.OutQuad)
+                        cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear).SetEase(Ease.OutQuad)
                             .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); 
                         yield return new WaitForSeconds(delayBetweenMovement); 
                         Destroy(cashObject);

@@ -7346,8 +7346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1968655586}
   tableTransform: {fileID: 5385487561242322050}
-  moveDuration: 0.4
-  delayBetweenMovement: 0.09
+  moveDuration: 1
+  delayBetweenMovement: 0.075
   cashReachedPlayer: 0
   moneyText: {fileID: 0}
 --- !u!65 &7502537616185577484
