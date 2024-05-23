@@ -3294,7 +3294,7 @@ PrefabInstance:
     - target: {fileID: 5072143778872049788, guid: df89bc7a4d84dcb459333ad2e5bb65df,
         type: 3}
       propertyPath: maxProducts
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5108102851869028250, guid: df89bc7a4d84dcb459333ad2e5bb65df,
         type: 3}
