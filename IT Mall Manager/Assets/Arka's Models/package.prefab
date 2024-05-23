@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9122062155512013790
 Transform:
   m_ObjectHideFlags: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802c0a94840d783478b2e779ede9e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxProducts: 4
-  aiMaxProducts: 4
+  playerMaxProducts: 2
+  aiMaxProducts: 1
   CpuNum: 0
   MBNum: 0
   RamNum: 0
