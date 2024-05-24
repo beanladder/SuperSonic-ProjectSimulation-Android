@@ -12,7 +12,7 @@ public class PlayerCashCounter : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        LoadMoney();
+        //LoadMoney();
     }
     public void IncreaseTotalCashReached(int amount)
     {
@@ -29,7 +29,7 @@ public class PlayerCashCounter : MonoBehaviour
         {
             totalCashValue -= amount;
             UpdateMoneyUI();
-            SaveMoney();
+            //SaveMoney();
         }
         else
         {

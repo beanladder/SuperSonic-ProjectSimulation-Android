@@ -25,6 +25,7 @@ public class MoneyDeduction : MonoBehaviour
     public UpgradeCanvasController upgradeCanvasController;
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
+    private Coroutine uiactivisionCoroutine;
     private const string FillAmountKey = "FillAmount";
     private const string DeductionAmountKey = "DeductAmount";
     private const string FloorUiActiveKey = "FloorUIActive";
@@ -32,8 +33,8 @@ public class MoneyDeduction : MonoBehaviour
 
     private void Start()
     {
-        LoadState();
-        //remainingDeductionAmount = totalDeductionAmount;
+        //LoadState();
+        remainingDeductionAmount = totalDeductionAmount;
         playerTransform = GetPostion.instance.playerTransform;
     }
 
@@ -47,29 +48,17 @@ public class MoneyDeduction : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if(gameObject.CompareTag("PurchaseUI")){
-                playerInRange = true;
-                StartDeductionCoroutine();
-            }
-            else if(gameObject.CompareTag("UpgradeUI")){
-                StartCoroutine(DelayedActivision());
-            }
+        if(other.CompareTag("Player")){
+            playerInRange=true;
+            StartDeductionCoroutine();
         }
     }
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if(gameObject.CompareTag("PurchaseUI")){
-                playerInRange = false;
-                StopDeductionCoroutine();
-            }
-            else if(gameObject.CompareTag("UpgradeUI")){
-                UpgradeScreen.SetActive(false);
-            }
+        if(other.CompareTag("Player")){
+            playerInRange=false;
+            StopDeductionCoroutine();
         }
     }
 
@@ -89,7 +78,6 @@ public class MoneyDeduction : MonoBehaviour
             deductionCoroutine = null;
         }
     }
-
     IEnumerator DeductMoneyAndSpawnCashCoroutine()
     {
         while (playerInRange && remainingDeductionAmount > 0 && PlayerCashCounter.instance.totalCashValue>0)
@@ -124,7 +112,7 @@ public class MoneyDeduction : MonoBehaviour
                 // Calculate delay for the current cash object
                 UpdateFloorUI();
                 UpdateFillAmount();
-                SaveState();
+                //SaveState();
                 yield return new WaitForSeconds(delayBetweenJumps);
                 
             }
