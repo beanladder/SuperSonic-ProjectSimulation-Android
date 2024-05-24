@@ -18,7 +18,7 @@ public class Shelf : MonoBehaviour
     public float popInDuration = 0.5f; // Duration of the pop-in animation
 
     private bool isAnimating = false; // Flag to track if pop-in animation is ongoing
-    public bool isworker = false;
+   
 
     private void Awake()
     {
@@ -45,12 +45,12 @@ public class Shelf : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.LogWarning(other.gameObject.name);
+        //Debug.LogWarning(other.gameObject.name);
         
         if (other.CompareTag("Player") || other.CompareTag("WorkerAI"))
         {
             ProductInfo productInfo = other.GetComponentInChildren<ProductInfo>();
-            isworker = true;
+            
             if (productInfo != null)
             {
                 switch (shelfType)

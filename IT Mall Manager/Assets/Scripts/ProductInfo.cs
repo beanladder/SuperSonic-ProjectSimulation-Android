@@ -2,27 +2,23 @@ using UnityEngine;
 
 public class ProductInfo : MonoBehaviour
 {
-    public int playerMaxProducts; // Max products for player
-    public int aiMaxProducts; // Max products for AI
+    public int playerMaxProducts=1; // Max products for player
+    public int aiMaxProducts=1; // Max products for AI
     public int CpuNum, MBNum, RamNum;
     public GameObject ramPrefab;
     public GameObject cpuPrefab;
     public GameObject motherboardPrefab;
     public static ProductInfo instance;
     public bool isAI = false;
-    public GameObject workerGO;
-    public WorkerAI workerAI;
+    
     private void Awake()
     {   
-        workerAI = workerGO.GetComponent<WorkerAI>();
+        
         instance = this;
         UpdateProductCounts();
     }
 
-    public void UpgradeButton()
-    {
-        workerAI.Upgrade();
-    }
+   
     // Upgrade methods for player and AI
     public void UpgradePlayerProductLimit(int newMaxProducts)
     {
