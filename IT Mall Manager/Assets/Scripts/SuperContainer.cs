@@ -19,11 +19,7 @@ public class SuperContainer : MonoBehaviour
         {
             Instance = this;
         }
-        else
-        {
-            Debug.LogWarning("Multiple instances of SuperContainer found. Make sure there is only one.");
-            Destroy(gameObject);
-        }
+        
 
         spawnPoints = new Transform[transform.childCount];
         for (int i = 0; i < spawnPoints.Length; i++)
