@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProductInfo : MonoBehaviour
 {
     public int playerMaxProducts = 2; // Max products for player
-    public int aiMaxProducts; // Max products for AI
+    public int aiMaxProducts = 2; // Max products for AI
     public int CpuNum, MBNum, RamNum;
     public GameObject ramPrefab;
     public GameObject cpuPrefab;
@@ -18,28 +18,40 @@ public class ProductInfo : MonoBehaviour
 
     private void Start()
     {
+        InitializeProductCounts();
+    }
+
+    // Method to initialize product counts based on isAI flag
+    private void InitializeProductCounts()
+    {
         int maxProducts = isAI ? aiMaxProducts : playerMaxProducts;
-        CpuNum = RamNum = MBNum = maxProducts;
+        CpuNum = MBNum = RamNum = maxProducts;
     }
 
     // Upgrade methods for player and AI
-    public void UpgradePlayerProductLimit(int increaseAmount)
+    public void UpgradePlayerProductLimit(int newMaxProducts)
     {
-        playerMaxProducts = increaseAmount;
-        UpdateProductCounts();
+        playerMaxProducts = newMaxProducts;
+        if (!isAI)
+        {
+            UpdateProductCounts();
+        }
     }
 
-    public void UpgradeWorkerProductLimit(int increaseAmount)
+    public void UpgradeWorkerProductLimit(int newMaxProducts)
     {
-        aiMaxProducts = increaseAmount;
-        UpdateProductCounts();
+        aiMaxProducts = newMaxProducts;
+        if (isAI)
+        {
+            UpdateProductCounts();
+        }
     }
 
-    // Update individual product counts based on the appropriate max value
+   
     private void UpdateProductCounts()
     {
-        int maxProducts = isAI ? aiMaxProducts : playerMaxProducts; // Use ternary operator for conditional assignment
-        CpuNum = MBNum = RamNum = maxProducts; // Ensure limit doesn't exceed MaxProductsPerType()
+        int maxProducts = isAI ? aiMaxProducts : playerMaxProducts;
+        CpuNum = MBNum = RamNum = maxProducts;
     }
 
     private void Update()

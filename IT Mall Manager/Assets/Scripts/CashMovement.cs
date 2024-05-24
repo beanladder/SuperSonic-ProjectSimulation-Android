@@ -2,89 +2,73 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using UnityEngine.UI;
+
 public class CashMovement : MonoBehaviour
 {
-    public static CashMovement instance;
-    public Transform playerTransform;
-    public Transform tableTransform;
-    public float moveDuration = 12f;
-    public float delayBetweenMovement = 0.0000000001f;
-    public float cashReachedPlayer=0;
-    public Text moneyText;
-    private bool isInRange = false;
-    private bool isMovingCash = false; // Flag to track whether cash movement coroutine is running
-    private int cashValuePerPrefab = 500; // Value of each cash prefab
-    void Awake(){
-        instance=this;
-    }
-    void Update()
+    public Transform playerTransform; // Assign this to your player's transform in the inspector
+    public float moveDuration = 1f; // Duration of the movement animation
+    public float delayBetweenMovement = 0.1f; // Delay between each cash movement
+    public int cashValuePerPrefab = 100; // Value to increase per cash prefab
+
+    private bool isMovingCash = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (isInRange && !isMovingCash)
+        if (other.CompareTag("Player") && !isMovingCash)
         {
-            StartCoroutine(MoveCashTowardsPlayer());
+            StartCoroutine(MoveCashToPlayer());
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isInRange = false;
-        }
-    }
-
-    IEnumerator MoveCashTowardsPlayer()
+    private IEnumerator MoveCashToPlayer()
     {
         isMovingCash = true;
-        
-        try
+
+        // Find all child objects with the name "SpawnPoint"
+        List<Transform> spawnPoints = new List<Transform>();
+        foreach (Transform child in transform)
         {
-            
-            Transform[] spawnPoints = tableTransform.GetComponentsInChildren<Transform>();
-
-            foreach (Transform spawnPoint in spawnPoints)
+            if (child.name == "SpawnPoint")
             {
-                // Exclude the table's own transform
-                if (spawnPoint == tableTransform)
-                    continue;
+                spawnPoints.Add(child);
+            }
+        }
 
-                
-                List<GameObject> cashObjects = new List<GameObject>();
-                foreach (Transform child in spawnPoint)
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            List<GameObject> cashObjects = new List<GameObject>();
+            foreach (Transform child in spawnPoint)
+            {
+                cashObjects.Add(child.gameObject);
+            }
+
+            // Reverse the list to ensure the last added cash object moves first
+            cashObjects.Reverse();
+
+            foreach (GameObject cashObject in cashObjects)
+            {
+                if (cashObject != null)
                 {
-                    cashObjects.Add(child.gameObject);
-                }
+                    cashObject.transform.DOJump(playerTransform.position, 3f, 1, moveDuration)
+                        .SetEase(Ease.OutQuad)
+                        .OnComplete(() =>
+                        {
+                            PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab);
+                            Destroy(cashObject);
 
-                
-                cashObjects.Reverse();
+                            // Add haptic feedback when cash reaches its destination
+                            if (Application.platform == RuntimePlatform.Android)
+                            {
+                                Handheld.Vibrate();
+                            }
+                        });
 
-                
-                foreach (GameObject cashObject in cashObjects)
-                {
-                    if (cashObject != null)
-                    {
-                        cashObject.transform.DOJump(playerTransform.position, 2f, 1, moveDuration).SetEase(Ease.Linear).SetEase(Ease.OutQuad)
-                            .OnComplete(() => { PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab); }); 
-                        yield return new WaitForSeconds(delayBetweenMovement); 
-                        Destroy(cashObject);
-                    }
+                    // Wait for the specified delay before moving the next cash object
+                    yield return new WaitForSeconds(delayBetweenMovement);
                 }
             }
         }
-        finally
-        {
-            isMovingCash = false; // Reset the flag when coroutine completes or is interrupted
-        }
-    }
 
-   
+        isMovingCash = false;
+    }
 }
