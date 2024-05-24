@@ -68,7 +68,7 @@ public class SuperContainer : MonoBehaviour
         {
             if (WorkerEmptyHand)
             {
-                MoveBoxToWorkerAi();
+                MoveBoxToWorkerAI();
                 
             }
             else
@@ -78,14 +78,14 @@ public class SuperContainer : MonoBehaviour
         }
     }
 
-    private void MoveBoxToPlayer()
+    public void MoveBoxToPlayer()
     {
         foreach (Transform spawnPoint in spawnPoints)
         {
             if (spawnPoint.childCount > 0)
             {
                 Transform box = spawnPoint.GetChild(0);
-                box.DOMove(playerHands.position, .1f).SetEase(Ease.OutQuad).OnComplete(() =>
+                box.DOMove(playerHands.position, 0.1f).SetEase(Ease.OutQuad).OnComplete(() =>
                 {
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
@@ -93,6 +93,7 @@ public class SuperContainer : MonoBehaviour
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = false;
+                    product.UpdateProductCounts(); // Update product counts for player
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -100,26 +101,23 @@ public class SuperContainer : MonoBehaviour
         }
     }
 
-    public void MoveBoxToWorkerAi()
+    public void MoveBoxToWorkerAI()
     {
-        Debug.Log("Attempting to move box to WorkerAI.");
         foreach (Transform spawnPoint in spawnPoints)
         {
             if (spawnPoint.childCount > 0)
             {
                 Transform box = spawnPoint.GetChild(0);
-                Debug.Log("Found a box at spawn point: " + spawnPoint.name);
-                box.DOMove(workerAIHands.position, .1f).SetEase(Ease.OutQuad).OnComplete(() =>
+                box.DOMove(workerAIHands.position, 0.1f).SetEase(Ease.OutQuad).OnComplete(() =>
                 {
                     box.SetParent(workerAIHands);
                     box.localPosition = Vector3.zero;
-                    box.localRotation = Spawner.instance.prefabRotation;
+                    box.localRotation = Quaternion.identity;
                     heldPackage = box.gameObject;
-                    
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = true;
+                    product.UpdateProductCounts(); // Update product counts for AI
                     WorkerEmptyHand = false;
-                   // Debug.Log("Box moved to WorkerAI hands: " + heldPackage.name);
                 });
                 break;
             }
