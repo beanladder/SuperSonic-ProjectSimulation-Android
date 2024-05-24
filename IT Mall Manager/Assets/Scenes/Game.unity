@@ -1050,6 +1050,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 731808391}
     m_Modifications:
+    - target: {fileID: 1446482353334900031, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067108849991303706, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123811471539699131, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387152730327850087, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067585737935014853, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6825900057864391562, guid: 4d21be1e3fefa5a4c988d58438382402,
         type: 3}
       propertyPath: m_Name
@@ -1103,6 +1128,16 @@ PrefabInstance:
     - target: {fileID: 7249210589366130909, guid: 4d21be1e3fefa5a4c988d58438382402,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809211478074184798, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998386535384578832, guid: 4d21be1e3fefa5a4c988d58438382402,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
