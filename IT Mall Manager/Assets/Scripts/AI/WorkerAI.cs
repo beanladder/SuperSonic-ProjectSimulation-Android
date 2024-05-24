@@ -13,7 +13,7 @@ public class WorkerAI : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     public Animator animator;
     private bool waitingForShelf;
-
+    public int AImaxProducts;
     private void Awake()
     {
         instance = this;
@@ -33,6 +33,7 @@ public class WorkerAI : MonoBehaviour
 
     private void Start()
     {
+        AImaxProducts = 1;
         StartCoroutine(WorkerRoutine());
     }
 
@@ -70,6 +71,10 @@ public class WorkerAI : MonoBehaviour
         }
     }
 
+    public void Upgrade()
+    {
+        AImaxProducts++;
+    }
     private IEnumerator MoveToSuperContainer()
     {
         navMeshAgent.SetDestination(superContainerCollider.transform.position);
@@ -132,7 +137,7 @@ public class WorkerAI : MonoBehaviour
             SuperContainer superContainer = superContainerCollider.GetComponentInParent<SuperContainer>();
             if (superContainer != null)
             {
-                superContainer.MoveBoxToWorkerAi();
+                superContainer.MoveBoxToWorkerAI();
             }
         }
     }
