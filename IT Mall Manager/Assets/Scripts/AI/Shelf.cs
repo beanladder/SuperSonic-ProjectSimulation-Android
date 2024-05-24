@@ -45,7 +45,7 @@ public class Shelf : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.LogWarning(other.gameObject.name);
+        //Debug.LogWarning(other.gameObject.name);
         
         if (other.CompareTag("Player") || other.CompareTag("WorkerAI"))
         {
