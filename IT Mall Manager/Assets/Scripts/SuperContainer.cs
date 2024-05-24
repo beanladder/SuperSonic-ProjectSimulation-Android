@@ -93,7 +93,7 @@ public class SuperContainer : MonoBehaviour
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = false;
-                    product.UpdateProductCounts(); // Update product counts for player
+                    
                     PlayerEmptyHand = false;
                 });
                 break;
@@ -116,7 +116,7 @@ public class SuperContainer : MonoBehaviour
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     product.isAI = true;
-                    product.UpdateProductCounts(); // Update product counts for AI
+                    
                     WorkerEmptyHand = false;
                 });
                 break;
