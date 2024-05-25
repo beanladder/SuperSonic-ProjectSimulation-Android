@@ -12,6 +12,12 @@ public class MoneyDeduction : MonoBehaviour
     public Shelf.ShelfType shelfTypeToSet= Shelf.ShelfType.CPU;
     public GameObject yourPoppingPrefab;
     public GameObject UpgradeScreen;
+    public GameObject WorkerStats;
+    public GameObject CashierStats;
+    public GameObject WorkerUnlock;
+    public GameObject CashierUnlock;
+    public int WorkerCost=1200;
+    public int CashierCost=1200;
     public static MoneyDeduction instance;
     public UnityEngine.UI.Image fillImage;
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
@@ -194,5 +200,20 @@ public class MoneyDeduction : MonoBehaviour
     public void ResetPref(){
         PlayerPrefs.DeleteKey(DeductionAmountKey);
         PlayerPrefs.DeleteKey(FillAmountKey);
+    }
+    public void BuyWorker(){
+        if(PlayerCashCounter.instance.totalCashValue>=WorkerCost){
+            PlayerCashCounter.instance.totalCashValue-=WorkerCost;
+            WorkerUnlock.SetActive(false);
+            WorkerStats.SetActive(true);
+        }
+    }
+
+    public void BuyCashier(){
+        if(PlayerCashCounter.instance.totalCashValue>=CashierCost){
+            PlayerCashCounter.instance.totalCashValue-=CashierCost;
+            CashierUnlock.SetActive(false);
+            CashierStats.SetActive(true);
+        }
     }
 }
