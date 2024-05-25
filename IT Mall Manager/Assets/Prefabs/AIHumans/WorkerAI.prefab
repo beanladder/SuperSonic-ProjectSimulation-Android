@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4007417906522141806}
   m_Layer: 6
   m_Name: WorkerAI
-  m_TagString: Untagged
+  m_TagString: WorkerAI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ Animator:
   m_GameObject: {fileID: 500599819912686837}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 75ea2171ac279bd4db3fc5afda0086e4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3af0a23f85d322645a5b8b6fb9ffc8e4, type: 2}
+  m_Controller: {fileID: 9100000, guid: de74837ce03d1554da69b6e9e615b7dd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -283,6 +283,8 @@ MonoBehaviour:
   - RAM
   - Motherboard
   superContainerCollider: {fileID: 0}
+  animator: {fileID: 4436824841856966610}
+  AImaxProducts: 0
 --- !u!1 &850147211596170900
 GameObject:
   m_ObjectHideFlags: 0
