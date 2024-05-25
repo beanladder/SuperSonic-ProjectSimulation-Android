@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6915270070990124109}
+  - component: {fileID: 4313864844269394475}
   m_Layer: 0
   m_Name: BluePackage
   m_TagString: Untagged
@@ -110,11 +111,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6016724174657369847}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 35.53, y: 0.04601288, z: 17.290844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.39, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 681194481943390330}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4313864844269394475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016724174657369847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802c0a94840d783478b2e779ede9e4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  products:
+  - productName: Phone
+    productPrefab: {fileID: 285163457938453022, guid: 483379fad0afd4d9fa62d816433b942c,
+      type: 3}
+    count: 1
+    defaultCount: 1
+  isAI: 0
