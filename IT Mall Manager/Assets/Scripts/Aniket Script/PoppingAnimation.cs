@@ -59,12 +59,12 @@ public class PoppingAnimation : MonoBehaviour
     {
         if (!isPressed)
         {
-            ShowEmote(emoteGameObjects[2]);
+            ShowEmote(emoteGameObjects[5]);
             isPressed = true;
         }
         else
         {
-            HideEmote(emoteGameObjects[2]);
+            HideEmote(emoteGameObjects[5]);
             isPressed = false;
         }
     }
