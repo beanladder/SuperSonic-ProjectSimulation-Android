@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class QueueManager : MonoBehaviour
 {
-    public static QueueManager instance;
+    public static Dictionary<string, QueueManager> instances = new Dictionary<string, QueueManager>(); // To hold instances of all QueueManagers
 
-    // Array to hold the positions of the queue gameobjects
+    public string storeName;
     public Transform[] queuePositions;
 
     private List<AINPC> queue = new List<AINPC>();
-    private bool isQueueFull = false; // Flag to track if the queue is full
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (!instances.ContainsKey(storeName))
+        {
+            instances.Add(storeName, this);
+        }
         else
+        {
+            Debug.LogError("QueueManager with store name " + storeName + " already exists!");
             Destroy(gameObject);
+        }
     }
 
     // Add NPC to the queue
     public void AddToQueue(AINPC npc)
     {
-        if (isQueueFull)
+        if (queue.Count >= queuePositions.Length)
         {
             // Queue is full, NPC should wait
             StartCoroutine(WaitForQueuePosition(npc));
@@ -43,9 +48,6 @@ public class QueueManager : MonoBehaviour
             queue.Remove(npc);
             UpdateQueuePositions();
         }
-
-        // Check if queue is no longer full
-        isQueueFull = queue.Count == queuePositions.Length;
     }
 
     // Update the positions of NPCs in the queue
@@ -56,16 +58,13 @@ public class QueueManager : MonoBehaviour
             queue[i].linePosition = i;
             queue[i].MoveToCheckout(queuePositions[i].position);
         }
-
-        // Update queue full flag
-        isQueueFull = queue.Count == queuePositions.Length;
     }
 
     // Coroutine to wait for a queue position
     private IEnumerator WaitForQueuePosition(AINPC npc)
     {
         yield return new WaitForSeconds(15f); // Wait for 15 seconds
-        if (!isQueueFull)
+        if (queue.Count < queuePositions.Length)
         {
             // Queue position available, add NPC to the queue
             AddToQueue(npc);

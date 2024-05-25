@@ -15,6 +15,7 @@ public class AINPC : MonoBehaviour
     public List<string> productNames;
     public int linePosition = -1;
     public bool isCheckoutDone = false;
+    public string storeName; // Store name to determine which queue to join
 
     private bool isTakingProduct = false;
     private bool isFinishedShopping = false;
@@ -24,7 +25,7 @@ public class AINPC : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     private Collider lastVisitedShelf; 
-    PoppingAnimation pop;
+    private PoppingAnimation pop;
 
     private void Awake()
     {
@@ -49,7 +50,7 @@ public class AINPC : MonoBehaviour
         {
             if (linePosition <= 15)
             {
-                MoveToCheckout(QueueManager.instance.queuePositions[linePosition].position);
+                MoveToCheckout(QueueManager.instances[storeName].queuePositions[linePosition].position);
             }
             else if (!isIrritated)
             {
@@ -117,17 +118,12 @@ public class AINPC : MonoBehaviour
         {
             if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
             {
-
                 pop.HideEmote(pop.emoteGameObjects[0]);
-
                 yield return new WaitForSeconds(1f);
-               // pop.PopOut();
-
                 StartCoroutine(TakeProduct(shelf));
                 yield break;
             }
             pop.ShowEmote(pop.emoteGameObjects[0]);
-
             yield return new WaitForSeconds(1f);
             waitTime += 1f;
         }
@@ -149,7 +145,7 @@ public class AINPC : MonoBehaviour
         yield return new WaitForSeconds(3f);
         isTakingProduct = true;
 
-        if (numOfProductsCarrying < 2 )
+        if (numOfProductsCarrying < 2)
         {
             numOfProductsCarrying++;
             productNames.Add(shelf.shelfType.ToString());
@@ -157,7 +153,7 @@ public class AINPC : MonoBehaviour
             if (numOfProductsCarrying == 2)
             {
                 isFinishedShopping = true;
-                QueueManager.instance.AddToQueue(this);
+                QueueManager.instances[storeName].AddToQueue(this); // Add to specific store's queue
             }
             else
             {
@@ -178,7 +174,7 @@ public class AINPC : MonoBehaviour
         yield return new WaitForSeconds(taskTime * numOfProductsCarrying);
 
         isCheckoutDone = true;
-        QueueManager.instance.RemoveFromQueue(this);
+        QueueManager.instances[storeName].RemoveFromQueue(this); // Remove from specific store's queue
         CashOutflow.instance.StartCoroutine(CashOutflow.instance.CashSpawn(CashOutflow.instance.CashDeliveryTime));
         MoveToRandomSpawnPoint();
     }
@@ -222,14 +218,14 @@ public class AINPC : MonoBehaviour
 
     private void OnEnable()
     {
-    StartCoroutine(DelayedDestination());
+        StartCoroutine(DelayedDestination());
     }
 
     private IEnumerator DelayedDestination()
     {
         yield return new WaitForSeconds(0.1f); // Adjust delay as needed
         SetDestination();
-    }   
+    }
 }
 
 

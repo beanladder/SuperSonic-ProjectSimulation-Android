@@ -199,7 +199,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 3.42, y: 1.69, z: -74.88}
-  m_LocalScale: {x: 5.3, y: 181, z: 25}
+  m_LocalScale: {x: 5.2999997, y: 181.00002, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6300759325661940113}
@@ -227,7 +227,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4099144085873784288}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -351,6 +351,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   checkInterval: 0.5
+  prefabRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &2402017803658585174
 MonoBehaviour:
   m_ObjectHideFlags: 0
