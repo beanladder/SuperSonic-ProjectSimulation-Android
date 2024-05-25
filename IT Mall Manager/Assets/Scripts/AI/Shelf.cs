@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    public enum ShelfType { CPU, RAM, Motherboard }
+    public enum ShelfType { CPU, RAM, Motherboard, Phone, Laptop, Macbook }
     public ShelfType shelfType;
 
     private Quaternion[] prefabRotations;
