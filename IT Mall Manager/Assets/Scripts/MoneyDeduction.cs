@@ -2,7 +2,6 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Collections;
 using TMPro;
 using UnityEngine.Animations;
@@ -126,18 +125,28 @@ public class MoneyDeduction : MonoBehaviour
             
         }
         if (remainingDeductionAmount <= 0)
-            {
-                // Activate the prefab with popping animation
-                activatePrefab.SetActive(true);
-                floorUI.SetActive(false);
-                // Set initial scale to zero
-                activatePrefab.transform.localScale = Vector3.zero;
+{
+    // Activate the prefab with popping animation
+    activatePrefab.SetActive(true);
+    floorUI.SetActive(false);
 
-                // Tween the scale to pop up
-                activatePrefab.transform.DOScale(Vector3.one, 0.5f)
-                    .SetEase(Ease.OutBack)
-                    .OnComplete(() => Debug.Log("Popping animation complete."));
-            }
+    // Set initial scale to zero
+    activatePrefab.transform.localScale = Vector3.zero;
+
+    // Store the initial position
+    Vector3 targetPosition = activatePrefab.transform.position;
+
+    // Set initial position slightly below the target position
+    activatePrefab.transform.position = new Vector3(targetPosition.x, targetPosition.y - 1f, targetPosition.z);
+
+    // Tween the scale to pop up and move it to the target position
+    Sequence popSequence = DOTween.Sequence();
+    popSequence.Append(activatePrefab.transform.DOMoveY(targetPosition.y, 0.5f).SetEase(Ease.OutBack))
+               .Join(activatePrefab.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack))
+               .OnComplete(() => Debug.Log("Popping animation complete."));
+}
+
+
 
         // Reset the coroutine reference
         deductionCoroutine = null;
