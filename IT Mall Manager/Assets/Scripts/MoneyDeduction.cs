@@ -29,7 +29,7 @@ public class MoneyDeduction : MonoBehaviour
     public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
     public int remainingDeductionAmount; // Remaining amount to deduct
-    public UpgradeCanvasController upgradeCanvasController;
+    public UpgradeCanvasAnimator upgradeCanvasAnimator;
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
     private Coroutine uiactivisionCoroutine;
