@@ -5,7 +5,7 @@ public class Shelf : MonoBehaviour
 {
     public enum ShelfType { CPU, RAM, Motherboard, Phone, Laptop, Macbook, RCPU, RRAM, RMotherboard, GPU, PC }
     public ShelfType shelfType;
-
+    public Vector3 desiredRotation;
     private Quaternion[] prefabRotations;
     private Vector3[] prefabScales;
     public int productCount; // Keeps track of the number of products on the shelf
@@ -105,7 +105,7 @@ public class Shelf : MonoBehaviour
             {
                 GameObject product = Instantiate(prefab, spawnPoint.position, prefab.transform.localRotation);
                 product.transform.localScale = prefab.transform.localScale;
-                product.transform.localRotation = prefab.transform.localRotation;
+                product.transform.localRotation = Quaternion.Euler(desiredRotation);
                 product.transform.parent = spawnPoint;
                 productCount++;
 
