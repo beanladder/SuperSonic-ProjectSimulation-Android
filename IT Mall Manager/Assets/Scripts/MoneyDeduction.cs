@@ -30,6 +30,7 @@ public class MoneyDeduction : MonoBehaviour
     public UpgradeCanvasAnimator upgradeCanvasAnimator;
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
+    private Coroutine fillCoroutine; // Coroutine reference for fill animation
     private Coroutine uiactivisionCoroutine;
     private const string FillAmountKey = "FillAmount";
     private const string DeductionAmountKey = "DeductAmount";
@@ -38,6 +39,8 @@ public class MoneyDeduction : MonoBehaviour
 
     // Add a delay duration variable
     public float deductionStartDelay = 1.0f; // Delay before starting deduction in seconds
+    public float fillDuration = 1.0f; // Duration for the fill animation
+    
 
     private void Start()
     {
@@ -59,9 +62,20 @@ public class MoneyDeduction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            StartCoroutine(StartFillWithDelay()); // Start the fill with a delay
             StartDeductionCoroutine();
-            UpdateFillAmountImmediate(); // Update fill image immediately on entering the trigger
         }
+    }
+
+    IEnumerator StartFillWithDelay()
+    {
+        yield return new WaitForSeconds(deductionStartDelay);
+        
+        // Enable the fillImage after the delay
+        fillImage.gameObject.SetActive(true);
+        
+        // Start the fill animation coroutine
+        StartFillCoroutine();
     }
 
     private void OnTriggerExit(Collider other)
@@ -70,6 +84,7 @@ public class MoneyDeduction : MonoBehaviour
         {
             playerInRange = false;
             StopDeductionCoroutine();
+            StopFillCoroutine(); // Stop the fill animation coroutine
         }
     }
 
@@ -87,6 +102,23 @@ public class MoneyDeduction : MonoBehaviour
         {
             StopCoroutine(deductionCoroutine);
             deductionCoroutine = null;
+        }
+    }
+
+    void StartFillCoroutine()
+    {
+        if (fillCoroutine == null)
+        {
+            fillCoroutine = StartCoroutine(FillImageCoroutine());
+        }
+    }
+
+    void StopFillCoroutine()
+    {
+        if (fillCoroutine != null)
+        {
+            StopCoroutine(fillCoroutine);
+            fillCoroutine = null;
         }
     }
 
@@ -132,7 +164,6 @@ public class MoneyDeduction : MonoBehaviour
 
                 // Calculate delay for the current cash object
                 UpdateFloorUI();
-                UpdateFillAmountImmediate(); // Update fill image immediately
                 // SaveState();
                 yield return new WaitForSeconds(delayBetweenJumps);
             }
@@ -171,15 +202,18 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
-    // Update the fill amount immediately
-    void UpdateFillAmountImmediate()
+    // Coroutine to fill the image over a specified duration
+    IEnumerator FillImageCoroutine()
     {
-        if (fillImage != null)
+        float timer = 0f;
+        while (timer < fillDuration)
         {
-            // Calculate the fill amount based on the deduction progress
-            float fillAmount = Mathf.Clamp01((float)(totalDeductionAmount - remainingDeductionAmount) / totalDeductionAmount);
-            fillImage.fillAmount = fillAmount;
+            timer += Time.deltaTime;
+            fillImage.fillAmount = Mathf.Clamp01(timer / fillDuration);
+            yield return null;
         }
+        fillImage.fillAmount = 1f; // Ensure it's fully filled at the end
+        fillImage.gameObject.SetActive(false); // Disable the fillImage after it's fully filled
     }
 
     IEnumerator DelayedActivision()

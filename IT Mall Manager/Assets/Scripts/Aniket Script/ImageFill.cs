@@ -32,7 +32,7 @@ public class ImageFill : MonoBehaviour
         }
     }
 
-    void StartFilling()
+    public void StartFilling()
     {
         if (fillCoroutine == null)
         {
@@ -41,7 +41,7 @@ public class ImageFill : MonoBehaviour
         }
     }
 
-    void StopFilling()
+    public void StopFilling()
     {
         if (fillCoroutine != null)
         {
