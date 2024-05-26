@@ -7487,6 +7487,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6116653824921084328}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1243919006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7286149606364714491, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1782483475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1245843604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8271292206046614512, guid: 5606de7c6d2fc490eb73639407e7abda,
@@ -8587,6 +8599,11 @@ PrefabInstance:
       propertyPath: floorUI
       value: 
       objectReference: {fileID: 1382046656}
+    - target: {fileID: 3556264034545438218, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 1243919006}
     - target: {fileID: 3556264034545438218, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: activatePrefab
@@ -10786,6 +10803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -47.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286149606364714491, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
