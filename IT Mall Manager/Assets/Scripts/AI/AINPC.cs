@@ -200,7 +200,8 @@ public class AINPC : MonoBehaviour
     private void ReturnToPool()
     {
         NPCSpawner.instance.NPCDestroyed();
-        ObjectPool.instance.ReturnNPC(gameObject);
+        Destroy(gameObject);
+        
     }
 
     public void MoveToCheckout(Vector3 position)

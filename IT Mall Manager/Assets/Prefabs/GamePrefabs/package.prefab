@@ -125,16 +125,16 @@ MonoBehaviour:
   - productName: CPU
     productPrefab: {fileID: 436579968088063422, guid: 4d0085187098d714f8e6863d3da7caaf,
       type: 3}
-    count: 2
-    defaultCount: 2
+    count: 4
+    defaultCount: 4
   - productName: Motherboard
     productPrefab: {fileID: 3143734406203115031, guid: e533b1cb600d5d7498441ea525f078b8,
       type: 3}
-    count: 2
-    defaultCount: 2
+    count: 4
+    defaultCount: 4
   - productName: RAM
     productPrefab: {fileID: 2236226743277259914, guid: 618283f1142786342945972bda2ef6e3,
       type: 3}
-    count: 2
-    defaultCount: 2
+    count: 4
+    defaultCount: 4
   isAI: 0
