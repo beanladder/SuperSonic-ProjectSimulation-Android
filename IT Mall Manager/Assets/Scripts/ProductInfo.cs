@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,19 +13,28 @@ public class Product
 
 public class ProductInfo : MonoBehaviour
 {
+    private GameManager gameManager;
     public Product[] products;
+
     public static ProductInfo instance;
-    public bool isAI = false;
 
     private bool allProductsUsedUp = false;
 
     private void Awake()
     {
-        
-        instance = this;
+        // Ensure products are initialized
         InitializeProducts();
         
+        // Find the GameManager by traversing up the hierarchy
+        
     }
+
+    public void SetGameManager(GameManager gm)
+    {
+        gameManager = gm;
+    }
+
+    
 
     private void InitializeProducts()
     {
@@ -38,8 +49,18 @@ public class ProductInfo : MonoBehaviour
     {
         if (allProductsUsedUp)
         {
-            Destroy(gameObject);
+            StartCoroutine(DestroyCoroutine());
         }
+    }
+
+    private IEnumerator DestroyCoroutine()
+    {
+        if (gameManager != null)
+        {
+            gameManager.UpdateAvailableShelves();
+        }
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 
     public bool TryDecrementProductCount(string productName)
@@ -91,5 +112,29 @@ public class ProductInfo : MonoBehaviour
         }
         Debug.LogError($"{productName} not found in product list.");
         return null;
+    }
+
+    // Method to filter products based on available shelf types
+    public void FilterProductsByShelfTypes(HashSet<Shelf.ShelfType> availableShelfTypes)
+    {
+        List<Product> filteredProducts = new List<Product>();
+
+        foreach (var product in products)
+        {
+            if (availableShelfTypes.Contains((Shelf.ShelfType)System.Enum.Parse(typeof(Shelf.ShelfType), product.productName)))
+            {
+                filteredProducts.Add(product);
+            }
+        }
+
+        products = filteredProducts.ToArray();
+        InitializeProducts();
+
+        // Check if all products are used up and destroy the box if necessary
+        CheckAllProductsUsedUp();
+        if (allProductsUsedUp)
+        {
+            Destroy(gameObject);
+        }
     }
 }
