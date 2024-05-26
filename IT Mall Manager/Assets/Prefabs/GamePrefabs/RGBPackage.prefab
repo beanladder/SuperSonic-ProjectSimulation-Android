@@ -258,8 +258,8 @@ MonoBehaviour:
   - productName: RRAM
     productPrefab: {fileID: 2236226743277259914, guid: 618283f1142786342945972bda2ef6e3,
       type: 3}
-    count: 0
-    defaultCount: 0
+    count: 4
+    defaultCount: 4
   - productName: RMotherboard
     productPrefab: {fileID: 3143734406203115031, guid: 3b5578903adc2f94e8317bddee028540,
       type: 3}
