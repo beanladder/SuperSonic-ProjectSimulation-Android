@@ -12640,6 +12640,11 @@ PrefabInstance:
       propertyPath: shelfType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: desiredRotation.y
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 8839130359264675365, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13820,7 +13825,7 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: shelfType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
