@@ -92,7 +92,7 @@ public class SuperContainer : MonoBehaviour
                     box.localRotation = Quaternion.identity;
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
-                    product.isAI = false;
+                    //product.isAI = false;
                     
                     PlayerEmptyHand = false;
                 });
@@ -115,7 +115,7 @@ public class SuperContainer : MonoBehaviour
                     box.localRotation = Quaternion.identity;
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
-                    product.isAI = true;
+                    //product.isAI = true;
                     
                     WorkerEmptyHand = false;
                 });

@@ -8,20 +8,17 @@ public class Spawner : MonoBehaviour
     public AnimationCurve popInCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     public float checkInterval = 0.5f; // Interval to check for missing children
     public Quaternion prefabRotation;
-    public static Spawner instance;
-    private void Awake()
-    {
-        instance = this;
-    }
-    void Start()
+    public GameManager gameManager; // Reference to the GameManager object
+
+    private void Start()
     {
         SpawnAllPrefabs();
 
         // Start a coroutine to periodically check for missing children
         StartCoroutine(CheckForMissingChildren());
     }
-
-    void SpawnAllPrefabs()
+    
+    private void SpawnAllPrefabs()
     {
         // Check if the spawnPoints array is empty
         if (spawnPoints == null || spawnPoints.Length == 0)
@@ -41,11 +38,18 @@ public class Spawner : MonoBehaviour
             spawnedObject.transform.localScale = prefabScale;
 
             // Start the pop in animation and then change parent
-            StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale,prefabRotation));
+            StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale, prefabRotation));
+
+            // Pass the GameManager reference to the spawned prefab
+            ProductInfo productInfo = spawnedObject.GetComponent<ProductInfo>();
+            if (productInfo != null)
+            {
+                productInfo.SetGameManager(gameManager);
+            }
         }
     }
 
-    IEnumerator PopInAndChangeParent(Transform targetTransform, Transform newParent, Vector3 targetScale,Quaternion targetRotation)
+    private IEnumerator PopInAndChangeParent(Transform targetTransform, Transform newParent, Vector3 targetScale, Quaternion targetRotation)
     {
         float timer = 0f;
 
@@ -64,7 +68,7 @@ public class Spawner : MonoBehaviour
         targetTransform.SetParent(newParent);
     }
 
-    IEnumerator CheckForMissingChildren()
+    private IEnumerator CheckForMissingChildren()
     {
         while (true)
         {
@@ -83,7 +87,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    void SpawnPrefabAtSpawnPoint(Transform spawnPoint)
+    private void SpawnPrefabAtSpawnPoint(Transform spawnPoint)
     {
         // Retrieve the local scale and rotation of the prefabToSpawn
         Vector3 prefabScale = prefabToSpawn.transform.localScale;
@@ -94,7 +98,13 @@ public class Spawner : MonoBehaviour
         spawnedObject.transform.localScale = prefabScale;
 
         // Start the pop in animation and then change parent
-        StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale,prefabRotation));
-    }
+        StartCoroutine(PopInAndChangeParent(spawnedObject.transform, spawnPoint, prefabScale, prefabRotation));
 
+        // Pass the GameManager reference to the spawned prefab
+        ProductInfo productInfo = spawnedObject.GetComponent<ProductInfo>();
+        if (productInfo != null)
+        {
+            productInfo.SetGameManager(gameManager);
+        }
+    }
 }

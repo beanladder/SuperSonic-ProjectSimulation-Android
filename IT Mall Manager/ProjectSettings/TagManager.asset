@@ -16,6 +16,7 @@ TagManager:
   - WorkerAI
   - SuperContainer
   - targetTag
+  - CheckShelf
   layers:
   - Default
   - TransparentFX
