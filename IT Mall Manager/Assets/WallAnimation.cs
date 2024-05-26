@@ -18,7 +18,7 @@ public class WallAnimation : MonoBehaviour
     public GameObject Shutter;
     void Start()
     {
-        // Animate each wall's scale on the Y-axis to 0 over the specified duration
+        
         
         AnimateShutter(Shutter);
     }
