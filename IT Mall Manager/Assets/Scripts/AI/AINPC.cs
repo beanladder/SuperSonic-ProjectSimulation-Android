@@ -27,6 +27,8 @@ public class AINPC : MonoBehaviour
     private Collider lastVisitedShelf; 
     private PoppingAnimation pop;
 
+    private int requiredProducts = 2; // Number of products the NPC needs to buy
+
     private void Awake()
     {
         pop = GetComponentInChildren<PoppingAnimation>();
@@ -41,6 +43,18 @@ public class AINPC : MonoBehaviour
 
     private void Start()
     {
+        // Check the number of active shelves
+        Collider[] shelfColliders = GameObject.FindGameObjectsWithTag("Shelf")
+            .Select(obj => obj.GetComponent<Collider>())
+            .Where(col => col != null && col.GetComponentInParent<Shelf>() != null && col.GetComponentInParent<Shelf>().gameObject.activeSelf && allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString()))
+            .ToArray();
+
+        // If there are less than 2 active shelves, only require 1 product
+        if (shelfColliders.Length < 2)
+        {
+            requiredProducts = 1;
+        }
+
         SetDestination();
     }
 
@@ -70,7 +84,7 @@ public class AINPC : MonoBehaviour
 
         Collider[] shelfColliders = GameObject.FindGameObjectsWithTag("Shelf")
             .Select(obj => obj.GetComponent<Collider>())
-            .Where(col => col != lastVisitedShelf && allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString()))
+            .Where(col => col != null && col.GetComponentInParent<Shelf>() != null && col.GetComponentInParent<Shelf>().gameObject.activeSelf && allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString()))
             .ToArray();
 
         if (shelfColliders.Length > 0)
@@ -82,7 +96,7 @@ public class AINPC : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No shelves found with allowed shelf types!");
+            Debug.LogWarning("No enabled shelves found with allowed shelf types!");
             animator.SetBool("isMoving", false);
         }
     }
@@ -145,12 +159,12 @@ public class AINPC : MonoBehaviour
         yield return new WaitForSeconds(3f);
         isTakingProduct = true;
 
-        if (numOfProductsCarrying < 2)
+        if (numOfProductsCarrying < requiredProducts)
         {
             numOfProductsCarrying++;
             productNames.Add(shelf.shelfType.ToString());
 
-            if (numOfProductsCarrying == 2)
+            if (numOfProductsCarrying == requiredProducts)
             {
                 isFinishedShopping = true;
                 QueueManager.instances[storeName].AddToQueue(this); // Add to specific store's queue
