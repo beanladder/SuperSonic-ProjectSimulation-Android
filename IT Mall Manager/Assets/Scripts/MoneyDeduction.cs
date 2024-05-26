@@ -92,13 +92,16 @@ public class MoneyDeduction : MonoBehaviour
         remainingDeductionAmount -= cashValue;
         PlayerCashCounter.instance.DeductTotalCash(cashValue);
 
-        // Move the cash object towards the player's position with a random jump
-        cashInstance.transform.DOJump(playerTransform.position, Random.Range(1f, 2f), 1, Random.Range(0.1f, 0.6f))
-            .SetEase(Ease.Linear)
-            .OnComplete(() => Destroy(cashInstance));
+            float randomJumpHeight = Random.Range(2f, 4f);
+            float randomJumpDuration = Random.Range(.1f, .6f);
 
-        // Update UI elements
-        UpdateFloorUI();
+            // Use DOTween to move the cash object towards the destination with random jump parameters
+            cashInstance.transform.DOJump(transform.position, randomJumpHeight, 1, randomJumpDuration)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() => Destroy(cashInstance));
+
+            // Update UI elements
+            UpdateFloorUI();
         UpdateFillAmount();
 
         // Wait for the next frame

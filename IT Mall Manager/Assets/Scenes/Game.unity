@@ -776,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &96653340
 Transform:
   m_ObjectHideFlags: 0
@@ -3466,7 +3466,7 @@ PrefabInstance:
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -6683,7 +6683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924036125
 Transform:
   m_ObjectHideFlags: 0
@@ -13481,7 +13481,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 975631300}
+      objectReference: {fileID: 587458690}
     - target: {fileID: 3556264034545438218, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: yourPoppingPrefab
@@ -17115,7 +17115,7 @@ PrefabInstance:
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
