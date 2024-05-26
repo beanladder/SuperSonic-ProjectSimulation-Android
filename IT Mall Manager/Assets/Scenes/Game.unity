@@ -2789,8 +2789,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
+      propertyPath: spawnDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
       propertyPath: maxProducts
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: popInDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -2949,7 +2959,7 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: spawnDelay
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -2959,7 +2969,7 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: popInDuration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -12661,12 +12671,12 @@ PrefabInstance:
     - target: {fileID: 3090606562391405269, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
       propertyPath: spawnDelay
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3090606562391405269, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
       propertyPath: popInDuration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3637397997645054764, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
@@ -14517,7 +14527,7 @@ PrefabInstance:
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
       propertyPath: popInDuration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -14680,12 +14690,12 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: spawnDelay
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: popInDuration
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
