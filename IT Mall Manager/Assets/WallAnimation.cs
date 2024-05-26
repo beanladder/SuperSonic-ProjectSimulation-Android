@@ -43,7 +43,7 @@ public class WallAnimation : MonoBehaviour
         }
     }
 
-    void AnimateShutter(GameObject shutter)
+    public void AnimateShutter(GameObject shutter)
     {
         if (shutter != null)
         {

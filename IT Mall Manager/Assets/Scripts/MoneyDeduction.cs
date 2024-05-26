@@ -25,6 +25,7 @@ public class MoneyDeduction : MonoBehaviour
     private int remainingDeductionAmount; // Remaining amount to deduct
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
+    public WallAnimation wallAnimation;
 
     private void Start()
     {
@@ -111,23 +112,27 @@ public class MoneyDeduction : MonoBehaviour
 
     if (remainingDeductionAmount <= 0)
         {
-            // Enable the parent GameObject
-            activatePrefab.SetActive(true);
-
-            // Iterate through all children of the parent GameObject and enable them
-            foreach (Transform child in activatePrefab.transform)
-            {
-                child.gameObject.SetActive(true);
-            }
-
             // Disable the floorUI
             floorUI.SetActive(false);
+            if(wallAnimation!=null){
+                wallAnimation.AnimateShutter(wallAnimation.Shutter);
+            }
+             if(activatePrefab!=null){
+                    // Enable the parent GameObject
+                activatePrefab.SetActive(true);
+                // Iterate through all children of the parent GameObject and enable them
+                foreach (Transform child in activatePrefab.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
 
-            // Play popping animation on the parent GameObject
-            activatePrefab.transform.localScale = Vector3.zero;
-            activatePrefab.transform.DOScale(Vector3.one, 0.5f)
-                .SetEase(Ease.OutBack)
-                .OnComplete(() => Debug.Log("Popping animation complete."));
+
+                // Play popping animation on the parent GameObject
+                activatePrefab.transform.localScale = Vector3.zero;
+                activatePrefab.transform.DOScale(Vector3.one, 0.5f)
+                    .SetEase(Ease.OutBack)
+                    .OnComplete(() => Debug.Log("Popping animation complete."));
+            }
         }
 
     // Reset the coroutine reference
