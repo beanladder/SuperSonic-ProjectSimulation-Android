@@ -38,11 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-
   m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
-
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
-
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3253,6 +3249,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
       propertyPath: shelfType
@@ -3467,6 +3468,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3606,6 +3612,11 @@ PrefabInstance:
       propertyPath: DesiredRotation.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1501637827}
     - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: prefabToSpawn
@@ -4852,6 +4863,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
       propertyPath: shelfType
@@ -5005,6 +5021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -5232,6 +5253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 731808391}
   - component: {fileID: 731808392}
+  - component: {fileID: 731808393}
   m_Layer: 0
   m_Name: EarlyRoom
   m_TagString: Untagged
@@ -5298,6 +5320,18 @@ MonoBehaviour:
   - {fileID: 1882952566}
   - {fileID: 1616664654}
   - {fileID: 1980546833}
+--- !u!114 &731808393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731808390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &736862927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2567641527532824031, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
@@ -5885,6 +5919,11 @@ PrefabInstance:
       propertyPath: workerAIHands
       value: 
       objectReference: {fileID: 1485465494}
+    - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 731808393}
     - target: {fileID: 4099144085873784288, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: m_Name
@@ -6258,6 +6297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881059958}
   - component: {fileID: 881059959}
+  - component: {fileID: 881059960}
   m_Layer: 0
   m_Name: MonopolyRoom
   m_TagString: Untagged
@@ -6335,6 +6375,18 @@ MonoBehaviour:
   - {fileID: 482967001}
   - {fileID: 728519629}
   - {fileID: 954868446}
+--- !u!114 &881059960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881059957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &890599745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7117,6 +7169,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7177,6 +7234,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.92
       objectReference: {fileID: 0}
+    - target: {fileID: 1795605123802022568, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 2723848129300510087, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7216,6 +7278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: shelfType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6698021112369476600, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
@@ -8292,6 +8359,11 @@ PrefabInstance:
       propertyPath: DesiredRotation.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1501637827}
     - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: prefabToSpawn
@@ -10816,6 +10888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 881059960}
+    - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
       propertyPath: prefabToSpawn
       value: 
       objectReference: {fileID: 2065364546182884819, guid: e08fd179997a56144b043da0a1e3475c,
@@ -11286,6 +11363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1501637825}
   - component: {fileID: 1501637826}
+  - component: {fileID: 1501637827}
   m_Layer: 0
   m_Name: ExpansionRoom
   m_TagString: Untagged
@@ -11357,6 +11435,18 @@ MonoBehaviour:
   - {fileID: 2003858279}
   - {fileID: 822153036}
   - {fileID: 2042138121}
+--- !u!114 &1501637827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501637824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536965863
 GameObject:
   m_ObjectHideFlags: 0
@@ -11486,6 +11576,11 @@ PrefabInstance:
       propertyPath: DesiredRotation.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 881059960}
     - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: prefabToSpawn
@@ -13811,12 +13906,12 @@ PrefabInstance:
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.9237
+      value: 65.923706
       objectReference: {fileID: 0}
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.727053
+      value: 12.727052
       objectReference: {fileID: 0}
     - target: {fileID: 6245993399972212297, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -13826,12 +13921,12 @@ PrefabInstance:
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.9237
+      value: 65.923706
       objectReference: {fileID: 0}
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.727053
+      value: 12.727052
       objectReference: {fileID: 0}
     - target: {fileID: 7137599323606046405, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -13856,7 +13951,7 @@ PrefabInstance:
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -14748,7 +14843,7 @@ PrefabInstance:
     - target: {fileID: 3090606562391405269, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
       propertyPath: shelfType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3090606562391405269, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
@@ -14844,6 +14939,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257231902245890594, guid: 5e82c56daafe6944380059b58b3664bd,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 8610231986216613309, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
@@ -15648,6 +15748,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15698,6 +15803,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1795605123802022568, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 4882768641919012248, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15706,7 +15816,7 @@ PrefabInstance:
     - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: shelfType
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
@@ -16789,6 +16899,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
       propertyPath: shelfType
@@ -17001,6 +17116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
