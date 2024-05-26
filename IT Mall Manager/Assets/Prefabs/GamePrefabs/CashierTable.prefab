@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5818935671758731878}
   - component: {fileID: 5732997320115793419}
   m_Layer: 0
-  m_Name: CashPoint (4)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,12 +132,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191193404323236783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000000009169753, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.36899734, y: 0, z: 0.7850008}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6109602478809488080
 MeshFilter:
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 4512841766976442785}
   - component: {fileID: 3321774162701669717}
   m_Layer: 0
-  m_Name: CashPoint (6)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,12 +237,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329289571742165204}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38461655, y: 0, z: 0.38461432}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.75361514, y: 0, z: 1.1696141}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8179075020089415561
 MeshFilter:
@@ -645,6 +645,15 @@ Transform:
   m_LocalScale: {x: 0.6499999, y: 0.65, z: 0.6499999}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7942840376990030408}
+  - {fileID: 1532240464864501648}
+  - {fileID: 2400015200811135016}
+  - {fileID: 3328267117412248962}
+  - {fileID: 4985835252214481844}
+  - {fileID: 1519800147918445412}
+  - {fileID: 5831867065908767637}
+  - {fileID: 6638100180893856377}
+  - {fileID: 2998731392824936341}
   - {fileID: 5537442638654431606}
   - {fileID: 2424046680143774230}
   - {fileID: 4305124764846125500}
@@ -935,7 +944,7 @@ GameObject:
   - component: {fileID: 9006368307663025255}
   - component: {fileID: 4107349106610584256}
   m_Layer: 0
-  m_Name: CashPoint
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,12 +958,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672129812347804341}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38461432, y: 0, z: 0.38461658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.015615871, y: 0, z: 1.1696186}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7343762804965815846
 MeshFilter:
@@ -1040,7 +1049,7 @@ GameObject:
   - component: {fileID: 6723691398944639826}
   - component: {fileID: 5839955341390174033}
   m_Layer: 0
-  m_Name: CashPoint (7)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,12 +1063,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817618107202513527}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38461542, y: 0, z: -0.0000011324883}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7536128, y: 0, z: 0.78499866}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8683382069488894089
 MeshFilter:
@@ -1618,7 +1627,7 @@ GameObject:
   - component: {fileID: 7885146442917498555}
   - component: {fileID: 1953309299941341479}
   m_Layer: 0
-  m_Name: CashPoint (5)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,12 +1641,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4452247041110269184}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000011141487, y: 0, z: 0.38461545}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.36899963, y: 0, z: 1.1696163}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4879814619431604640
 MeshFilter:
@@ -1723,7 +1732,7 @@ GameObject:
   - component: {fileID: 283311153898921536}
   - component: {fileID: 3426159063592958597}
   m_Layer: 0
-  m_Name: CashPoint (1)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1737,12 +1746,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4711087084202783891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38461545, y: 0, z: 0.0000011324883}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.015618163, y: 0, z: 0.785003}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &661741243464705405
 MeshFilter:
@@ -1828,7 +1837,7 @@ GameObject:
   - component: {fileID: 6623302381721431175}
   - component: {fileID: 3191928225610855722}
   m_Layer: 0
-  m_Name: CashPoint (2)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,12 +1851,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4975539432388867925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.38461658, y: 0, z: -0.38461432}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.015614496, y: 0, z: 0.40038753}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &590058303023912618
 MeshFilter:
@@ -2143,7 +2152,7 @@ GameObject:
   - component: {fileID: 6506298546019060117}
   - component: {fileID: 5789907123101162083}
   m_Layer: 0
-  m_Name: CashPoint (8)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2157,12 +2166,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499229107733513071}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3846143, y: 0, z: -0.38461658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7536165, y: 0, z: 0.40038309}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3456288932811206738
 MeshFilter:
@@ -2263,16 +2272,7 @@ Transform:
   m_LocalPosition: {x: 0.369, y: 0, z: 0.785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2998731392824936341}
-  - {fileID: 6638100180893856377}
-  - {fileID: 5831867065908767637}
-  - {fileID: 1519800147918445412}
-  - {fileID: 4985835252214481844}
-  - {fileID: 3328267117412248962}
-  - {fileID: 2400015200811135016}
-  - {fileID: 1532240464864501648}
-  - {fileID: 7942840376990030408}
+  m_Children: []
   m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5993199809926736628
@@ -2813,7 +2813,7 @@ GameObject:
   - component: {fileID: 6375163645253732638}
   - component: {fileID: 1991629070480448041}
   m_Layer: 0
-  m_Name: CashPoint (3)
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2827,12 +2827,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6966331927634192052}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000011324883, y: 0, z: -0.38461545}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.369001, y: 0, z: 0.4003853}
   m_LocalScale: {x: 0.098438, y: 0.098438, z: 0.098438}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2046770789359400900}
+  m_Father: {fileID: 7367754582932525391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2444009186390008680
 MeshFilter:

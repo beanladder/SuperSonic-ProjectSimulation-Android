@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   products:
   - productName: GPU
-    productPrefab: {fileID: 0}
+    productPrefab: {fileID: 3925544671947510954, guid: 4dc4096af6cf2994ba8a59a1f0fe62f6,
+      type: 3}
     count: 0
     defaultCount: 4
   isAI: 0
