@@ -10,7 +10,8 @@ using UnityEngine.Animations;
 public class MoneyDeduction : MonoBehaviour
 {
     public Shelf.ShelfType shelfTypeToSet= Shelf.ShelfType.CPU;
-    public GameObject yourPoppingPrefab;
+    public GameObject floorUI;
+    public GameObject activatePrefab;
     public GameObject UpgradeScreen;
     public GameObject WorkerStats;
     public GameObject CashierStats;
@@ -125,23 +126,18 @@ public class MoneyDeduction : MonoBehaviour
             
         }
         if (remainingDeductionAmount <= 0)
-        {
-            // Disable canvas
-            gameObject.SetActive(false);
-            PlayerPrefs.SetInt(FloorUiActiveKey,0);
-            PlayerPrefs.SetInt(PoppingPrefabActiveKey,1);
-            Vector3 targetScale = yourPoppingPrefab.transform.localScale;
-            Quaternion targetRotation = yourPoppingPrefab.transform.localRotation;
-            // Spawn prefab with popping animation
-            GameObject poppingPrefab = Instantiate(yourPoppingPrefab, transform.position, Quaternion.identity);
-            // Apply popping animation using AnimationCurve or other tweening method
-            // For example, you can use DOTween to scale the prefab up and down
-            
-            poppingPrefab.transform.localScale = targetScale;
-            poppingPrefab.transform.localRotation = targetRotation;
-            Shelf shelfScript = poppingPrefab.GetComponent<Shelf>();
-            shelfScript.shelfType = shelfTypeToSet;
-        }
+            {
+                // Activate the prefab with popping animation
+                activatePrefab.SetActive(true);
+                floorUI.SetActive(false);
+                // Set initial scale to zero
+                activatePrefab.transform.localScale = Vector3.zero;
+
+                // Tween the scale to pop up
+                activatePrefab.transform.DOScale(Vector3.one, 0.5f)
+                    .SetEase(Ease.OutBack)
+                    .OnComplete(() => Debug.Log("Popping animation complete."));
+            }
 
         // Reset the coroutine reference
         deductionCoroutine = null;
