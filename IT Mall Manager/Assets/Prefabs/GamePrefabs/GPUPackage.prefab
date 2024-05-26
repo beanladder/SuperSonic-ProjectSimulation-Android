@@ -50,7 +50,7 @@ MonoBehaviour:
     productPrefab: {fileID: 3925544671947510954, guid: 4dc4096af6cf2994ba8a59a1f0fe62f6,
       type: 3}
     count: 0
-    defaultCount: 4
+    defaultCount: 20
   isAI: 0
 --- !u!1 &3554636820210723990
 GameObject:
