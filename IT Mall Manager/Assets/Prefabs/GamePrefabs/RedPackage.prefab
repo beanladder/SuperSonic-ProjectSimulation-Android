@@ -158,10 +158,9 @@ MonoBehaviour:
     productPrefab: {fileID: 4099742304786961635, guid: d71541aa3172c874e8a58fe640b97625,
       type: 3}
     count: 0
-    defaultCount: 20
+    defaultCount: 4
   - productName: Laptop
     productPrefab: {fileID: 2953769568300175129, guid: 3d2fa29c08dbf4e48b1eb656c3119f02,
       type: 3}
     count: 0
-    defaultCount: 20
-  isAI: 0
+    defaultCount: 4
