@@ -12,7 +12,7 @@ public class SuperContainer : MonoBehaviour
     public bool PlayerEmptyHand = false;
     public bool WorkerEmptyHand = false;
     public GameObject heldPackage; // Stores the currently held package
-
+    public Vector3 DesiredRotation;
     private void Awake()
     {
         if (Instance == null)
@@ -37,6 +37,7 @@ public class SuperContainer : MonoBehaviour
         }
         else
         {
+            PlayerEmptyHand = false;
             CharacterMovementManager.instance.anim.SetLayerWeight(1, 1);
         }
 
@@ -47,6 +48,7 @@ public class SuperContainer : MonoBehaviour
         }
         else
         {
+            WorkerEmptyHand = false; 
             WorkerAI.instance.animator.SetLayerWeight(1, 1);
         }
     }
@@ -89,7 +91,7 @@ public class SuperContainer : MonoBehaviour
                 {
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
-                    box.localRotation = Quaternion.identity;
+                    box.transform.localRotation = Quaternion.Euler( DesiredRotation);
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     //product.isAI = false;

@@ -29,14 +29,20 @@ public class WallAnimation : MonoBehaviour
     {
         if (wall != null)
         {
-            wall.transform.DOScaleY(0f, animationDuration).SetEase(Ease.InOutQuad);
+            wall.transform.DOScaleY(0f, animationDuration).SetEase(Ease.InOutQuad).OnComplete(() => DisableGameObject(wall));
         }
     }
+
     void AnimateRoof(GameObject Roof)
     {
         if (Roof != null)
         {
-            Roof.transform.DOScaleX(0f, animationDuration).SetEase(Ease.InOutQuad);
+            Roof.transform.DOScaleX(0f, animationDuration).SetEase(Ease.InOutQuad).OnComplete(() => DisableGameObject(Roof));
         }
+    }
+
+    void DisableGameObject(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 }
