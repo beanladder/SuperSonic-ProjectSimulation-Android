@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 494549225361130173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: 1.4}
+  m_LocalPosition: {x: 0, y: 140.1, z: 1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -692,8 +692,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629752207788445039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32067832, y: -0.37196854, z: 0.13870347, w: 0.85998034}
-  m_LocalPosition: {x: 31.983696, y: 12.727054, z: -77.49506}
+  m_LocalRotation: {x: 0.3795047, y: -0.32865024, z: 0.1463245, w: 0.8523816}
+  m_LocalPosition: {x: 64.336655, y: 14.107924, z: -75.10643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1034,14 +1034,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2956326026777487547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32067832, y: -0.37196854, z: 0.13870347, w: 0.85998034}
-  m_LocalPosition: {x: 31.983696, y: 12.727054, z: -77.49506}
+  m_LocalRotation: {x: 0.3795047, y: -0.32865024, z: 0.1463245, w: 0.8523816}
+  m_LocalPosition: {x: 64.336655, y: 14.107924, z: -75.10643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8878681915459008979}
   m_Father: {fileID: 8271292206046614512}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 48, y: -42.17, z: 0}
 --- !u!114 &3915230269164552942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1462,7 +1462,7 @@ Transform:
   m_GameObject: {fileID: 4313867511555591855}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.49, y: 0, z: -70.02}
+  m_LocalPosition: {x: 56.43, y: 0, z: -67.97}
   m_LocalScale: {x: 0.009, y: 0.009, z: 0.009}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1552,7 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233364cdd1ccf2646965da4180746864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalCashValue: 0
+  totalCashValue: 2000000
   moneyText: {fileID: 0}
 --- !u!1 &4443304073305186519
 GameObject:

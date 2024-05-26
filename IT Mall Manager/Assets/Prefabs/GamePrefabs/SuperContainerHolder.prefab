@@ -178,8 +178,8 @@ GameObject:
   - component: {fileID: 4147161415431460650}
   - component: {fileID: 1194088780405485548}
   - component: {fileID: 498430573704922823}
-  - component: {fileID: 1927191336801340940}
   - component: {fileID: 7674825069420757569}
+  - component: {fileID: 1927191336801340940}
   - component: {fileID: 3771289382549132894}
   - component: {fileID: 2402017803658585174}
   m_Layer: 0
@@ -262,27 +262,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1927191336801340940
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4099144085873784288}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.73556864, y: 0.020000014, z: 0.03031023}
-  m_Center: {x: -0.35778797, y: 0, z: -0.015073961}
 --- !u!65 &7674825069420757569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -304,6 +283,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.73556864, y: 0.008380734, z: 0.03031023}
   m_Center: {x: -0.35778797, y: 0.00580969, z: -0.04}
+--- !u!65 &1927191336801340940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099144085873784288}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.73556864, y: 0.020000014, z: 0.03031023}
+  m_Center: {x: -0.35778797, y: 0, z: -0.015073961}
 --- !u!114 &3771289382549132894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   checkInterval: 0.5
   prefabRotation: {x: 0, y: 0, z: 0, w: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &2402017803658585174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   PlayerEmptyHand: 0
   WorkerEmptyHand: 0
   heldPackage: {fileID: 0}
+  DesiredRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &5493733647880129711
 GameObject:
   m_ObjectHideFlags: 0
