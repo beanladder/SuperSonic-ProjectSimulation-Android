@@ -16,13 +16,8 @@ public class WallAnimation : MonoBehaviour
     public GameObject ROOF2;
     public float animationDuration = 2.0f;
     public GameObject Shutter;
-    void Start()
-    {
-        
-        
-        AnimateShutter(Shutter);
-    }
 
+    
     void AnimateWall(GameObject wall)
     {
         if (wall != null)
