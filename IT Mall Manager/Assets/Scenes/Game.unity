@@ -144,7 +144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &15701797
 Transform:
   m_ObjectHideFlags: 0
@@ -1097,7 +1097,7 @@ PrefabInstance:
     - target: {fileID: 8569069049337490078, guid: 4d0085187098d714f8e6863d3da7caaf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.773
+      value: 17.275
       objectReference: {fileID: 0}
     - target: {fileID: 8569069049337490078, guid: 4d0085187098d714f8e6863d3da7caaf,
         type: 3}
@@ -1504,7 +1504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &242945778
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,7 +1538,7 @@ PrefabInstance:
     - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
@@ -1656,6 +1656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -1971,6 +1976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -3851,7 +3861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &672240890
 Transform:
   m_ObjectHideFlags: 0
@@ -3885,7 +3895,7 @@ PrefabInstance:
     - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
@@ -4758,7 +4768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &780902515
 Transform:
   m_ObjectHideFlags: 0
@@ -4802,7 +4812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &812368697
 Transform:
   m_ObjectHideFlags: 0
@@ -5193,6 +5203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -5655,6 +5670,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorPurchaseCanvas (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5866,6 +5886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -6402,7 +6427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1006599279
 Transform:
   m_ObjectHideFlags: 0
@@ -7126,6 +7151,11 @@ PrefabInstance:
       propertyPath: shelfType
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: maxProducts
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4395345663954816563, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7144,7 +7174,7 @@ PrefabInstance:
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -7239,6 +7269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -7494,6 +7529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -8103,6 +8143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorPurchaseCanvas (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8397,6 +8442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -8849,6 +8899,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorPurchaseCanvas (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -9165,6 +9220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -9774,7 +9834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1594014602
 Transform:
   m_ObjectHideFlags: 0
@@ -9927,6 +9987,11 @@ PrefabInstance:
       propertyPath: shelfType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: maxProducts
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4395345663954816563, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -9945,7 +10010,7 @@ PrefabInstance:
     - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -10230,6 +10295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -10818,6 +10888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -11513,6 +11588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FloorPurchaseCanvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763836471485099415, guid: 92643a19f2360234c9d11da22a461d4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659226540125056838, guid: 92643a19f2360234c9d11da22a461d4c,
         type: 3}
@@ -12795,7 +12875,7 @@ PrefabInstance:
     - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591611734453335901, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
@@ -13287,7 +13367,7 @@ PrefabInstance:
     - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591611734453335901, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
@@ -13386,7 +13466,7 @@ PrefabInstance:
     - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591611734453335901, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
