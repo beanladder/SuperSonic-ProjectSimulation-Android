@@ -335,8 +335,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.1155434, y: 0.8966973, z: 0.62338936}
-  m_Center: {x: -0.024985792, y: 0.06068551, z: -0.22999734}
+  m_Size: {x: 1.6722851, y: 0.8966973, z: 0.62338936}
+  m_Center: {x: -0.002361218, y: 0.06068551, z: -0.22999078}
 --- !u!114 &3556264034545438218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,20 +350,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shelfTypeToSet: 0
-  yourPoppingPrefab: {fileID: 4082170936207318903, guid: 99e2f74719a128047a8934a843d9a1b8,
-    type: 3}
+  floorUI: {fileID: 0}
+  activatePrefab: {fileID: 0}
   UpgradeScreen: {fileID: 0}
+  WorkerStats: {fileID: 0}
+  CashierStats: {fileID: 0}
+  WorkerUnlock: {fileID: 0}
+  CashierUnlock: {fileID: 0}
+  WorkerCost: 1200
+  CashierCost: 1200
   fillImage: {fileID: 668226792872292896}
   totalDeductionAmount: 40000
   cashPrefab: {fileID: 1882958775886217793, guid: 6e3f7064fc4eda54fb05edab3a154685,
     type: 3}
   playerTransform: {fileID: 0}
   floorText: {fileID: 7258858981939692318}
-  jumpHeight: 2
-  jumpDuration: 0.4
   delayBetweenJumps: 0.1
-  remainingDeductionAmount: 40000
-  upgradeCanvasController: {fileID: 0}
 --- !u!1 &7145720601668704244
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +377,6 @@ GameObject:
   - component: {fileID: 740995042846496525}
   - component: {fileID: 8337559460882417490}
   - component: {fileID: 668226792872292896}
-  - component: {fileID: 2223916852067288710}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -440,27 +441,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!65 &2223916852067288710
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7145720601668704244}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.1155434, y: 0.8966973, z: 0.62338936}
-  m_Center: {x: -0.024985792, y: 0.06068551, z: -0.22999734}
 --- !u!1 &8738161196904002910
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +452,6 @@ GameObject:
   - component: {fileID: 3545155769783308305}
   - component: {fileID: 7150078359888088350}
   - component: {fileID: 1414691185492293790}
-  - component: {fileID: 8673799319559997998}
   m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
@@ -538,24 +517,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!65 &8673799319559997998
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738161196904002910}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.1155434, y: 0.8966973, z: 0.62338936}
-  m_Center: {x: -0.024985792, y: 0.06068551, z: -0.22999734}

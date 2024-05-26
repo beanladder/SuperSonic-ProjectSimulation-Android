@@ -92,7 +92,8 @@ public class MoneyDeduction : MonoBehaviour
         remainingDeductionAmount -= cashValue;
         PlayerCashCounter.instance.DeductTotalCash(cashValue);
 
-            float randomJumpHeight = Random.Range(2f, 4f);
+        // Move the cash object towards the player's position with a random jump
+        float randomJumpHeight = Random.Range(2f, 4f);
             float randomJumpDuration = Random.Range(.1f, .6f);
 
             // Use DOTween to move the cash object towards the destination with random jump parameters
@@ -100,8 +101,8 @@ public class MoneyDeduction : MonoBehaviour
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() => Destroy(cashInstance));
 
-            // Update UI elements
-            UpdateFloorUI();
+        // Update UI elements
+        UpdateFloorUI();
         UpdateFillAmount();
 
         // Wait for the next frame
@@ -109,15 +110,25 @@ public class MoneyDeduction : MonoBehaviour
     }
 
     if (remainingDeductionAmount <= 0)
-    {
-        // Activate the prefab with popping animation
-        activatePrefab.SetActive(true);
-        floorUI.SetActive(false);
-        activatePrefab.transform.localScale = Vector3.zero;
-        activatePrefab.transform.DOScale(Vector3.one, 0.5f)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => Debug.Log("Popping animation complete."));
-    }
+        {
+            // Enable the parent GameObject
+            activatePrefab.SetActive(true);
+
+            // Iterate through all children of the parent GameObject and enable them
+            foreach (Transform child in activatePrefab.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+
+            // Disable the floorUI
+            floorUI.SetActive(false);
+
+            // Play popping animation on the parent GameObject
+            activatePrefab.transform.localScale = Vector3.zero;
+            activatePrefab.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack)
+                .OnComplete(() => Debug.Log("Popping animation complete."));
+        }
 
     // Reset the coroutine reference
     deductionCoroutine = null;
