@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
+
   m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,7 +144,7 @@ GameObject:
   - component: {fileID: 15701797}
   m_Layer: 0
   m_Name: LargeShelf
-  m_TagString: Untagged
+  m_TagString: CheckShelf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,6 +395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Showcase (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -1494,6 +1503,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7257231902245890594, guid: 5e82c56daafe6944380059b58b3664bd,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 8610231986216613309, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1750,6 +1764,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1800,11 +1819,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1795605123802022568, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 3944656206282259188, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 05a2fede087e1407f93ab88b2bc53416, type: 2}
+    - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: shelfType
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5411312308157755553, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3050,6 +3079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Showcase (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -4615,6 +4649,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 854953544445029992, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 939976322392564017, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4665,11 +4704,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1795605123802022568, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 3944656206282259188, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 05a2fede087e1407f93ab88b2bc53416, type: 2}
+    - target: {fileID: 5329703823360813048, guid: d7a61ad1359744e65ad090018c719f34,
+        type: 3}
+      propertyPath: shelfType
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5411312308157755553, guid: d7a61ad1359744e65ad090018c719f34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7422,7 +7471,7 @@ GameObject:
   - component: {fileID: 1006599279}
   m_Layer: 0
   m_Name: LargeShel
-  m_TagString: Untagged
+  m_TagString: CheckShelf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7955,6 +8004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Showcase (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -8492,7 +8546,7 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: shelfType
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -8533,6 +8587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -9067,6 +9126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Showcase (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450440089830620936, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 6513340083913003055, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
         type: 3}
@@ -12064,7 +12128,7 @@ PrefabInstance:
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
       propertyPath: shelfType
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4190389482446950233, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -12105,6 +12169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502184236314987189, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 4984202305537285172, guid: 6aef9ddf8b2614ee98322f8ad7302a0e,
         type: 3}
@@ -12494,6 +12563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257231902245890594, guid: 5e82c56daafe6944380059b58b3664bd,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 8610231986216613309, guid: 5e82c56daafe6944380059b58b3664bd,
         type: 3}
@@ -15801,6 +15875,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 3591611734453335901, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -16293,6 +16372,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
+      objectReference: {fileID: 0}
     - target: {fileID: 3591611734453335901, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -16406,6 +16490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574610125684120849, guid: 4489cd67e8f394244805b204cfc0fcc2,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShelf
       objectReference: {fileID: 0}
     - target: {fileID: 2599092146906119002, guid: 4489cd67e8f394244805b204cfc0fcc2,
         type: 3}
