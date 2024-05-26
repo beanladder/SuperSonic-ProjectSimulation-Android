@@ -126,15 +126,15 @@ MonoBehaviour:
     productPrefab: {fileID: 3618109075648191655, guid: 484de33387aa47842a33b12f49fe2448,
       type: 3}
     count: 4
-    defaultCount: 4
+    defaultCount: 20
   - productName: Motherboard
     productPrefab: {fileID: 3143734406203115031, guid: e533b1cb600d5d7498441ea525f078b8,
       type: 3}
     count: 4
-    defaultCount: 4
+    defaultCount: 20
   - productName: RAM
     productPrefab: {fileID: 2236226743277259914, guid: 618283f1142786342945972bda2ef6e3,
       type: 3}
     count: 4
-    defaultCount: 4
+    defaultCount: 20
   isAI: 0

@@ -18,7 +18,6 @@ public class PlayerCashCounter : MonoBehaviour
     {
         totalCashValue += amount; // Increase total cash value based on the amount and value per prefab
         UpdateMoneyUI();
-        SaveMoney();
     }
 
     
@@ -41,13 +40,5 @@ public class PlayerCashCounter : MonoBehaviour
         if(moneyText!=null){
             moneyText.text = totalCashValue.ToString();
         }
-    }
-    private void SaveMoney(){
-        PlayerPrefs.SetInt(MoneyKey,totalCashValue);
-        PlayerPrefs.Save();
-    }
-    private void LoadMoney(){
-        totalCashValue = PlayerPrefs.GetInt(MoneyKey,0);
-        UpdateMoneyUI();
     }
 }

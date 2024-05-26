@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
-using UnityEngine.Animations;
 
 public class MoneyDeduction : MonoBehaviour
 {
@@ -17,34 +16,18 @@ public class MoneyDeduction : MonoBehaviour
     public GameObject CashierUnlock;
     public int WorkerCost = 1200;
     public int CashierCost = 1200;
-    public static MoneyDeduction instance;
     public UnityEngine.UI.Image fillImage;
     public int totalDeductionAmount = 100; // Total amount of money to deduct when player is in range
     public GameObject cashPrefab; // Prefab of the cash object to spawn
     public Transform playerTransform; // Player's transform assigned in the inspector
     public TextMeshProUGUI floorText;
-    public float jumpHeight = 2f; // Height of the jump
-    public float jumpDuration = 0.4f; // Duration of each jump
     public float delayBetweenJumps = 0.1f; // Delay between each jump
-    public int remainingDeductionAmount; // Remaining amount to deduct
-    public UpgradeCanvasAnimator upgradeCanvasAnimator;
+    private int remainingDeductionAmount; // Remaining amount to deduct
     private bool playerInRange = false; // Flag to track if player is in range
     private Coroutine deductionCoroutine; // Coroutine reference for deduction
-    private Coroutine fillCoroutine; // Coroutine reference for fill animation
-    private Coroutine uiactivisionCoroutine;
-    private const string FillAmountKey = "FillAmount";
-    private const string DeductionAmountKey = "DeductAmount";
-    private const string FloorUiActiveKey = "FloorUIActive";
-    private const string PoppingPrefabActiveKey = "PoppingPrefabActive";
-
-    // Add a delay duration variable
-    public float deductionStartDelay = 1.0f; // Delay before starting deduction in seconds
-    public float fillDuration = 1.0f; // Duration for the fill animation
-    
 
     private void Start()
     {
-        // LoadState();
         remainingDeductionAmount = totalDeductionAmount;
         playerTransform = GetPostion.instance.playerTransform;
     }
@@ -57,25 +40,13 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            StartCoroutine(StartFillWithDelay()); // Start the fill with a delay
             StartDeductionCoroutine();
         }
-    }
-
-    IEnumerator StartFillWithDelay()
-    {
-        yield return new WaitForSeconds(deductionStartDelay);
-        
-        // Enable the fillImage after the delay
-        fillImage.gameObject.SetActive(true);
-        
-        // Start the fill animation coroutine
-        StartFillCoroutine();
     }
 
     private void OnTriggerExit(Collider other)
@@ -84,19 +55,18 @@ public class MoneyDeduction : MonoBehaviour
         {
             playerInRange = false;
             StopDeductionCoroutine();
-            StopFillCoroutine(); // Stop the fill animation coroutine
         }
     }
 
-    void StartDeductionCoroutine()
+    private void StartDeductionCoroutine()
     {
         if (deductionCoroutine == null)
         {
-            deductionCoroutine = StartCoroutine(DeductionStartDelayCoroutine());
+            deductionCoroutine = StartCoroutine(DeductMoneyAndSpawnCashCoroutine());
         }
     }
 
-    void StopDeductionCoroutine()
+    private void StopDeductionCoroutine()
     {
         if (deductionCoroutine != null)
         {
@@ -105,96 +75,54 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
-    void StartFillCoroutine()
+    private IEnumerator DeductMoneyAndSpawnCashCoroutine()
+{
+    // Calculate the amount to deduct in each iteration
+    float deductionPerIteration = totalDeductionAmount * Time.deltaTime / 10f; // Adjust the divisor to control the deduction rate
+
+    while (playerInRange && remainingDeductionAmount > 0 && PlayerCashCounter.instance.totalCashValue > 0)
     {
-        if (fillCoroutine == null)
-        {
-            fillCoroutine = StartCoroutine(FillImageCoroutine());
-        }
+        // Calculate the cash value to deduct for this iteration
+        int cashValue = Mathf.Min((int)deductionPerIteration, remainingDeductionAmount, PlayerCashCounter.instance.totalCashValue);
+
+        // Spawn the cash prefab
+        GameObject cashInstance = Instantiate(cashPrefab, playerTransform.position, Quaternion.identity);
+
+        // Deduct the cash value from the remaining deduction amount and player's cash
+        remainingDeductionAmount -= cashValue;
+        PlayerCashCounter.instance.DeductTotalCash(cashValue);
+
+        // Move the cash object towards the player's position with a random jump
+        cashInstance.transform.DOJump(playerTransform.position, Random.Range(1f, 2f), 1, Random.Range(0.1f, 0.6f))
+            .SetEase(Ease.Linear)
+            .OnComplete(() => Destroy(cashInstance));
+
+        // Update UI elements
+        UpdateFloorUI();
+        UpdateFillAmount();
+
+        // Wait for the next frame
+        yield return null;
     }
 
-    void StopFillCoroutine()
+    if (remainingDeductionAmount <= 0)
     {
-        if (fillCoroutine != null)
-        {
-            StopCoroutine(fillCoroutine);
-            fillCoroutine = null;
-        }
+        // Activate the prefab with popping animation
+        activatePrefab.SetActive(true);
+        floorUI.SetActive(false);
+        activatePrefab.transform.localScale = Vector3.zero;
+        activatePrefab.transform.DOScale(Vector3.one, 0.5f)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() => Debug.Log("Popping animation complete."));
     }
 
-    // Coroutine to handle the delay before starting the deduction
-    IEnumerator DeductionStartDelayCoroutine()
-    {
-        yield return new WaitForSeconds(deductionStartDelay);
-        if (playerInRange)
-        {
-            deductionCoroutine = StartCoroutine(DeductMoneyAndSpawnCashCoroutine());
-        }
-    }
+    // Reset the coroutine reference
+    deductionCoroutine = null;
+}
 
-    IEnumerator DeductMoneyAndSpawnCashCoroutine()
-    {
-        while (playerInRange && remainingDeductionAmount > 0 && PlayerCashCounter.instance.totalCashValue > 0)
-        {
-            Debug.Log("Deducting " + totalDeductionAmount + " from player's cash.");
 
-            // Calculate the number of cash objects to spawn based on the remaining deduction amount
-            int cashValue = Mathf.Min(remainingDeductionAmount, 500); // Calculate the cash value to deduct
-            int numberOfCash = cashValue / 500; // Each cash prefab is valued at 500
 
-            for (int i = 0; i < numberOfCash; i++)
-            {
-                // Adjust spawn position based on the current player position
-                Vector3 spawnPosition = playerTransform.position;
-
-                // Spawn the cash prefab
-                GameObject cashInstance = Instantiate(cashPrefab, spawnPosition, Quaternion.identity);
-
-                // Deduct the cash value from the remaining deduction amount
-                remainingDeductionAmount -= cashValue;
-                PlayerCashCounter.instance.DeductTotalCash(500);
-
-                float randomJumpHeight = Random.Range(1f, 2f);
-                float randomJumpDuration = Random.Range(.1f, .6f);
-
-                // Use DOTween to move the cash object towards the destination with random jump parameters
-                cashInstance.transform.DOJump(transform.position, randomJumpHeight, 1, randomJumpDuration)
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() => Destroy(cashInstance));
-
-                // Calculate delay for the current cash object
-                UpdateFloorUI();
-                // SaveState();
-                yield return new WaitForSeconds(delayBetweenJumps);
-            }
-        }
-        if (remainingDeductionAmount <= 0)
-        {
-            // Activate the prefab with popping animation
-            activatePrefab.SetActive(true);
-            floorUI.SetActive(false);
-
-            // Set initial scale to zero
-            activatePrefab.transform.localScale = Vector3.zero;
-
-            // Store the initial position
-            Vector3 targetPosition = activatePrefab.transform.position;
-
-            // Set initial position slightly below the target position
-            activatePrefab.transform.position = new Vector3(targetPosition.x, targetPosition.y - 1f, targetPosition.z);
-
-            // Tween the scale to pop up and move it to the target position
-            Sequence popSequence = DOTween.Sequence();
-            popSequence.Append(activatePrefab.transform.DOMoveY(targetPosition.y, 0.5f).SetEase(Ease.OutBack))
-                       .Join(activatePrefab.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack))
-                       .OnComplete(() => Debug.Log("Popping animation complete."));
-        }
-
-        // Reset the coroutine reference
-        deductionCoroutine = null;
-    }
-
-    public void UpdateFloorUI()
+    private void UpdateFloorUI()
     {
         if (floorText != null)
         {
@@ -202,48 +130,33 @@ public class MoneyDeduction : MonoBehaviour
         }
     }
 
-    // Coroutine to fill the image over a specified duration
-    IEnumerator FillImageCoroutine()
+    private void UpdateFillAmount()
+{
+    if (fillImage != null)
     {
-        float timer = 0f;
-        while (timer < fillDuration)
-        {
-            timer += Time.deltaTime;
-            fillImage.fillAmount = Mathf.Clamp01(timer / fillDuration);
-            yield return null;
-        }
-        fillImage.fillAmount = 1f; // Ensure it's fully filled at the end
-        fillImage.gameObject.SetActive(false); // Disable the fillImage after it's fully filled
+        // Calculate the fill amount based on the deduction progress
+        float fillAmount = Mathf.Clamp01((float)(totalDeductionAmount - remainingDeductionAmount) / totalDeductionAmount);
+
+        // Start the smooth fill animation coroutine
+        StartCoroutine(SmoothFillAnimation(fillAmount, 0.5f)); // Adjust duration as needed for smoother animation
+    }
+}
+private IEnumerator SmoothFillAnimation(float targetFillAmount, float duration)
+{
+    float currentFillAmount = fillImage.fillAmount;
+    float timer = 0f;
+
+    while (timer < duration)
+    {
+        timer += Time.deltaTime;
+        float fillProgress = Mathf.Lerp(currentFillAmount, targetFillAmount, timer / duration);
+        fillImage.fillAmount = fillProgress;
+        yield return null;
     }
 
-    IEnumerator DelayedActivision()
-    {
-        yield return new WaitForSeconds(1.8f);
-        UpgradeScreen.SetActive(true);
-    }
-
-    private void SaveState()
-    {
-        PlayerPrefs.SetFloat(FillAmountKey, fillImage.fillAmount);
-        PlayerPrefs.SetInt(DeductionAmountKey, remainingDeductionAmount);
-        PlayerPrefs.Save();
-        Debug.Log("State Saved : Remaining deduction amount = " + remainingDeductionAmount);
-    }
-
-    private void LoadState()
-    {
-        float savedfillamount = PlayerPrefs.GetFloat(FillAmountKey, 0f);
-        fillImage.fillAmount = savedfillamount;
-        remainingDeductionAmount = PlayerPrefs.GetInt(DeductionAmountKey, totalDeductionAmount);
-        UpdateFloorUI();
-        Debug.Log("State loaded : Remaining Deduction amount : " + remainingDeductionAmount);
-    }
-
-    public void ResetPref()
-    {
-        PlayerPrefs.DeleteKey(DeductionAmountKey);
-        PlayerPrefs.DeleteKey(FillAmountKey);
-    }
+    // Ensure that the fill amount is exactly the target amount at the end of the animation
+    fillImage.fillAmount = targetFillAmount;
+}
 
     public void BuyWorker()
     {
