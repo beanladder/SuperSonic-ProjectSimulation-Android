@@ -81,6 +81,11 @@ public class AINPC : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+
+        if(numOfProductsCarrying>=1)
+        {
+            pop.HideEmote(pop.emoteGameObjects[0]);
+        }
     }
 
     public void SetDestination()
@@ -146,8 +151,9 @@ public class AINPC : MonoBehaviour
                     StartCoroutine(TakeProduct(shelf));
                     yield break;
                 }
+                pop.ShowEmote(pop.emoteGameObjects[0]);
             }
-            pop.ShowEmote(pop.emoteGameObjects[0]);
+            
             yield return new WaitForSeconds(1f);
             waitTime += 1f;
         }
@@ -192,8 +198,19 @@ public class AINPC : MonoBehaviour
 
         isCheckoutDone = true;
         QueueManager.instances[storeName].RemoveFromQueue(this); // Remove from specific store's queue
-        CashOutflow.instance.StartCoroutine(CashOutflow.instance.CashSpawn(CashOutflow.instance.CashDeliveryTime));
+
+        // Find the appropriate CashOutflow instance
+        CashOutflow cashOutflow = FindStoreCashOutflow();
+        if (cashOutflow != null)
+        {
+            StartCoroutine(cashOutflow.CashSpawn(cashOutflow.CashDeliveryTime));
+        }
+        
         MoveToRandomSpawnPoint();
+        yield return new WaitForSeconds(4f);
+        pop.ShowEmote(pop.emoteGameObjects[1]);
+        yield return new WaitForSeconds(1f);
+        pop.HideEmote(pop.emoteGameObjects[0]);
     }
 
     public void MoveToRandomSpawnPoint()
@@ -235,6 +252,21 @@ public class AINPC : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f); // Adjust delay as needed
         SetDestination();
+    }
+
+    private CashOutflow FindStoreCashOutflow()
+    {
+        // Find the correct CashOutflow instance based on the store name
+        GameObject store = GameObject.Find(storeName);
+        if (store != null)
+        {
+            return store.GetComponentInChildren<CashOutflow>();
+        }
+        else
+        {
+            Debug.LogWarning("Store not found for cash outflow!");
+            return null;
+        }
     }
 }
 

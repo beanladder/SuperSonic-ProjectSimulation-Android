@@ -21,7 +21,11 @@ public class CashOutflow : MonoBehaviour
 
     void Start()
     {
+
+        
+
         //StartCoroutine(CashSpawn(CashDeliveryTime));
+
     }
 
     public void SetCashToOutflow(int amount)
