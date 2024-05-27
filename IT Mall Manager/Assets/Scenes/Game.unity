@@ -21213,7 +21213,7 @@ MonoBehaviour:
   npcPrefab: {fileID: 500599819912686837, guid: 2e142c696046f455e9531947c3a9f929,
     type: 3}
   spawnInterval: 6
-  maxNPC: 10
+  maxNPC: 20
   currentNPCs: 0
 --- !u!4 &4846409864270060132
 Transform:

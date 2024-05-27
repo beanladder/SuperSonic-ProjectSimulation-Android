@@ -195,9 +195,11 @@ private IEnumerator SmoothFillAnimation(float targetFillAmount, float duration)
             PlayerCashCounter.instance.totalCashValue -= WorkerCost;
             if(WorkerAI1!=null){
                 WorkerAI1.SetActive(true);
+                PlayerCashCounter.instance.UpdateMoneyUI();
             }
             if(WorkerAI2!=null){
                 WorkerAI2.SetActive(true);
+                PlayerCashCounter.instance.UpdateMoneyUI();
             }
             WorkerUnlock.SetActive(false);
             WorkerStats.SetActive(true);
