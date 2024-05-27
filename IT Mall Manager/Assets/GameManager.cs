@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //public static GameManager instance;
     private HashSet<Shelf.ShelfType> availableShelfTypes = new HashSet<Shelf.ShelfType>();
+    public GameObject objectToEnable; // The GameObject to enable when shelf count exceeds threshold
+    public int minShelfCount = 1; // Minimum number of shelves required to enable the GameObject
 
     private void Start()
     {
         InitializeShelves();
-        
     }
 
     private void FixedUpdate()
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
         HashSet<Shelf.ShelfType> newAvailableShelfTypes = new HashSet<Shelf.ShelfType>();
 
         Transform[] allChildren = GetComponentsInChildren<Transform>();
+        int activeShelfCount = 0;
+
         foreach (Transform child in allChildren)
         {
             if (child.CompareTag("CheckShelf"))
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
                     if (shelfComponent != null)
                     {
                         newAvailableShelfTypes.Add(shelfComponent.shelfType);
+                        activeShelfCount++;
                     }
                 }
             }
@@ -67,6 +70,12 @@ public class GameManager : MonoBehaviour
             }
 
             UpdateProductInfo(availableShelfTypes);
+        }
+
+        // Enable the GameObject if the active shelf count meets the minimum requirement
+        if (objectToEnable != null)
+        {
+            objectToEnable.SetActive(activeShelfCount >= minShelfCount);
         }
     }
 
