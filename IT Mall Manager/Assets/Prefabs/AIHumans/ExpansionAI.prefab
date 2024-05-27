@@ -264,7 +264,7 @@ MonoBehaviour:
   productNames: []
   linePosition: -1
   isCheckoutDone: 0
-  storeName: Expansion
+  storeName: ExpansionRoom
 --- !u!195 &1354364994030238746
 NavMeshAgent:
   m_ObjectHideFlags: 0

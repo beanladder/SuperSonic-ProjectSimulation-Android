@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         // Enable the GameObject if the active shelf count meets the minimum requirement
         if (objectToEnable != null)
         {
-            objectToEnable.SetActive(activeShelfCount >= minShelfCount);
+            StartCoroutine(SpawnActivator(activeShelfCount));
         }
     }
 
@@ -86,5 +86,11 @@ public class GameManager : MonoBehaviour
         {
             productInfo.FilterProductsByShelfTypes(availableShelfTypes);
         }
+    }
+
+    public IEnumerator SpawnActivator(int shelfCount)
+    {
+        yield return new WaitForSeconds(2f);
+        objectToEnable.SetActive(shelfCount >= minShelfCount);
     }
 }

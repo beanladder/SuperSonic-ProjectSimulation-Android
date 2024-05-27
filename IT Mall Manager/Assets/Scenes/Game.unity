@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056e50e66d9a0824c9b9fc6260060dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryTransform: {fileID: 0}
+  carryTransform: {fileID: 911165334}
 --- !u!65 &75579645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2025,6 +2025,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8459254716462143018, guid: ddcc9e0da1fb7d447b98a109a253e4e6,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1149753691}
     - target: {fileID: 8479628927060283600, guid: ddcc9e0da1fb7d447b98a109a253e4e6,
         type: 3}
       propertyPath: DesiredRotation.x
@@ -4848,7 +4853,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 911165334}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: workerAIHands
@@ -7094,7 +7099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bc806af9f8c9e44a499a1908251592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeName: Early
+  storeName: EarlyRoom
   queuePositions:
   - {fileID: 266558842}
   - {fileID: 1941358091}
@@ -7130,7 +7135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToEnable: {fileID: 0}
+  objectToEnable: {fileID: 6854556423392646228}
   minShelfCount: 1
 --- !u!4 &736862927 stripped
 Transform:
@@ -7804,7 +7809,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 911165334}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: workerAIHands
@@ -8242,7 +8247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bc806af9f8c9e44a499a1908251592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeName: Monopoly
+  storeName: MonopolyRoom
   queuePositions:
   - {fileID: 80725280}
   - {fileID: 611433850}
@@ -8278,7 +8283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToEnable: {fileID: 0}
+  objectToEnable: {fileID: 2079500524}
   minShelfCount: 1
 --- !u!114 &885960593 stripped
 MonoBehaviour:
@@ -8467,6 +8472,12 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 6297245672157091713, guid: 708e717fcf90f9a438ad817720da8fad,
     type: 3}
   m_PrefabInstance: {fileID: 571916009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &911165334 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1845272402555515893, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 145963665}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &918223883 stripped
 GameObject:
@@ -9850,7 +9861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056e50e66d9a0824c9b9fc6260060dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryTransform: {fileID: 0}
+  carryTransform: {fileID: 911165334}
 --- !u!65 &1024190272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10376,7 +10387,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 911165334}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: workerAIHands
@@ -11409,6 +11420,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2019424106}
   m_SourcePrefab: {fileID: 100100000, guid: 92643a19f2360234c9d11da22a461d4c, type: 3}
+--- !u!4 &1149753691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7235604118573304562, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+    type: 3}
+  m_PrefabInstance: {fileID: 145963665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1160382875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 375204673604165577, guid: ddcc9e0da1fb7d447b98a109a253e4e6,
@@ -13385,7 +13402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056e50e66d9a0824c9b9fc6260060dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryTransform: {fileID: 0}
+  carryTransform: {fileID: 911165334}
 --- !u!65 &1355716870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13835,7 +13852,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 911165334}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: DesiredRotation.x
@@ -14511,7 +14528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bc806af9f8c9e44a499a1908251592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storeName: Expansion
+  storeName: ExpansionRoom
   queuePositions:
   - {fileID: 1877808312}
   - {fileID: 268106216}
@@ -14547,7 +14564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToEnable: {fileID: 0}
+  objectToEnable: {fileID: 1798201361}
   minShelfCount: 1
 --- !u!1 &1536965863
 GameObject:
@@ -14684,7 +14701,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHands
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 911165334}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: DesiredRotation.x
@@ -17951,7 +17968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056e50e66d9a0824c9b9fc6260060dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryTransform: {fileID: 0}
+  carryTransform: {fileID: 911165334}
 --- !u!65 &1886861247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20616,7 +20633,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1149753691}
     - target: {fileID: 8479628927060283600, guid: ddcc9e0da1fb7d447b98a109a253e4e6,
         type: 3}
       propertyPath: DesiredRotation.x
@@ -20669,7 +20686,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5661144031173495480}
   - component: {fileID: 4752378977418487587}
-  - component: {fileID: 8861508596592329422}
   m_Layer: 6
   m_Name: EarlySpawn
   m_TagString: Untagged
@@ -20948,21 +20964,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8861508596592329422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6854556423392646228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f537db568cd84db38715d44d763961d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcPrefab: {fileID: 500599819912686837, guid: 2bb5b6ea259c76640b3defb9bda27cba,
-    type: 3}
-  poolSize: 20
 --- !u!4 &8963859677714139055
 Transform:
   m_ObjectHideFlags: 0
@@ -20995,9 +20996,9 @@ SceneRoots:
   - {fileID: 5661144031173495480}
   - {fileID: 1798201364}
   - {fileID: 2079500527}
+  - {fileID: 145963665}
   - {fileID: 409035206}
   - {fileID: 1144264198}
   - {fileID: 81182538}
   - {fileID: 15039724}
   - {fileID: 39455673}
-  - {fileID: 145963665}

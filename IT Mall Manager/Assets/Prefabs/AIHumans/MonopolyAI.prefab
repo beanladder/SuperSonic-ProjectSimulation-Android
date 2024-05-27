@@ -266,7 +266,7 @@ MonoBehaviour:
   productNames: []
   linePosition: -1
   isCheckoutDone: 0
-  storeName: Monopoly
+  storeName: MonopolyRoom
 --- !u!195 &1354364994030238746
 NavMeshAgent:
   m_ObjectHideFlags: 0
