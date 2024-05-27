@@ -74,7 +74,7 @@ public class AINPC : MonoBehaviour
         if(numOfProductsCarrying == 0 && time>timeDelay && isGlitched)
         {
             MoveToRandomSpawnPoint();
-            isGlitched = false;
+            
         }
 
         if (isFinishedShopping && !isCheckoutDone)
@@ -237,7 +237,9 @@ public class AINPC : MonoBehaviour
             {
                 spawner.NPCDestroyed();
             }
-            Destroy(gameObject, 25f); // Destroy after 25 seconds
+            isGlitched = false;
+            Destroy(gameObject, 25f);
+             // Destroy after 25 seconds
         }
         else
         {

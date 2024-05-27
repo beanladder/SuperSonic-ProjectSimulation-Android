@@ -265,6 +265,7 @@ MonoBehaviour:
   linePosition: -1
   isCheckoutDone: 0
   storeName: EarlyRoom
+  time: 0
 --- !u!195 &1354364994030238746
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1554,6 +1555,7 @@ MonoBehaviour:
   linePosition: -1
   isCheckoutDone: 0
   storeName: 
+  time: 0
 --- !u!195 &2956158121595697873
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1648,7 +1650,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4500208704033585877}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

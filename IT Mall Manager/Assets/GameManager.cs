@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeShelves();
+        //InitializeShelves();
+        UpdateAvailableShelves();
     }
 
     private void FixedUpdate()
@@ -92,5 +93,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         objectToEnable.SetActive(shelfCount >= minShelfCount);
+    }
+
+    public HashSet<Shelf.ShelfType> GetAvailableShelfTypes()
+    {
+        return new HashSet<Shelf.ShelfType>(availableShelfTypes);
     }
 }

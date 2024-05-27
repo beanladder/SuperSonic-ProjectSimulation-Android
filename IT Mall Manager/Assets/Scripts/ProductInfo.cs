@@ -23,15 +23,26 @@ public class ProductInfo : MonoBehaviour
     private void Awake()
     {
         // Ensure products are initialized
-        InitializeProducts();
+        //InitializeProducts();
         
         // Find the GameManager by traversing up the hierarchy
+
+        
         
     }
 
     public void SetGameManager(GameManager gm)
     {
         gameManager = gm;
+         if (gameManager != null)
+        {
+            // Filter products by available shelf types
+            FilterProductsByShelfTypes(gameManager.GetAvailableShelfTypes());
+        }
+        else
+        {
+            Debug.LogError("GameManager not found in the parent hierarchy.");
+        }
     }
 
     
@@ -47,6 +58,7 @@ public class ProductInfo : MonoBehaviour
 
     private void Update()
     {
+       
         if (allProductsUsedUp)
         {
             StartCoroutine(DestroyCoroutine());
@@ -57,6 +69,7 @@ public class ProductInfo : MonoBehaviour
     {
         if (gameManager != null)
         {
+            Debug.Log("Updating products from ProductInfo");
             gameManager.UpdateAvailableShelves();
         }
         yield return new WaitForSeconds(0.1f);
