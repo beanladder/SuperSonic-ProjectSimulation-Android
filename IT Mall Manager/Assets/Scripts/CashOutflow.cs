@@ -10,6 +10,7 @@ public class CashOutflow : MonoBehaviour
     [SerializeField] Transform[] CashHolders; // Array to hold the 6 empty GameObject transforms
     [SerializeField] GameObject CashPrefab; // Prefab of the cash
     public float CashDeliveryTime, Yaxis; // Time between each cash spawn and y-axis offset
+    public Vector3 DesiredRotation;
 
     public int cashToOutflow;
 
@@ -40,7 +41,7 @@ public class CashOutflow : MonoBehaviour
             Yaxis = CashHolders[cashIndex].childCount * 0.035f;
             // Set the scale and rotation of the new cash to match the original scale and rotation
             newCash.transform.localScale = originalScale;
-            newCash.transform.rotation = originalRotation;
+            newCash.transform.rotation = Quaternion.Euler(DesiredRotation);
 
             // Set the parent of the new cash to the respective cash holder
             newCash.transform.parent = CashHolders[cashIndex];
