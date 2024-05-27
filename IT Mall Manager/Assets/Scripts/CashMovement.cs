@@ -24,44 +24,49 @@ public class CashMovement : MonoBehaviour
     {
         isMovingCash = true;
 
-        // Find all child objects with the name "SpawnPoint"
-        List<Transform> spawnPoints = new List<Transform>();
+        // Collect all cash objects from all spawn points
+        List<List<GameObject>> allCashObjects = new List<List<GameObject>>();
         foreach (Transform child in transform)
         {
             if (child.name == "SpawnPoint")
             {
-                spawnPoints.Add(child);
+                List<GameObject> cashObjects = new List<GameObject>();
+                foreach (Transform cash in child)
+                {
+                    cashObjects.Add(cash.gameObject);
+                }
+                allCashObjects.Add(cashObjects);
             }
         }
 
-        foreach (Transform spawnPoint in spawnPoints)
+        bool hasMoreCash = true;
+        while (hasMoreCash)
         {
-            List<GameObject> cashObjects = new List<GameObject>();
-            foreach (Transform child in spawnPoint)
+            hasMoreCash = false;
+            foreach (var cashObjects in allCashObjects)
             {
-                cashObjects.Add(child.gameObject);
-            }
-
-            // Reverse the list to ensure the last added cash object moves first
-            cashObjects.Reverse();
-
-            foreach (GameObject cashObject in cashObjects)
-            {
-                if (cashObject != null)
+                if (cashObjects.Count > 0)
                 {
-                    cashObject.transform.DOJump(playerTransform.position, 3f, 1, moveDuration)
-                        .SetEase(Ease.OutQuad)
-                        .OnComplete(() =>
-                        {
-                            PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab);
-                            Destroy(cashObject);
+                    hasMoreCash = true;
+                    GameObject cashObject = cashObjects[0];
+                    cashObjects.RemoveAt(0);
 
-                            // Add haptic feedback when cash reaches its destination
-                            if (Application.platform == RuntimePlatform.Android)
+                    if (cashObject != null)
+                    {
+                        cashObject.transform.DOJump(playerTransform.position, 3f, 1, moveDuration)
+                            .SetEase(Ease.InQuad)
+                            .OnComplete(() =>
                             {
-                                Handheld.Vibrate();
-                            }
-                        });
+                                PlayerCashCounter.instance.IncreaseTotalCashReached(cashValuePerPrefab);
+                                Destroy(cashObject);
+
+                                // Add haptic feedback when cash reaches its destination
+                                if (Application.platform == RuntimePlatform.Android)
+                                {
+                                    Handheld.Vibrate();
+                                }
+                            });
+                    }
 
                     // Wait for the specified delay before moving the next cash object
                     yield return new WaitForSeconds(delayBetweenMovement);
