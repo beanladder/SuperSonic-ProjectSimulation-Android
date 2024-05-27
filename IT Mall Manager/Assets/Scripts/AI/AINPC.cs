@@ -18,13 +18,15 @@ public class AINPC : MonoBehaviour
     public string storeName; // Store name to determine which queue to join
 
     private bool isTakingProduct = false;
+
+    bool isGlitched = true;
     private bool isFinishedShopping = false;
     private bool isIrritated = false;
     private bool shelfChecking = true;
 
     private NavMeshAgent navMeshAgent;
     [SerializeField] float time;
-    float timeDelay = 70f;
+    float timeDelay = 100f;
     private Animator animator;
     private Collider lastVisitedShelf;
     private PoppingAnimation pop;
@@ -69,9 +71,10 @@ public class AINPC : MonoBehaviour
     private void Update()
     {
         time = time + 1f * Time.deltaTime;
-        if(numOfProductsCarrying == 0 && time>timeDelay)
+        if(numOfProductsCarrying == 0 && time>timeDelay && isGlitched)
         {
             MoveToRandomSpawnPoint();
+            isGlitched = false;
         }
 
         if (isFinishedShopping && !isCheckoutDone)
