@@ -6978,6 +6978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToEnable: {fileID: 0}
+  minShelfCount: 1
 --- !u!4 &736862927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2567641527532824031, guid: d99f9a43be0cc4c3091ad1f2e01a255e,
@@ -8124,6 +8126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToEnable: {fileID: 0}
+  minShelfCount: 1
 --- !u!114 &885960593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 538603139162532196, guid: def91b46187758a4285734c42304b7dd,
@@ -14382,6 +14386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19681f5e652ec4200943a9405b2f95ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToEnable: {fileID: 0}
+  minShelfCount: 1
 --- !u!1 &1536965863
 GameObject:
   m_ObjectHideFlags: 0
@@ -16658,6 +16664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298995259858560107, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6095005129506185059, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}

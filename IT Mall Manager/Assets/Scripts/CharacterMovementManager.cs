@@ -62,7 +62,7 @@ public class CharacterMovementManager : MonoBehaviour
             }
 
             float mappedMove;
-            if (moveSpeed <= 3.5f)
+            if (moveSpeed <= 4f)
             {
                 mappedMove = Mathf.Clamp(currentSpeed / moveSpeed, 0f, 0.5f); // Map current speed to range [0, 0.5]
             }
