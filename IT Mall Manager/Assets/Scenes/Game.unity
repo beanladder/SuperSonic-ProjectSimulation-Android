@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1840,7 +1840,7 @@ PrefabInstance:
     - target: {fileID: 6095005129506185059, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
       propertyPath: totalCashValue
-      value: 20000
+      value: 100000000
       objectReference: {fileID: 0}
     - target: {fileID: 6095005129506185059, guid: 7d80155ed6c30ae47935ad4480cb4ad6,
         type: 3}
@@ -4851,6 +4851,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1245843608}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: workerAI
+      value: 
+      objectReference: {fileID: 1245843605}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
       propertyPath: playerHands
       value: 
       objectReference: {fileID: 911165334}
@@ -7807,6 +7817,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1994288568}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: workerAI
+      value: 
+      objectReference: {fileID: 1994288565}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
       propertyPath: playerHands
       value: 
       objectReference: {fileID: 911165334}
@@ -7815,6 +7835,21 @@ PrefabInstance:
       propertyPath: workerAIHands
       value: 
       objectReference: {fileID: 1485465494}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: DesiredRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: DesiredRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: DesiredRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3771289382549132894, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
       propertyPath: gameManager
@@ -10385,6 +10420,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 2126681385}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
+      propertyPath: workerAI
+      value: 
+      objectReference: {fileID: 2126681382}
+    - target: {fileID: 2402017803658585174, guid: 708e717fcf90f9a438ad817720da8fad,
+        type: 3}
       propertyPath: playerHands
       value: 
       objectReference: {fileID: 911165334}
@@ -12356,6 +12401,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1261606042}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245843605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4007417906522141806, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1261606042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305956746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de03439767cd4fc89684e00510fc774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1245843608 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4436824841856966610, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1261606042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1247842136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7777020575572280153, guid: ddcc9e0da1fb7d447b98a109a253e4e6,
@@ -13519,6 +13582,16 @@ PrefabInstance:
       propertyPath: superContainerCollider
       value: 
       objectReference: {fileID: 1099802352}
+    - target: {fileID: 4007417906522141806, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: WorkerDesiredRotation.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6534589684456678756, guid: 5606de7c6d2fc490eb73639407e7abda,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 8271292206046614512, guid: 5606de7c6d2fc490eb73639407e7abda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13569,7 +13642,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8259084178878622279, guid: 5606de7c6d2fc490eb73639407e7abda, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16929,6 +17003,7 @@ MonoBehaviour:
     type: 3}
   spawnInterval: 6
   maxNPC: 10
+  currentNPCs: 0
 --- !u!4 &1798201364
 Transform:
   m_ObjectHideFlags: 0
@@ -18357,6 +18432,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1357681606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1994288565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4007417906522141806, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1357681606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994288564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de03439767cd4fc89684e00510fc774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1994288568 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4436824841856966610, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1357681606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1999863803
 GameObject:
   m_ObjectHideFlags: 0
@@ -18855,6 +18948,7 @@ MonoBehaviour:
     type: 3}
   spawnInterval: 6
   maxNPC: 10
+  currentNPCs: 0
 --- !u!4 &2079500527
 Transform:
   m_ObjectHideFlags: 0
@@ -19210,6 +19304,24 @@ PrefabInstance:
 --- !u!4 &2126681381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8271292206046614512, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 2126681380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2126681382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4007417906522141806, guid: 5606de7c6d2fc490eb73639407e7abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 2126681380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092391755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de03439767cd4fc89684e00510fc774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2126681385 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4436824841856966610, guid: 5606de7c6d2fc490eb73639407e7abda,
     type: 3}
   m_PrefabInstance: {fileID: 2126681380}
   m_PrefabAsset: {fileID: 0}
@@ -20418,6 +20530,7 @@ MonoBehaviour:
     type: 3}
   spawnInterval: 6
   maxNPC: 10
+  currentNPCs: 0
 --- !u!4 &4846409864270060132
 Transform:
   m_ObjectHideFlags: 0

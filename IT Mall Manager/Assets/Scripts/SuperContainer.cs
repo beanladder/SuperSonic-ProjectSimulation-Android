@@ -13,6 +13,8 @@ public class SuperContainer : MonoBehaviour
     public bool WorkerEmptyHand = false;
     public GameObject heldPackage; // Stores the currently held package
     public Vector3 DesiredRotation;
+    public Animator anim;
+    public WorkerAI workerAI;
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +28,8 @@ public class SuperContainer : MonoBehaviour
         {
             spawnPoints[i] = transform.GetChild(i);
         }
+        
+        
     }
 
     private void Update()
@@ -44,12 +48,12 @@ public class SuperContainer : MonoBehaviour
         if (workerAIHands.childCount < 1)
         {
             WorkerEmptyHand = true;
-            WorkerAI.instance.animator.SetLayerWeight(1, 0);
+            anim.SetLayerWeight(1, 0);
         }
         else
         {
-            WorkerEmptyHand = false; 
-            WorkerAI.instance.animator.SetLayerWeight(1, 1);
+            WorkerEmptyHand = false;
+            anim.SetLayerWeight(1, 1);
         }
     }
 
@@ -91,7 +95,7 @@ public class SuperContainer : MonoBehaviour
                 {
                     box.SetParent(playerHands);
                     box.localPosition = Vector3.zero;
-                    box.transform.localRotation = Quaternion.Euler( DesiredRotation);
+                    box.transform.localRotation = Quaternion.Euler(DesiredRotation);
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     //product.isAI = false;
@@ -114,7 +118,7 @@ public class SuperContainer : MonoBehaviour
                 {
                     box.SetParent(workerAIHands);
                     box.localPosition = Vector3.zero;
-                    box.localRotation = Quaternion.identity;
+                    box.transform.localRotation = Quaternion.Euler(workerAI.WorkerDesiredRotation);
                     heldPackage = box.gameObject;
                     ProductInfo product = heldPackage.GetComponent<ProductInfo>();
                     //product.isAI = true;

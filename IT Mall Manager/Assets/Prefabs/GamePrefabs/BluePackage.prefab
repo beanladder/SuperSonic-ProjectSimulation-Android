@@ -135,5 +135,5 @@ MonoBehaviour:
   - productName: Phone
     productPrefab: {fileID: 285163457938453022, guid: 483379fad0afd4d9fa62d816433b942c,
       type: 3}
-    count: 1
+    count: 0
     defaultCount: 4
