@@ -8,6 +8,7 @@ public class MoneyDeduction : MonoBehaviour
 {
     public Shelf.ShelfType shelfTypeToSet = Shelf.ShelfType.CPU;
     public GameObject floorUI;
+    public GameObject WorkerAI1, WorkerAI2;
     public GameObject activatePrefab;
     public GameObject UpgradeScreen;
     public GameObject WorkerStats;
@@ -45,8 +46,13 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
-            StartDeductionCoroutine();
+            if(gameObject.CompareTag("PurchaseUI")){
+                playerInRange = true;
+                StartDeductionCoroutine();
+            }
+            if(gameObject.CompareTag("UpgradeUI")){
+                UpgradeScreen.SetActive(true);
+            }
         }
     }
 
@@ -54,8 +60,13 @@ public class MoneyDeduction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
-            StopDeductionCoroutine();
+            if(gameObject.CompareTag("PurchaseUI")){
+                playerInRange = false;
+                StopDeductionCoroutine();
+            }
+            if(gameObject.CompareTag("UpgradeUI")){
+                UpgradeScreen.SetActive(false);
+            }
         }
     }
 
@@ -182,6 +193,12 @@ private IEnumerator SmoothFillAnimation(float targetFillAmount, float duration)
         if (PlayerCashCounter.instance.totalCashValue >= WorkerCost)
         {
             PlayerCashCounter.instance.totalCashValue -= WorkerCost;
+            if(WorkerAI1!=null){
+                WorkerAI1.SetActive(true);
+            }
+            if(WorkerAI2!=null){
+                WorkerAI2.SetActive(true);
+            }
             WorkerUnlock.SetActive(false);
             WorkerStats.SetActive(true);
         }

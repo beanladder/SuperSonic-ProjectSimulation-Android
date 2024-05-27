@@ -673,6 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8016414352680089600}
+  - component: {fileID: 2734563785185904882}
   m_Layer: 0
   m_Name: shutter
   m_TagString: Untagged
@@ -709,6 +710,27 @@ Transform:
   - {fileID: 1851923216397676196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &2734563785185904882
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259449669612333451}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 10.38, z: 14.73}
+  m_Center: {x: -0.6, y: 5.43, z: 0}
 --- !u!1 &5296688354722217728
 GameObject:
   m_ObjectHideFlags: 0
