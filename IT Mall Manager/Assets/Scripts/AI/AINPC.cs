@@ -181,7 +181,7 @@ public class AINPC : MonoBehaviour
     private IEnumerator TakeProduct(Shelf shelf)
     {
         isTakingProduct = true;
-        yield return new WaitForSeconds(5f); // Increased time to take a product by 2 more seconds
+        yield return new WaitForSeconds(3f); // Increased time to take a product by 2 more seconds
 
         numOfProductsCarrying++;
         productNames.Add(shelf.shelfType.ToString());
@@ -211,6 +211,7 @@ public class AINPC : MonoBehaviour
         CashOutflow cashOutflow = FindStoreCashOutflow();
         if (cashOutflow != null)
         {
+            cashOutflow.SetCashToOutflow(Random.Range(5,10));
             StartCoroutine(cashOutflow.CashSpawn(cashOutflow.CashDeliveryTime));
         }
         
