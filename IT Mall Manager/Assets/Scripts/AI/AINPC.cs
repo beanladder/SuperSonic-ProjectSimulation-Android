@@ -18,14 +18,19 @@ public class AINPC : MonoBehaviour
     public string storeName; // Store name to determine which queue to join
 
     private bool isTakingProduct = false;
+
+    bool isGlitched = true;
     private bool isFinishedShopping = false;
     private bool isIrritated = false;
     private bool shelfChecking = true;
 
     private NavMeshAgent navMeshAgent;
+    [SerializeField] float time;
+    float timeDelay = 100f;
     private Animator animator;
     private Collider lastVisitedShelf;
     private PoppingAnimation pop;
+    private NPCSpawner spawner; // Reference to the spawner that created this NPC
 
     private int requiredProducts = 1; // Reduced the number of products the NPC needs to buy to 1
 
@@ -65,6 +70,13 @@ public class AINPC : MonoBehaviour
 
     private void Update()
     {
+        time = time + 1f * Time.deltaTime;
+        if(numOfProductsCarrying == 0 && time>timeDelay && isGlitched)
+        {
+            MoveToRandomSpawnPoint();
+            
+        }
+
         if (isFinishedShopping && !isCheckoutDone)
         {
             if (linePosition <= 15)
@@ -108,7 +120,6 @@ public class AINPC : MonoBehaviour
         else
         {
             Debug.LogWarning("No enabled shelves found with allowed shelf types or all shelves have been visited!");
-            animator.SetBool("isMoving", false);
         }
     }
 
@@ -173,7 +184,7 @@ public class AINPC : MonoBehaviour
     private IEnumerator TakeProduct(Shelf shelf)
     {
         isTakingProduct = true;
-        yield return new WaitForSeconds(5f); // Increased time to take a product by 2 more seconds
+        yield return new WaitForSeconds(3f); // Increased time to take a product by 2 more seconds
 
         numOfProductsCarrying++;
         productNames.Add(shelf.shelfType.ToString());
@@ -203,6 +214,7 @@ public class AINPC : MonoBehaviour
         CashOutflow cashOutflow = FindStoreCashOutflow();
         if (cashOutflow != null)
         {
+            cashOutflow.SetCashToOutflow(Random.Range(5,10));
             StartCoroutine(cashOutflow.CashSpawn(cashOutflow.CashDeliveryTime));
         }
         
@@ -221,8 +233,13 @@ public class AINPC : MonoBehaviour
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
             navMeshAgent.SetDestination(randomSpawnPoint.position);
-            Destroy(gameObject, 25f); // Destroy after 25 seconds
-            NPCSpawner.instance.NPCDestroyed();
+            if (spawner != null)
+            {
+                spawner.NPCDestroyed();
+            }
+            isGlitched = false;
+            Destroy(gameObject, 25f);
+             // Destroy after 25 seconds
         }
         else
         {
@@ -267,6 +284,11 @@ public class AINPC : MonoBehaviour
             Debug.LogWarning("Store not found for cash outflow!");
             return null;
         }
+    }
+
+    public void SetSpawner(NPCSpawner spawner)
+    {
+        this.spawner = spawner;
     }
 }
 

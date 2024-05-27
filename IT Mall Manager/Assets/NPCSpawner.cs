@@ -9,12 +9,8 @@ public class NPCSpawner : MonoBehaviour
     public float spawnInterval = 8f;
     public int maxNPC = 40; // Maximum number of NPCs allowed
 
-    private int currentNPCs = 0; // Current number of spawned NPCs
-    public static NPCSpawner instance;
+    public int currentNPCs = 0; // Current number of spawned NPCs
 
-    private void Awake() {
-        instance = this;
-    }
     private void Start()
     {
         InvokeRepeating("SpawnNPC", 0f, spawnInterval);
@@ -28,7 +24,12 @@ public class NPCSpawner : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             // Spawn the NPC at the chosen spawn point
-            Instantiate(npcPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject npc = Instantiate(npcPrefab, spawnPoint.position, Quaternion.identity);
+
+            // Get the AINPC component and set its spawner reference
+            AINPC aiNPC = npc.GetComponent<AINPC>();
+            aiNPC.SetSpawner(this);
+
             currentNPCs++; // Increment the count of spawned NPCs
         }
     }

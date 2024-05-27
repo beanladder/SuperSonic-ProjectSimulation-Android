@@ -14,6 +14,7 @@ public class WorkerAI : MonoBehaviour
     public Animator animator;
     private bool waitingForShelf;
     public int AImaxProducts;
+    public Vector3 WorkerDesiredRotation;
     private void Awake()
     {
         instance = this;
