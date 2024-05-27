@@ -264,7 +264,7 @@ NavMeshAgent:
   m_Height: 194.88
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &4007417906522141806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1218,6 +1218,7 @@ MonoBehaviour:
   productNames: []
   linePosition: -1
   isCheckoutDone: 0
+  storeName: 
 --- !u!195 &2956158121595697873
 NavMeshAgent:
   m_ObjectHideFlags: 0

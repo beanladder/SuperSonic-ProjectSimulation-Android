@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shelfType: 3
+  desiredRotation: {x: 0, y: 0, z: 0}
   productCount: 0
   maxProducts: 8
   spawnDelay: 0.2
@@ -315,7 +316,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.505}
+  m_Extents: {x: 0.545, y: 0.5, z: 0.55}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1

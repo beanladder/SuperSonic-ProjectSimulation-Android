@@ -24,10 +24,10 @@ public class AINPC : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    private Collider lastVisitedShelf; 
+    private Collider lastVisitedShelf;
     private PoppingAnimation pop;
 
-    private int requiredProducts = 2; // Number of products the NPC needs to buy
+    private int requiredProducts = 1; // Reduced the number of products the NPC needs to buy to 1
 
     private void Awake()
     {
@@ -85,6 +85,7 @@ public class AINPC : MonoBehaviour
         Collider[] shelfColliders = GameObject.FindGameObjectsWithTag("Shelf")
             .Select(obj => obj.GetComponent<Collider>())
             .Where(col => col != null && col.GetComponentInParent<Shelf>() != null && col.GetComponentInParent<Shelf>().gameObject.activeSelf && allowedShelfTypes.Contains(col.GetComponentInParent<Shelf>().shelfType.ToString()))
+            .Where(col => col != lastVisitedShelf) // Avoid the last visited shelf
             .ToArray();
 
         if (shelfColliders.Length > 0)
@@ -96,7 +97,7 @@ public class AINPC : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No enabled shelves found with allowed shelf types!");
+            Debug.LogWarning("No enabled shelves found with allowed shelf types or all shelves have been visited!");
             animator.SetBool("isMoving", false);
         }
     }
@@ -130,12 +131,16 @@ public class AINPC : MonoBehaviour
 
         while (waitTime < 15f)
         {
-            if (shelf != null && shelf.productCount > 0 && shelf.RemoveProduct())
+            if (shelf != null)
             {
-                pop.HideEmote(pop.emoteGameObjects[0]);
-                yield return new WaitForSeconds(1f);
-                StartCoroutine(TakeProduct(shelf));
-                yield break;
+                Debug.Log($"Checking shelf: {shelf.name}, productCount: {shelf.productCount}");
+                if (shelf.productCount > 0 && shelf.RemoveProduct())
+                {
+                    pop.HideEmote(pop.emoteGameObjects[0]);
+                    yield return new WaitForSeconds(1f);
+                    StartCoroutine(TakeProduct(shelf));
+                    yield break;
+                }
             }
             pop.ShowEmote(pop.emoteGameObjects[0]);
             yield return new WaitForSeconds(1f);
@@ -156,31 +161,24 @@ public class AINPC : MonoBehaviour
 
     private IEnumerator TakeProduct(Shelf shelf)
     {
-        yield return new WaitForSeconds(3f);
         isTakingProduct = true;
+        yield return new WaitForSeconds(5f); // Increased time to take a product by 2 more seconds
 
-        if (numOfProductsCarrying < requiredProducts)
+        numOfProductsCarrying++;
+        productNames.Add(shelf.shelfType.ToString());
+
+        isTakingProduct = false;
+        shelfChecking = true;
+
+        if (numOfProductsCarrying == requiredProducts)
         {
-            numOfProductsCarrying++;
-            productNames.Add(shelf.shelfType.ToString());
-
-            if (numOfProductsCarrying == requiredProducts)
-            {
-                isFinishedShopping = true;
-                QueueManager.instances[storeName].AddToQueue(this); // Add to specific store's queue
-            }
-            else
-            {
-                shelfChecking = true;
-                SetDestination();
-            }
+            isFinishedShopping = true;
+            QueueManager.instances[storeName].AddToQueue(this); // Add to specific store's queue
         }
         else
         {
-            MoveToRandomSpawnPoint();
+            SetDestination();
         }
-
-        isTakingProduct = false;
     }
 
     private IEnumerator Checkout()
@@ -201,21 +199,13 @@ public class AINPC : MonoBehaviour
         {
             Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
             navMeshAgent.SetDestination(randomSpawnPoint.position);
-
-            // Return the NPC to the pool after 15 seconds
-            Invoke("ReturnToPool", 15f);
+            Destroy(gameObject, 25f); // Destroy after 25 seconds
+            NPCSpawner.instance.NPCDestroyed();
         }
         else
         {
             Debug.LogWarning("No spawn points found!");
         }
-    }
-
-    private void ReturnToPool()
-    {
-        NPCSpawner.instance.NPCDestroyed();
-        Destroy(gameObject);
-        
     }
 
     public void MoveToCheckout(Vector3 position)

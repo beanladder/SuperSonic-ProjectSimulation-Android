@@ -118,7 +118,7 @@ public class WorkerAI : MonoBehaviour
                 .Where(shelf => allowedShelfTypes.Contains(shelf.shelfType.ToString()))
                 .ToArray();
 
-            bool anyShelfAvailable = shelves.Any(shelf => shelf.productCount <= 1);
+            bool anyShelfAvailable = shelves.Any(shelf => shelf.productCount <= 3);
 
             if (anyShelfAvailable)
             {
