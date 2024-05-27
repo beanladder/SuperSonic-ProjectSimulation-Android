@@ -39,6 +39,11 @@ public class AINPC : MonoBehaviour
         {
             Debug.LogError("NavMeshAgent component is missing on " + gameObject.name);
         }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator component is missing on " + gameObject.name);
+        }
     }
 
     private void Start()
