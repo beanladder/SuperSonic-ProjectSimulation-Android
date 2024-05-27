@@ -351,6 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelfTypeToSet: 0
   floorUI: {fileID: 0}
+  WorkerAI1: {fileID: 0}
+  WorkerAI2: {fileID: 0}
   activatePrefab: {fileID: 0}
   UpgradeScreen: {fileID: 0}
   WorkerStats: {fileID: 0}
@@ -366,6 +368,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   floorText: {fileID: 7258858981939692318}
   delayBetweenJumps: 0.1
+  wallAnimation: {fileID: 0}
 --- !u!1 &7145720601668704244
 GameObject:
   m_ObjectHideFlags: 0
