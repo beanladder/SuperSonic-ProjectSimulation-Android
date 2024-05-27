@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-//using UnityEditor.ShaderKeywordFilter;
+
 public class PlayerCashCounter : MonoBehaviour
 {
     public static PlayerCashCounter instance;
@@ -10,31 +10,42 @@ public class PlayerCashCounter : MonoBehaviour
     public GameObject ActivateExpansionShop;
     public GameObject ActivateMonopolyShop;
     private const string MoneyKey = "PlayerMoney";
+    
+    private bool expansionShopActivated = false;
+    private bool monopolyShopActivated = false;
 
     private void Awake()
     {
         instance = this;
         //LoadMoney();
     }
-    void Update(){
-        if(totalCashValue>=75000){
-            if(ActivateExpansionShop!=null){
+
+    void Update()
+    {
+        if (totalCashValue >= 75000 && !expansionShopActivated)
+        {
+            if (ActivateExpansionShop != null)
+            {
                 ActivateExpansionShop.SetActive(true);
+                expansionShopActivated = true;
             }
         }
-        if(totalCashValue>=250000){
-            if(ActivateExpansionShop!=null){
+        if (totalCashValue >= 250000 && !monopolyShopActivated)
+        {
+            if (ActivateMonopolyShop != null)
+            {
                 ActivateMonopolyShop.SetActive(true);
+                monopolyShopActivated = true;
             }
         }
     }
+
     public void IncreaseTotalCashReached(int amount)
     {
         totalCashValue += amount; // Increase total cash value based on the amount and value per prefab
         UpdateMoneyUI();
     }
 
-    
     public void DeductTotalCash(int amount)
     {
         // Check if there's enough cash to deduct
@@ -46,12 +57,14 @@ public class PlayerCashCounter : MonoBehaviour
         }
         else
         {
-            
+            // Optionally handle the case when there isn't enough cash
         }
     }
 
-    public void UpdateMoneyUI(){
-        if(moneyText!=null){
+    public void UpdateMoneyUI()
+    {
+        if (moneyText != null)
+        {
             moneyText.text = totalCashValue.ToString();
         }
     }
