@@ -17,6 +17,7 @@ TagManager:
   - SuperContainer
   - targetTag
   - CheckShelf
+  - Walls
   layers:
   - Default
   - TransparentFX

@@ -737,7 +737,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   moveDuration: 1
   delayBetweenMovement: 0.1
-  cashValuePerPrefab: 500
+  cashValuePerPrefab: 2000
 --- !u!1 &1244661466248909261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1393,7 @@ Transform:
   m_GameObject: {fileID: 3456549793184709500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.268, y: -0.86, z: -0}
+  m_LocalPosition: {x: 2.445, y: -0.86, z: -0}
   m_LocalScale: {x: 1.15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2635,7 +2635,7 @@ Transform:
   m_GameObject: {fileID: 6474160908205179573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.988, y: -0.54, z: 0}
+  m_LocalPosition: {x: 2.041, y: -0.54, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

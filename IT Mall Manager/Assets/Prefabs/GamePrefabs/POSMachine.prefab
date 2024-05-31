@@ -76,6 +76,7 @@ MonoBehaviour:
     type: 3}
   CashDeliveryTime: 0.09
   Yaxis: 0
+  DesiredRotation: {x: 0, y: 0, z: 0}
   cashToOutflow: 4
 --- !u!1 &1529893323264202133
 GameObject:
